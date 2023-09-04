@@ -864,10 +864,12 @@ MonoBehaviour:
   smoothMotion: 1
   hook: {fileID: 729371197}
   hookSize: 0.1
-  hookPower: 0.5
+  hookPower: 0.3
   hookPullPower: 0.01
   hookGravityPower: 0.005
   hookProgressDegradPower: 0.1
+  hookSR: {fileID: 729371198}
+  progressBarContainer: {fileID: 1235512611}
 --- !u!1 &1354576656
 GameObject:
   m_ObjectHideFlags: 0
