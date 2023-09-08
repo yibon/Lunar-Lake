@@ -58,6 +58,7 @@ public class Fishing : MonoBehaviour
 
         fishPos = Mathf.SmoothDamp(fishPos, fishDestination, ref fishSpeed, smoothMotion);
         fish.position = Vector3.Lerp(bottomPivot.position, topPivot.position, fishPos);
+        Debug.Log(isReeling);
 
         if (Input.GetMouseButton(0))
         {
