@@ -1636,8 +1636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707b9e2bca45de44da2bc7045b97357d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initlength: 0
-  length: 0
+  length: 20
   lineRend: {fileID: 1265545097}
   segmentPoses: []
   targetDir: {fileID: 773368523}

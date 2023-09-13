@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Line : MonoBehaviour
 {
-    public int initlength;
+    //public int initlength;
     public int length;
     public LineRenderer lineRend;
     public Vector3[] segmentPoses;
@@ -41,15 +41,11 @@ public class Line : MonoBehaviour
         segmentV = new Vector3[length];
 
         rodPt.position = new Vector3(0.74f, 4.03f, 0f);
-        //targetDir.position = initPos.position;
-
-        //StartCoroutine(Casting());
-
     }
 
     private void Update()
     {
-        segmentPoses[0] = fisherman.position;
+        //segmentPoses[0] = fisherman.position;
         //segmentPoses[1] = fisherman.position + new Vector3 (0.2f, 0.2f, 0);
         segmentPoses[length - 1] = targetDir.position;
 
@@ -58,7 +54,7 @@ public class Line : MonoBehaviour
             isCasting = true;   
         }
 
-        for (int i = segmentPoses.Length - 2; i > 0; i--)
+        for (int i = segmentPoses.Length - 2; i >= 0; i--)
         {
             //segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], segmentPoses[i + 1] + targetDir.right * targetDist, ref segmentV[i], smoothSpeed);
 
@@ -120,34 +116,4 @@ public class Line : MonoBehaviour
             }
         }
     }
-    //private IEnumerator Casting()
-    //{
-    //    //Debug.Log(targetDir.position);
-    //    isCasting = false;
-
-    //    // Start Casting
-    //    Debug.Log("Start Casting");
-    //    segmentPoses[0] = targetDir.position;
-    //    yield return new WaitForSeconds(1f);
-
-    //    // Pull back the rod
-    //    Debug.Log("Pull Back Rod");
-    //    yield return new WaitForSeconds(3f);
-
-
-    //    // Launch the rod
-    //    //Debug.Log("Launch");
-    //    //targetDir.position = QuadraticLerp(targetPos, interpolatePt, initPos, interpolateAmt);
-    //    //Debug.Log(targetDir.position);
-
-    //}
-
-    //private Vector3 QuadraticLerp(Vector3 a, Vector3 b, Vector3  c, float t)
-    //{
-    //    Vector3 ab = Vector3.Lerp(a, b, t);
-    //    Vector3 bc = Vector3.Lerp(b, c, t);
-
-    //    return Vector3.Lerp(ab, bc, interpolateAmt);
-    //}
-
 }
