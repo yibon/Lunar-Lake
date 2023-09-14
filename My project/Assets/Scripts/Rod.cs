@@ -22,10 +22,12 @@ public class Rod : MonoBehaviour
 
     void Update()
     {
-        //rodVector.x = Mathf.Clamp(fishingLine.GetPosition(1).x, fisherman.position.x, fisherman.position.x + 0.5f);
-        //rodVector.y = Mathf.Clamp(fishingLine.GetPosition(1).y, fisherman.position.y, fisherman.position.y + 0.5f);
+        rodVector.x = Mathf.Clamp(fishingLine.GetPosition(0).x, fisherman.position.x, fisherman.position.x + 1f);
+        rodVector.y = Mathf.Clamp(fishingLine.GetPosition(0).y, fisherman.position.y, fisherman.position.y + 1f);
 
-        rodVector = fishingLine.GetPosition(0);
+        //Debug.Log(fisherman.position + " || " + rodVector);
+
+        //rodVector = fishingLine.GetPosition(0);
 
         LR.SetPosition(0, fisherman.position);
         LR.SetPosition(1, rodVector);

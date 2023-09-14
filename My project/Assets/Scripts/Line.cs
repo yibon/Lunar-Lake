@@ -31,7 +31,6 @@ public class Line : MonoBehaviour
     [SerializeField] Transform flowPoint;
 
     bool isCasting;
-    bool isDone;
     bool isHalfway = false;
 
     private void Start()
@@ -39,30 +38,45 @@ public class Line : MonoBehaviour
         lineRend.positionCount = length;
         segmentPoses = new Vector3[length];
         segmentV = new Vector3[length];
+        //segmentPoses[0] = targetDir.position + Vector3.up * targetDist * length;
+        ResetPos();
+
 
         rodPt.position = new Vector3(0.74f, 4.03f, 0f);
     }
 
     private void Update()
     {
-        //segmentPoses[0] = fisherman.position;
-        //segmentPoses[1] = fisherman.position + new Vector3 (0.2f, 0.2f, 0);
-        segmentPoses[length - 1] = targetDir.position;
+        ////segmentPoses[1] = fisherman.position + new Vector3 (0.2f, 0.2f, 0);
+        //segmentPoses[length - 1] = targetDir.position; // * targetDist * length;
+        //Debug.Log(targetDir.position);
 
         if (Input.GetMouseButton(0))
         {
-            isCasting = true;   
+            isCasting = true;  
         }
 
-        for (int i = segmentPoses.Length - 2; i >= 0; i--)
+        if (isCasting)
         {
-            //segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], segmentPoses[i + 1] + targetDir.right * targetDist, ref segmentV[i], smoothSpeed);
+            segmentPoses[length - 1] = targetDir.position;
 
-            // Maintaining a constant length
-            Vector3 endingPos = segmentPoses[i + 1] + (segmentPoses[i] - segmentPoses[i + 1]).normalized * targetDist;
-            // Simulating
-            segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], endingPos, ref segmentV[i], smoothSpeed);
-        
+            for (int i = segmentPoses.Length - 2; i >= 0; i--)
+            {
+                // Maintaining a constant length
+                Vector3 endingPos = segmentPoses[i + 1] + (segmentPoses[i] - segmentPoses[i + 1]).normalized * targetDist;
+                // Simulating
+                segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], endingPos, ref segmentV[i], smoothSpeed);
+
+            }
+        }
+
+        else
+        {
+            segmentPoses[0] = targetDir.position;
+            for (int i = 1; i < segmentPoses.Length; i++)
+            {
+                segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], segmentPoses[i - 1] + targetDir.right * targetDist, ref segmentV[i], smoothSpeed);
+            }
         }
 
         lineRend.SetPositions(segmentPoses);
@@ -77,9 +91,9 @@ public class Line : MonoBehaviour
             //Debug.Log(interpolateAmt);
             float timer = 0;
             timer += Time.deltaTime;
-            Debug.Log(segmentPoses[1]);
+            //Debug.Log(segmentPoses[1]);
 
-            interpolateAmt = (interpolateAmt + Time.deltaTime);
+            interpolateAmt = (interpolateAmt + Time.deltaTime * 0.75f);
             Vector3 pointAB;
             Vector3 pointBC;
 
@@ -115,5 +129,16 @@ public class Line : MonoBehaviour
                 targetDir.position = Vector3.Lerp(pointAB, pointBC, interpolateAmt);
             }
         }
+    }
+
+    private void ResetPos()
+    {
+        segmentPoses[0] = targetDir.position;
+        for (int i = 1; i < length; i++)
+        {
+            segmentPoses[i] = segmentPoses[i - 1] + targetDir.right * targetDist;
+        }
+
+        lineRend.SetPositions(segmentPoses);
     }
 }
