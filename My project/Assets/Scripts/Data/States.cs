@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class States
 {
-    enum GameStates
+    public enum GameStates
     {
         // Player is able to move, ready to cast
         Ready,

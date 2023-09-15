@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -33,6 +34,8 @@ public class Fishing : MonoBehaviour
     [SerializeField] SpriteRenderer hookSR;
     [SerializeField] Transform progressBarContainer;
 
+    public static int fishesCaught;
+
     float failTimer = 10f;
 
     bool isFishing;
@@ -58,9 +61,9 @@ public class Fishing : MonoBehaviour
 
         fishPos = Mathf.SmoothDamp(fishPos, fishDestination, ref fishSpeed, smoothMotion);
         fish.position = Vector3.Lerp(bottomPivot.position, topPivot.position, fishPos);
-        Debug.Log(isReeling);
+        //Debug.Log(isReeling);
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetKey(KeyCode.Space))
         {
             isHooking = true;
         }
@@ -151,14 +154,10 @@ public class Fishing : MonoBehaviour
 
         if (hookProgress >= 1f)
         {
-            Win();
+
+            GameStateManager.currGameState = States.GameStates.Caught;
         }
 
-    }
-
-    private void Win()
-    {
-        Debug.Log("You Won");
     }
 
     private void Lose()

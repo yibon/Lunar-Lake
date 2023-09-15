@@ -51,12 +51,12 @@ public class Line : MonoBehaviour
         //segmentPoses[length - 1] = targetDir.position; // * targetDist * length;
         //Debug.Log(targetDir.position);
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && GameStateManager.currGameState == States.GameStates.Ready)
         {
-            isCasting = true;  
+            GameStateManager.currGameState = States.GameStates.Casting;
         }
 
-        if (isCasting)
+        if (GameStateManager.currGameState == States.GameStates.Casting)
         {
             segmentPoses[length - 1] = targetDir.position;
 
@@ -64,9 +64,9 @@ public class Line : MonoBehaviour
             {
                 // Maintaining a constant length
                 Vector3 endingPos = segmentPoses[i + 1] + (segmentPoses[i] - segmentPoses[i + 1]).normalized * targetDist;
+
                 // Simulating
                 segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], endingPos, ref segmentV[i], smoothSpeed);
-
             }
         }
 
@@ -86,7 +86,7 @@ public class Line : MonoBehaviour
     {
         flowPoint.position = targetDir.position;
 
-        if (isCasting)
+        if (GameStateManager.currGameState == States.GameStates.Casting)
         {
             //Debug.Log(interpolateAmt);
             float timer = 0;
@@ -131,7 +131,7 @@ public class Line : MonoBehaviour
         }
     }
 
-    private void ResetPos()
+    public void ResetPos()
     {
         segmentPoses[0] = targetDir.position;
         for (int i = 1; i < length; i++)
