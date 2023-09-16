@@ -41,6 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG
+    uniqueID: 3562111061
+    locked: 0
   - name: Foreground
     uniqueID: 2328070121
+    locked: 0
+  - name: Characters
+    uniqueID: 663697161
+    locked: 0
+  - name: Moon Lighting
+    uniqueID: 3683281607
     locked: 0
