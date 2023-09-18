@@ -54,9 +54,8 @@ public class GameStateManager : MonoBehaviour
         Time.timeScale = 1;
         caughtText.SetActive(false);
         fishingMinigame.SetActive(false);
-
-        FishesCaught++;
-        noOfFish_Text.text = "Number of Fishes Caught:" + FishesCaught;
+    
+        noOfFish_Text.text = "Number of Fishes Caught:" + Fishing.fishesCaught;
         currGameState = States.GameStates.Ready;
 
     }

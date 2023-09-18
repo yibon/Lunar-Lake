@@ -88,11 +88,6 @@ public class Line : MonoBehaviour
 
         if (GameStateManager.currGameState == States.GameStates.Casting)
         {
-            //Debug.Log(interpolateAmt);
-            float timer = 0;
-            timer += Time.deltaTime;
-            //Debug.Log(segmentPoses[1]);
-
             interpolateAmt = (interpolateAmt + Time.deltaTime * 0.75f);
             Vector3 pointAB;
             Vector3 pointBC;

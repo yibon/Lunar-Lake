@@ -154,8 +154,9 @@ public class Fishing : MonoBehaviour
 
         if (hookProgress >= 1f)
         {
-
+            fishesCaught++;
             GameStateManager.currGameState = States.GameStates.Caught;
+            hookProgress = 0;
         }
 
     }
