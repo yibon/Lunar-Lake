@@ -56,7 +56,7 @@ public class Line : MonoBehaviour
             GameStateManager.currGameState = States.GameStates.Casting;
         }
 
-        if (GameStateManager.currGameState == States.GameStates.Casting)
+        if (GameStateManager.currGameState == States.GameStates.Casting || GameStateManager.currGameState == States.GameStates.Catching)
         {
             segmentPoses[length - 1] = targetDir.position;
 
@@ -72,11 +72,14 @@ public class Line : MonoBehaviour
 
         else
         {
-            segmentPoses[0] = targetDir.position;
-            for (int i = 1; i < segmentPoses.Length; i++)
-            {
-                segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], segmentPoses[i - 1] + targetDir.right * targetDist, ref segmentV[i], smoothSpeed);
-            }
+            
+            ResetPos();
+
+            //segmentPoses[0] = targetDir.position;
+            //for (int i = 1; i < segmentPoses.Length; i++)
+            //{
+            //    segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], segmentPoses[i - 1] + targetDir.right * targetDist, ref segmentV[i], smoothSpeed);
+            //}
         }
 
         lineRend.SetPositions(segmentPoses);
@@ -128,10 +131,11 @@ public class Line : MonoBehaviour
 
     public void ResetPos()
     {
+        targetDir.position = initPos.position;
         segmentPoses[0] = targetDir.position;
         for (int i = 1; i < length; i++)
         {
-            segmentPoses[i] = segmentPoses[i - 1] + targetDir.right * targetDist;
+            segmentPoses[i] = segmentPoses[i - 1] + targetDir.right  * targetDist;
         }
 
         lineRend.SetPositions(segmentPoses);
