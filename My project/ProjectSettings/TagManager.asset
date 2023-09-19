@@ -42,15 +42,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BG
-    uniqueID: 3562111061
+  - name: Night Sky
+    uniqueID: 3486656065
     locked: 0
-  - name: Foreground
-    uniqueID: 2328070121
+  - name: Moon Layer
+    uniqueID: 3410766645
     locked: 0
-  - name: Characters
-    uniqueID: 663697161
+  - name: Aurora
+    uniqueID: 3081037921
     locked: 0
-  - name: Moon Lighting
-    uniqueID: 3683281607
+  - name: Night Sky
+    uniqueID: 3901438549
+    locked: 0
+  - name: Further Rock
+    uniqueID: 2535434247
+    locked: 0
+  - name: Ocean and Pier
+    uniqueID: 2191246149
+    locked: 0
+  - name: Closet Rock
+    uniqueID: 1984507601
+    locked: 0
+  - name: Main Character
+    uniqueID: 1185102413
+    locked: 0
+  - name: Fish
+    uniqueID: 1004376687
     locked: 0
