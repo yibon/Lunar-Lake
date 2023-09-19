@@ -10,7 +10,7 @@ public class Reeling : MonoBehaviour
 
     private void Update()
     {
-
+        //Debug.Log("hhhhhhh");
         if (fishCaught)
         {
             GameStateManager.currGameState = States.GameStates.Catching;
@@ -20,10 +20,10 @@ public class Reeling : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+            Debug.Log("HAAAAH");
         if (collision.gameObject.CompareTag("Fish"))
         {
             // this is only called once 
-            Debug.Log("HAAAAH");
             fishCaught = true;
             StartCoroutine(FishDestroyer(collision));
         }

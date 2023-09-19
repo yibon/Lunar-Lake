@@ -2467,7 +2467,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Number of Fishes: '
+  m_text: 'Number of Fishes Caught: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8595,7 +8595,7 @@ MonoBehaviour:
   fishingMinigame: {fileID: 775299677}
   caughtText: {fileID: 462491070}
   targetDir: {fileID: 978343002}
-  fish: {fileID: 0}
+  fish: {fileID: 1229106041}
   noOfFish_Text: {fileID: 897427024}
   _line: {fileID: 1395235261}
 --- !u!4 &1910776041
