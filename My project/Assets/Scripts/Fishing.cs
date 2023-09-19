@@ -41,6 +41,7 @@ public class Fishing : MonoBehaviour
     bool isFishing;
     bool isHooking;
     bool isReeling;
+    bool fishCaught;
 
     private void Start()
     {

@@ -15,14 +15,18 @@ public class FishBehaviour : MonoBehaviour
     bool movingLeft;
     bool movingRight;
 
+    SpriteRenderer fishSR;
+
     void Start()
     {
-        travelDist = new Vector3(1f, 0f, 0f);
+        travelDist = new Vector3(1.5f, 0f, 0f);
 
         startPoint = this.gameObject.transform.position + travelDist;
         endPoint = this.gameObject.transform.position - travelDist;
 
         travelVelocity = 0.5f;
+
+        fishSR = this.gameObject.GetComponent<SpriteRenderer>();
 
         this.transform.position = startPoint;
     }
@@ -50,11 +54,13 @@ public class FishBehaviour : MonoBehaviour
 
             if (movingLeft)
             {
+                fishSR.flipX = false;
                 this.transform.position = Vector3.Lerp(startPoint, endPoint, travelAmt);
             }
 
             if (movingRight)
             {
+                fishSR.flipX = true ;
                 this.transform.position = Vector3.Lerp(endPoint, startPoint, travelAmt);
             }
         }

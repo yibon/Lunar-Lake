@@ -23,7 +23,6 @@ public class Line : MonoBehaviour
     [SerializeField] private Transform fishingPos;
     [SerializeField] private Transform interpolatePt;
     [SerializeField] private Transform fishingInter;
-    [SerializeField] private Transform rodPt;
 
     [SerializeField] private Transform fisherman;
 
@@ -40,14 +39,12 @@ public class Line : MonoBehaviour
         segmentV = new Vector3[length];
         //segmentPoses[0] = targetDir.position + Vector3.up * targetDist * length;
         ResetPos();
-
-
-        rodPt.position = new Vector3(0.74f, 4.03f, 0f);
     }
 
     private void Update()
     {
-        ////segmentPoses[1] = fisherman.position + new Vector3 (0.2f, 0.2f, 0);
+        flowPoint.position = targetDir.position;
+        //segmentPoses[1] = fisherman.position + new Vector3 (0.2f, 0.2f, 0);
         //segmentPoses[length - 1] = targetDir.position; // * targetDist * length;
         //Debug.Log(targetDir.position);
 
@@ -72,9 +69,7 @@ public class Line : MonoBehaviour
 
         else
         {
-            
             ResetPos();
-
             //segmentPoses[0] = targetDir.position;
             //for (int i = 1; i < segmentPoses.Length; i++)
             //{
@@ -87,7 +82,7 @@ public class Line : MonoBehaviour
 
     private void FixedUpdate()
     {
-        flowPoint.position = targetDir.position;
+        
 
         if (GameStateManager.currGameState == States.GameStates.Casting)
         {
@@ -101,11 +96,6 @@ public class Line : MonoBehaviour
 
                 // This value CANNOT be equals to zero
                 interpolateAmt = 0.01f;
-            }
-            
-            if (targetDir.position == rodPt.position)
-            {
-                segmentPoses[1] = rodPt.position;
             }
 
 
@@ -131,6 +121,7 @@ public class Line : MonoBehaviour
 
     public void ResetPos()
     {
+        interpolateAmt = 0.01f;
         targetDir.position = initPos.position;
         segmentPoses[0] = targetDir.position;
         for (int i = 1; i < length; i++)

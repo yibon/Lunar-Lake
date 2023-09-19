@@ -15,8 +15,6 @@ public class GameStateManager : MonoBehaviour
 
     [SerializeField] TMP_Text noOfFish_Text;
 
-    int FishesCaught;
-
     public Line _line;
 
     private void Start()
@@ -27,6 +25,8 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(currGameState);
+
          switch (currGameState)
          {
             case States.GameStates.Ready:
@@ -34,7 +34,7 @@ public class GameStateManager : MonoBehaviour
                 break;
 
             case States.GameStates.Catching:
-                targetDir.position = fish.position;
+                targetDir.position = targetDir.position;
                 fishingMinigame.SetActive(true);
                 break;
                
@@ -59,4 +59,6 @@ public class GameStateManager : MonoBehaviour
         currGameState = States.GameStates.Ready;
 
     }
+
+    
 }

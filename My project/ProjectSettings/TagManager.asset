@@ -54,3 +54,9 @@ TagManager:
   - name: Moon Lighting
     uniqueID: 3683281607
     locked: 0
+  - name: Minigame
+    uniqueID: 2080831669
+    locked: 0
+  - name: UI
+    uniqueID: 475022711
+    locked: 0

@@ -6,10 +6,11 @@ using UnityEngine;
 public class Reeling : MonoBehaviour
 {
     bool fishCaught;
-
+    [SerializeField] GameObject fishCaught_text;
 
     private void Update()
     {
+
         if (fishCaught)
         {
             GameStateManager.currGameState = States.GameStates.Catching;
@@ -21,8 +22,20 @@ public class Reeling : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Fish"))
         {
+            // this is only called once 
+            Debug.Log("HAAAAH");
             fishCaught = true;
+            StartCoroutine(FishDestroyer(collision));
         }
     }
 
+    IEnumerator FishDestroyer(Collider2D fishCollider)
+    {
+        while (!fishCaught_text.activeInHierarchy)
+        {
+            yield return null;
+        }    
+        Destroy(fishCollider.gameObject);
+
+    }
 }
