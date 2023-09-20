@@ -81,7 +81,7 @@ public class Line : MonoBehaviour
 
         if (GameStateManager.currGameState == States.GameStates.Casting)
         {
-            interpolateAmt = (interpolateAmt + Time.deltaTime * 0.75f);
+            interpolateAmt = (interpolateAmt + Time.deltaTime * 0.65f);
             Vector3 pointAB;
             Vector3 pointBC;
 
