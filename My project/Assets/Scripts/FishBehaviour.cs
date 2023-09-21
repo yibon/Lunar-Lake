@@ -7,7 +7,7 @@ public class FishBehaviour : MonoBehaviour
     Vector3 travelDist;
 
     float travelAmt;
-    float travelVelocity;
+    public static float travelVelocity;
 
     bool movingLeft;
     bool movingRight;
@@ -16,12 +16,12 @@ public class FishBehaviour : MonoBehaviour
 
     void Start()
     {
-        travelDist = new Vector3(1.5f, 0f, 0f);
+        travelDist = new Vector3(2f, 0f, 0f);
 
         startPoint = this.gameObject.transform.position + travelDist;
         endPoint = this.gameObject.transform.position - travelDist;
 
-        travelVelocity = 0.5f;
+        travelVelocity = 0.3f;
 
         fishSR = this.gameObject.GetComponent<SpriteRenderer>();
 

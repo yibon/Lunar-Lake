@@ -18,7 +18,7 @@ public class CameraControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fishermenOffset = new Vector3(3.6f, -0.7f, 0f);
+        fishermenOffset = new Vector3(3.6f, 1.9f, 0f);
         zaxisAdjustment = new Vector3(0, 0, -10);
     }
 
