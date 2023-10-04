@@ -117,16 +117,6 @@ public class Fishing : MonoBehaviour
         hook.position = Vector3.Lerp(bottomPivot.position, topPivot.position, hookPos);
     }
 
-    //private void Resize()
-    //{
-    //    Bounds b = hookSR.bounds;
-    //    float ySize = b.size.y;
-    //    Vector3 ls = hook.localScale;
-    //    float distance = Vector3.Distance(topPivot.position, bottomPivot.position);
-    //    ls.y = (distance / ySize * hookSize);
-    //    hook.localScale = ls;
-    //}
-
     private void ProgressCheck()
     {
         Vector3 ls = progressBarContainer.localScale;

@@ -16,7 +16,6 @@ public class PhasesController : MonoBehaviour
         currMoonPhase = MoonPhases.Phases.NewMoon;
     }
 
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))
