@@ -55,7 +55,7 @@ public class GameStateManager : MonoBehaviour
         caughtText.SetActive(false);
         fishingMinigame.SetActive(false);
     
-        noOfFish_Text.text = "Number of Fishes Caught:" + Fishing.fishesCaught;
+        noOfFish_Text.text = "Number of Fishes Caught: " + Fishing.fishesCaught;
         currGameState = States.GameStates.Ready;
 
     }
