@@ -25,7 +25,7 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(currGameState);
+        Debug.Log(currGameState);
 
          switch (currGameState)
          {
@@ -59,6 +59,4 @@ public class GameStateManager : MonoBehaviour
         currGameState = States.GameStates.Ready;
 
     }
-
-    
 }

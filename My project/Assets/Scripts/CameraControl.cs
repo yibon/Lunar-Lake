@@ -38,8 +38,8 @@ public class CameraControl : MonoBehaviour
                     break;
         }
 
-        xMinMax = Mathf.Clamp(transform.position.x, -6.5f, -0.7f);
-        yMinMax = Mathf.Clamp(transform.position.y, -0.1f, 1.75f);
+        xMinMax = Mathf.Clamp(transform.position.x, -20, 20f);
+        yMinMax = Mathf.Clamp(transform.position.y, -20f, 20f);
 
         transform.position = new Vector3(xMinMax, yMinMax, -10f);
     }

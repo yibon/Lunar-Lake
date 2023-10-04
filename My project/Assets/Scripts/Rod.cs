@@ -29,7 +29,7 @@ public class Rod : MonoBehaviour
 
         //rodVector = fishingLine.GetPosition(0);
 
-        LR.SetPosition(0, (fisherman.position + new Vector3 (1f, 0, 0f)));
+        LR.SetPosition(0, PointsManager.fishermanHands);
         LR.SetPosition(1, rodVector);
     }
 }
