@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PointsManager : MonoBehaviour
 {
+
     public static Vector3 initPt;
     public static Vector3 halfwayPt;
     public static Vector3 initInterPt;
@@ -15,13 +16,16 @@ public class PointsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //fishPt.position = fishingPt;
+
         initPt = this.transform.position + new Vector3(2.5f, -0.6f, 0);
         halfwayPt = this.transform.position + new Vector3(-5.3f, 1.8f, 0);
         initInterPt = this.transform.position + new Vector3(-2.2f, 4.2f, 0);
         fishingInterPt = this.transform.position + new Vector3(8.8f, 8.4f, 0);
 
-        if (!Line.isReeling)
+        if (GameStateManager.currGameState == States.GameStates.Casting && !Line.isReeling)
         {
+            if(fishingPt.y>-3)
             fishingPt = this.transform.position + new Vector3(8f, -10f, 0);
         }
 
