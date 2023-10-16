@@ -19,8 +19,11 @@ public class Line : MonoBehaviour
     private float lureSpeed;
     [SerializeField] Transform flowPoint;
 
+    public static Vector3 reelingMag;
+
     public static bool isReeling;
     bool isHalfway = false;
+
 
     private void Start()
     {
@@ -115,6 +118,8 @@ public class Line : MonoBehaviour
             if (isReeling)
             {
                 PointsManager.fishingPt = Vector3.MoveTowards(PointsManager.fishingPt, PointsManager.initPt, 0.1f);
+
+
             }
         }
     }

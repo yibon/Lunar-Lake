@@ -33,6 +33,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Play("BGM");
+    }
+
     // Update is called once per frame
     public void Play(string name)
     {

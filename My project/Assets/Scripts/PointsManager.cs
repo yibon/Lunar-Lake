@@ -10,7 +10,6 @@ public class PointsManager : MonoBehaviour
     public static Vector3 fishingInterPt;
     public static Vector3 fishingPt;
 
-
     public static Vector3 fishermanHands;
 
     // Update is called once per frame

@@ -8834,7 +8834,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1256784b83e22f948a7aa696b96c587f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: BGM
+    clip: {fileID: 8300000, guid: 6eefdc894b459b14c8ea6e309eae0a62, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!4 &1965795880
 Transform:
   m_ObjectHideFlags: 0
