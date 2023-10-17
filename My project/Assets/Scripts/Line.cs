@@ -14,8 +14,6 @@ public class Line : MonoBehaviour
     public float targetDist;
     public float smoothSpeed;
 
-    [SerializeField] private Transform fisherman;
-
     private float interpolateAmt;
     private float lureSpeed;
     [SerializeField] Transform flowPoint;
@@ -25,8 +23,8 @@ public class Line : MonoBehaviour
     public static bool isReeling;
     bool isHalfway = false;
 
-    //[SerializeField]
-    //Transform fishPt;
+    [SerializeField]
+    Transform fishPt;
 
     private void Start()
     {
@@ -39,14 +37,14 @@ public class Line : MonoBehaviour
     private void Update()
     {
         flowPoint.position = targetDir.position;
-        //fishPt.position = PointsManager.fishingPt;
+        fishPt.position = PointsManager.castedPt;
 
-        if (Input.GetMouseButton(0) && GameStateManager.currGameState == States.GameStates.Ready)
+        if (Input.GetMouseButtonDown(0) && GameStateManager.currGameState == States.GameStates.Ready)
         {
             GameStateManager.currGameState = States.GameStates.Casting;
         }
 
-        if (Input.GetMouseButton(0) && GameStateManager.currGameState == States.GameStates.Casting && LureControl.waterEntered)
+        if (Input.GetMouseButton(0) && GameStateManager.currGameState == States.GameStates.Reeling)
         {
             isReeling = true;
         }
@@ -56,7 +54,12 @@ public class Line : MonoBehaviour
             isReeling = false;
         }
 
-        if (GameStateManager.currGameState == States.GameStates.Casting || GameStateManager.currGameState == States.GameStates.Catching)
+        if (GameStateManager.currGameState == States.GameStates.Ready)
+        {
+            ResetPos();
+        }
+
+        else
         {
             segmentPoses[length - 1] = targetDir.position;
 
@@ -70,85 +73,50 @@ public class Line : MonoBehaviour
             }
         }
 
-        else
-        {
-            ResetPos();
-        }
-
         lineRend.SetPositions(segmentPoses);
     }
 
     private void FixedUpdate()
     {
-        if (GameStateManager.currGameState == States.GameStates.Casting || GameStateManager.currGameState == States.GameStates.Reeling)
+        // Casting State
+        if (GameStateManager.currGameState == States.GameStates.Casting)
         {
-            Debug.Log(interpolateAmt);
+            // Set the speed of the lure
+            lureSpeed = 0.65f;
             
+            // Set the Amount
             interpolateAmt = (interpolateAmt + Time.deltaTime * lureSpeed);
 
-            Vector3 pointAB;
-            Vector3 pointBC;
+            // Actual Casting 
+            CastingAnimation();
 
-            if (targetDir.position == PointsManager.halfwayPt)
+            // Chaning state to Reeling
+            if (targetDir.position == PointsManager.castedPt)
             {
-                isHalfway = true;
-                // This value CANNOT be equals to zero
-                interpolateAmt = 0.01f;
+                GameStateManager.currGameState = States.GameStates.Reeling;
             }
+        }
 
-            //casting animation code
-            if (isHalfway)
+        // Reeling State
+        if (GameStateManager.currGameState == States.GameStates.Reeling)
+        {
+            Vector3 endPt = new Vector3(targetDir.position.x, -15f, 0);
+
+            if (isReeling)
             {
-                if (isReeling)
+                targetDir.position = Vector3.MoveTowards(targetDir.position, PointsManager.initPt, 0.1f);
+
+                if (targetDir.position == PointsManager.initPt)
                 {
-                    //PointsManager.fishingPt = Vector3.MoveTowards(PointsManager.fishingPt, PointsManager.initPt, 0.1f);
-                    targetDir.position = Vector3.MoveTowards(targetDir.position, PointsManager.initPt, 0.1f);
-                    //lureSpeed = -0.65f;
-
-                    //pointAB = Vector3.Lerp(PointsManager.halfwayPt, PointsManager.fishingInterPt, -interpolateAmt);
-                    //pointBC = Vector3.Lerp(PointsManager.fishingInterPt, PointsManager.fishingPt, -interpolateAmt);
-
-                    //targetDir.position = Vector3.Lerp(pointAB, pointBC, interpolateAmt);
-
-                    SetFishingPoint();
-                    //PointsManager.fishingPt.y = targetDir.position.y;
-                }
-
-                else
-                {
-                    pointAB = Vector3.Lerp(PointsManager.halfwayPt, PointsManager.fishingInterPt, interpolateAmt);
-                    pointBC = Vector3.Lerp(PointsManager.fishingInterPt, PointsManager.fishingPt, interpolateAmt);
-
-                    targetDir.position = Vector3.Lerp(pointAB, pointBC, interpolateAmt);
+                    GameStateManager.currGameState = States.GameStates.Ready;
                 }
             }
 
             else
             {
-                pointAB = Vector3.Lerp(PointsManager.initPt, PointsManager.initInterPt, interpolateAmt);
-                pointBC = Vector3.Lerp(PointsManager.initInterPt, PointsManager.halfwayPt, interpolateAmt);
-
-                targetDir.position = Vector3.Lerp(pointAB, pointBC, interpolateAmt);
-                //QuadraticLerp(PointsManager.initPt, PointsManager.initInterPt, PointsManager.halfwayPt, interpolateAmt);
+                targetDir.position = Vector3.MoveTowards(targetDir.position, endPt, Time.deltaTime);
             }
 
-            if (LureControl.waterEntered)
-            {
-                if (isReeling)
-                {
-                    lureSpeed = 0;
-                }
-
-                else
-                {
-                    lureSpeed = 0.1f;
-                }
-            }
-
-            else
-            {
-                lureSpeed = 0.65f;
-            }
 
         }
     }
@@ -164,26 +132,41 @@ public class Line : MonoBehaviour
             segmentPoses[i] = segmentPoses[i - 1] + targetDir.right  * targetDist;
         }
 
+        isHalfway = false;
         isReeling = false;
         LureControl.waterEntered = false;
         lureSpeed = 0.65f;
         lineRend.SetPositions(segmentPoses);
     }
 
-    private void SetFishingPoint()
+    private void CastingAnimation()
     {
-        Vector3 reelVectorx = new Vector3(targetDir.position.x, 0, 0);
-        Vector3 reelVector = PointsManager.fishingPt - reelVectorx;
-        float reelMagnitude = Vector3.Dot(reelVector, Vector3.left);
+        Vector3 pointAB;
+        Vector3 pointBC;
 
-        PointsManager.fishingPt.x += reelMagnitude;
+        if (targetDir.position == PointsManager.halfwayPt)
+        {
+            isHalfway = true;
+
+            // This value CANNOT be equals to zero
+            interpolateAmt = 0.01f;
+        }
+
+        //casting animation code
+        if (isHalfway)
+        {
+            pointAB = Vector3.Lerp(PointsManager.halfwayPt, PointsManager.fishingInterPt, interpolateAmt);
+            pointBC = Vector3.Lerp(PointsManager.fishingInterPt, PointsManager.castedPt, interpolateAmt);
+
+            targetDir.position = Vector3.Lerp(pointAB, pointBC, interpolateAmt);
+        }
+
+        else
+        {
+            pointAB = Vector3.Lerp(PointsManager.initPt, PointsManager.initInterPt, interpolateAmt);
+            pointBC = Vector3.Lerp(PointsManager.initInterPt, PointsManager.halfwayPt, interpolateAmt);
+
+            targetDir.position = Vector3.Lerp(pointAB, pointBC, interpolateAmt);
+        }
     }
-
-    //private Vector3 QuadraticLerp(Vector3 a, Vector3 b, Vector3 c, float t)
-    //{
-    //    Vector3 pointAB = Vector3.Lerp(a, b, t);
-    //    Vector3 pointBC = Vector3.Lerp(b, c, t);
-
-    //    return Vector3.Lerp(pointAB, pointBC, t);
-    //}
 }

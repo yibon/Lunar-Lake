@@ -6,8 +6,12 @@ public class LureControl : MonoBehaviour
     bool fishCaught;
     [SerializeField] GameObject fishCaught_text;
     public static bool waterEntered;
+    AudioManager _audioManager;
+
+
     private void Start()
     {
+        _audioManager = FindObjectOfType<AudioManager>();
         waterEntered = false;
     }
 
@@ -34,6 +38,7 @@ public class LureControl : MonoBehaviour
         {
             if (!waterEntered)
             {
+                _audioManager.Play("Bloop SFX");
                 waterEntered = true;
             }
 

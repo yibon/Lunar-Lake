@@ -31,7 +31,10 @@ public class FishBehaviour : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GameStateManager.currGameState == States.GameStates.Ready || GameStateManager.currGameState == States.GameStates.Casting)
+        if (GameStateManager.currGameState == States.GameStates.Ready || 
+            GameStateManager.currGameState == States.GameStates.Casting ||
+            GameStateManager.currGameState == States.GameStates.Reeling
+            )
         {
             travelAmt = (travelAmt + Time.deltaTime * travelVelocity);
             
