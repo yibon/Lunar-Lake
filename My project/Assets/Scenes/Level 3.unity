@@ -4976,7 +4976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1229106039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6889,7 +6889,7 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: Bloop SFX
-    clip: {fileID: 8300000, guid: bb91aa47d5371d94489cdc2ae2d1af49, type: 3}
+    clip: {fileID: 8300000, guid: fd42002056def754b829013948da7d2c, type: 3}
     volume: 0.8
     pitch: 1
     loop: 0
