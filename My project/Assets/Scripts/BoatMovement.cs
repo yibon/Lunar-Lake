@@ -9,17 +9,26 @@ public class BoatMovement : MonoBehaviour
 
     public float boatSpeed;
 
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = this.gameObject.GetComponent<Rigidbody2D>();
+    }
+
+
     // Update is called once per frame
     void Update()
     {
-        horizontalIP = Input.GetAxisRaw("Horizontal");
-        direction = new Vector2(horizontalIP, 0);
-
+        if (GameStateManager.currGameState == States.GameStates.Ready)
+        {
+            horizontalIP = Input.GetAxisRaw("Horizontal");
+            direction = new Vector2(horizontalIP, 0);
+        }
     }
 
     private void FixedUpdate()
     {
-
-        transform.position += (Vector3)direction * Time.deltaTime * boatSpeed;
+        rb.AddForce(direction * boatSpeed);
     }
 }

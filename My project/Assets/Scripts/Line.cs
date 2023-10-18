@@ -13,6 +13,7 @@ public class Line : MonoBehaviour
     public Transform targetDir;
     public float targetDist;
     public float smoothSpeed;
+    public float trailSpeed;
 
     private float interpolateAmt;
     private float lureSpeed;
@@ -21,7 +22,7 @@ public class Line : MonoBehaviour
     public static Vector3 reelingMag;
 
     public static bool isReeling;
-    bool isHalfway = false;
+    public static bool isHalfway = false;
 
     [SerializeField]
     Transform fishPt;
@@ -62,15 +63,29 @@ public class Line : MonoBehaviour
         else
         {
             segmentPoses[length - 1] = targetDir.position;
+            segmentPoses[0] = Rod.rodVector;
 
-            for (int i = segmentPoses.Length - 2; i >= 0; i--)
+            for (int i = segmentPoses.Length - 2; i > 0; i--)
+            //or (int i = 0; i < length - 1; i++)
             {
                 // Maintaining a constant length
                 Vector3 endingPos = segmentPoses[i + 1] + (segmentPoses[i] - segmentPoses[i + 1]).normalized * targetDist;
+                //segmentPoses[i]  = Vector3.SmoothDamp(segmentPoses[i], segmentPoses[i - 1] + targetDir.right * targetDist, ref segmentV[i], smoothSpeed);
 
                 // Simulating
                 segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], endingPos, ref segmentV[i], smoothSpeed);
             }
+
+            //segmentPoses[0] = targetDir.position;
+
+            //for (int i = 1; i < length - 1; i++)
+            //{
+            //    // Maintaining a constant length
+            //    Vector3 endingPos = segmentPoses[i - 1] + (segmentPoses[i] - segmentPoses[i - 1]).normalized * targetDist;
+
+            //    // Simulating
+            //    segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], endingPos, ref segmentV[i], smoothSpeed);
+            //}
         }
 
         lineRend.SetPositions(segmentPoses);
@@ -100,11 +115,12 @@ public class Line : MonoBehaviour
         // Reeling State
         if (GameStateManager.currGameState == States.GameStates.Reeling)
         {
+            // Setting the maximum depth 
             Vector3 endPt = new Vector3(targetDir.position.x, -15f, 0);
 
             if (isReeling)
             {
-                targetDir.position = Vector3.MoveTowards(targetDir.position, PointsManager.initPt, 0.1f);
+                targetDir.position = Vector3.MoveTowards(targetDir.position, PointsManager.initPt, 0.09f);
 
                 if (targetDir.position == PointsManager.initPt)
                 {
@@ -127,11 +143,12 @@ public class Line : MonoBehaviour
         targetDir.position = PointsManager.initPt;
         segmentPoses[0] = targetDir.position;
 
-        for (int i = 1; i < length; i++)
+        for (int i = 1; i < length - 1; i++)
         {
             segmentPoses[i] = segmentPoses[i - 1] + targetDir.right  * targetDist;
         }
 
+        segmentPoses[length -1] = Rod.rodVector;
         isHalfway = false;
         isReeling = false;
         LureControl.waterEntered = false;
@@ -148,8 +165,9 @@ public class Line : MonoBehaviour
         {
             isHalfway = true;
 
-            // This value CANNOT be equals to zero
+            // These value CANNOT be equals to zero
             interpolateAmt = 0.01f;
+            Rod.rodInterpolateAmt = 0.01f;
         }
 
         //casting animation code

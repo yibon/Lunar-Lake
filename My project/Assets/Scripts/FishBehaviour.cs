@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class FishBehaviour : MonoBehaviour
@@ -14,8 +15,12 @@ public class FishBehaviour : MonoBehaviour
 
     SpriteRenderer fishSR;
 
+    private FishData _fish;
+
     void Start()
     {
+        
+
         travelDist = new Vector3(2f, 0f, 0f);
 
         startPoint = this.gameObject.transform.position + travelDist;

@@ -4381,6 +4381,7 @@ GameObject:
   - component: {fileID: 1039103609}
   - component: {fileID: 1039103608}
   - component: {fileID: 1039103611}
+  - component: {fileID: 1039103612}
   m_Layer: 0
   m_Name: Sprites_0
   m_TagString: Untagged
@@ -4400,7 +4401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 889f4b48d9e4f2f41ad5e4c9f24fa27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boatSpeed: 5
+  boatSpeed: 3
 --- !u!212 &1039103609
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4484,6 +4485,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8321d25c52a09f409426505987aacb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &1039103612
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039103607}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0.75
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6
 --- !u!1 &1054993357
 GameObject:
   m_ObjectHideFlags: 0
@@ -4976,7 +4998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1229106039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5094,15 +5116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec989a2c3fa7d894784989e6ca68c778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishID: 
-  fishName: 
-  fishEffect: 
-  fishEffect_2: 
-  fishSpeed: 0
-  fishSpawnLoc: 
-  fishState_1: 
-  fishState_2: 
-  fishState_3: 
 --- !u!1 &1280916872
 GameObject:
   m_ObjectHideFlags: 0
@@ -5396,12 +5409,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707b9e2bca45de44da2bc7045b97357d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 10
+  length: 2
   lineRend: {fileID: 1395235262}
   segmentPoses: []
   targetDir: {fileID: 978343002}
   targetDist: 0.2
   smoothSpeed: 0.01
+  trailSpeed: 0
   flowPoint: {fileID: 1159617184}
   fishPt: {fileID: 1884785130}
 --- !u!120 &1395235262
@@ -6244,7 +6258,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fisherman: {fileID: 1039103610}
   fishingLine: {fileID: 1395235262}
-  targetDir: {fileID: 978343002}
 --- !u!120 &1806504531
 LineRenderer:
   m_ObjectHideFlags: 0

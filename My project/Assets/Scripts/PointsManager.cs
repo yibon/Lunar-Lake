@@ -14,9 +14,14 @@ public class PointsManager : MonoBehaviour
 
     public static Vector3 fishermanHands;
 
+
+    public static Vector3 rodStartPt;
+    public static Vector3 rodEndPt;
+    public static Vector3 rodIntPt;
+
     // Update is called once per frame
     void Update()
-    {
+    { 
         initPt = this.transform.position + new Vector3(2.5f, -0.6f, 0);
 
         halfwayPt = this.transform.position + new Vector3(-1.4f, 1.5f, 0);
@@ -25,8 +30,12 @@ public class PointsManager : MonoBehaviour
         initInterPt = this.transform.position + new Vector3(-0.2f, 2.7f, 0);
         fishingInterPt = this.transform.position + new Vector3(8.8f, 8.4f, 0);
 
-        //endPt = this.transform.position + new Vector3(8f, -10f, 0);
-
         fishermanHands = this.transform.position + new Vector3(0.85f, 0f, 0f);
+
+        rodStartPt = fishermanHands + new Vector3(1.5f, 0.75f, 0f);
+        rodEndPt = fishermanHands + new Vector3(-1.5f, 0.75f, 0f);
+        rodIntPt = fishermanHands + new Vector3(0f, 1.5f, 0f);
+
+        //Debug.Log(rodStartPt);
     }
 }
