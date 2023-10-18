@@ -5,21 +5,20 @@ using UnityEngine;
 
 public class FishStatus  
 { 
-    //this .cs will go onto each fish to store their information and can be acessed from anywhere.
-    #region declaring information
-
     public string fishID { get; set; }    
     public string fishName { get; set; }
     public string fishEffect { get; set; }
     public string fishEffect_2 { get; set; }
     public float fishSpeed { get; set; }
     public string fishSpawnLoc { get; set; }
-    public string fishState_1 { get; set; }
-    public string fishState_2 { get; set; }
-    public string fishState_3 { get; set; }
-    #endregion
+    public float fishStatePos_1 { get; set; }
+    public float fishStateTime_1 { get; set; }
+    public float fishStatePos_2 { get; set; }
+    public float fishStateTime_2 { get; set; }
+    public float fishStatePos_3 { get; set; }
+    public float fishStateTime_3 { get; set; }
 
-    public FishStatus(string fishID, string fishName, string fishEffect, string fishEffect_2, float fishSpeed, string fishSpawnLoc, string fishState_1, string fishState_2, string fishState_3)
+    public FishStatus(string fishID, string fishName, string fishEffect, string fishEffect_2, float fishSpeed, string fishSpawnLoc, float fishStatePos_1, float fishStateTime_1, float fishStatePos_2, float fishStateTime_2, float fishStatePos_3, float fishStateTime_3)
     {
         this.fishID = fishID;
         this.fishName = fishName;
@@ -27,9 +26,11 @@ public class FishStatus
         this.fishEffect_2 = fishEffect_2;
         this.fishSpeed = fishSpeed;
         this.fishSpawnLoc = fishSpawnLoc;
-        this.fishState_1 = fishState_1;
-        this.fishState_2 = fishState_2;
-        this.fishState_3 = fishState_3;
-
+        this.fishStatePos_1 = fishStatePos_1;
+        this.fishStateTime_1 = fishStateTime_1;
+        this.fishStatePos_2 = fishStatePos_2;
+        this.fishStateTime_2 = fishStateTime_2;
+        this.fishStatePos_3 = fishStatePos_3;
+        this.fishStateTime_3 = fishStateTime_3;
     }
 }
