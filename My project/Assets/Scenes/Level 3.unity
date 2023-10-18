@@ -6903,7 +6903,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Bloop SFX
     clip: {fileID: 8300000, guid: fd42002056def754b829013948da7d2c, type: 3}
-    volume: 0.8
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Ambience
+    clip: {fileID: 8300000, guid: 92c86ed8aba785046ad24fd1a738f73d, type: 3}
+    volume: 0.3
     pitch: 1
     loop: 0
     source: {fileID: 0}
