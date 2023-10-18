@@ -70,6 +70,5 @@ public class DataManager : MonoBehaviour
     Events E02 = new Events("E02", "Ghost in Control", "F05", "Player regains contorl","Player cannot control boat","P02",false);
     Events E03 = new Events("E03", "The Prosperity", "F10", "Win","Lose","P01",false);
 
-
     #endregion
 }
