@@ -9,40 +9,51 @@ public class FishBehaviour : MonoBehaviour
 
     float travelAmt;
     public static float travelVelocity;
+    public string currFishId;
+    public DataManager _dm;
 
     bool movingLeft;
     bool movingRight;
 
     SpriteRenderer fishSR;
 
-    private FishData _fish;
+    private FishStatus _fish;
 
     void Start()
     {
-        
-
         travelDist = new Vector3(2f, 0f, 0f);
 
         startPoint = this.gameObject.transform.position + travelDist;
         endPoint = this.gameObject.transform.position - travelDist;
 
-        travelVelocity = 0.3f;
 
         fishSR = this.gameObject.GetComponent<SpriteRenderer>();
+        _dm = FindObjectOfType<DataManager>();
 
         this.transform.position = startPoint;
+
+        _fish = _dm.FishDataByID("F01");
+        //_fish.UpdateFishStats();
+        travelVelocity = _fish.fishSpeed;
+
+        Debug.Log(currFishId);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GameStateManager.currGameState == States.GameStates.Ready || 
+        FishMovement();
+    }
+
+    private void FishMovement()
+    {
+        if (GameStateManager.currGameState == States.GameStates.Ready ||
             GameStateManager.currGameState == States.GameStates.Casting ||
             GameStateManager.currGameState == States.GameStates.Reeling
             )
         {
             travelAmt = (travelAmt + Time.deltaTime * travelVelocity);
-            
+
             if (transform.position.x == startPoint.x)
             {
                 movingRight = false;
@@ -65,7 +76,7 @@ public class FishBehaviour : MonoBehaviour
 
             if (movingRight)
             {
-                fishSR.flipX = true ;
+                fishSR.flipX = true;
                 this.transform.position = Vector3.Lerp(endPoint, startPoint, travelAmt);
             }
         }

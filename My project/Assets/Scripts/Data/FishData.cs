@@ -33,6 +33,11 @@ public class FishData
     public string GetCurrentFish()
     {
         return currFish;
+    }    
+    
+    public float GetFishSpeed()
+    {
+        return currFishSpeed;
     }
 
     public void SetCurrentFish(string _fish)
@@ -46,12 +51,14 @@ public class FishData
         if (!isDirty)
             return false;
 
+        //                    vv cannot reference properly.....
         FishStatus fishes = _dataManager.FishDataByID(currFish);
 
         currFishID = fishes.fishID;
         currFishName = fishes.fishName;
         currFishEffect = fishes.fishEffect;
         currFishEffect_2 = fishes.fishEffect_2;
+
         currFishSpeed = fishes.fishSpeed;
         currFishSpawnLoc = fishes.fishSpawnLoc;
 
@@ -62,7 +69,6 @@ public class FishData
         currFishStateTime_1 = fishes.fishStateTime_1;
         currFishStateTime_2 = fishes.fishStateTime_2;
         currFishStateTime_3 = fishes.fishStateTime_3;
-
 
         isDirty = false;
         return true;
