@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public List<FishStatus> Inventory = new List<FishStatus>();
+    public List<string> Inventory = new List<string>();
     // invetory will carry over
     DataManager dataManager;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {  
-        Inventory.Add(dataManager.FishDataByID("F01"));
-        Inventory.Add(dataManager.FishDataByID("F02"));
-        Inventory.Add(dataManager.FishDataByID("F03"));
+        Inventory.Add("F01");
+        Inventory.Add("F02");
+        Inventory.Add("F01");
+        Inventory.Add("F03");
     }
 
     // Update is called once per frame

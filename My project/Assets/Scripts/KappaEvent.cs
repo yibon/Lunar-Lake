@@ -10,121 +10,92 @@ using UnityEngine.UIElements;
 
 public class KappaEvent : MonoBehaviour
 {
-    Events events;
-    DataManager dataManager;
-    Player player;
+    Events kappaEvents = new Events("E01", "Land of the Kappa", "F01,F02,F03", "Player learns of Manta's nature (Reccomended Depth and Hook range)", "", "P01", false);
+
+    public DataManager dataManager;
+    public Player player;
     //gameobject to show player what to interact with in case stoopid
     public GameObject questionMark; //slightly greyed out (Yellow)
     public GameObject exclaimationMark; //Sky Blue
-    
+
+    bool canInteract = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().ToString() == "Level 1") //making sure it is Level 1
+        List<string> clearCon = kappaEvents.eventClearCondiditon.Split(",").ToList();
+        Debug.Log(clearCon[0] + " " + clearCon[1] + " " + clearCon[2]);
+        if (SceneManager.GetActiveScene().buildIndex == 1) //making sure it is Level 1
         {
-            this.events = dataManager.EventDataByID("E01"); //setting the Kappa's event
+            kappaEvents.isDone = false;
             exclaimationMark.SetActive(true); //quest has not been clicked
         }
         else
         {
-            this.events = dataManager.EventDataByID("E01"); 
-
+            kappaEvents.isDone = true;
         }
-
-        CheckingInventoryForQuestItems();
-        Debug.Log(CheckingInventoryForQuestItems());
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.F) && canInteract)
+        {
+            ClickedKappa();
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.name == "Sprites_0")
+        if (collision.gameObject.name == "Sprites_0")
         {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                ClickedKappa();
-            }
+            canInteract = true;
         }
     }
 
     //interacting with Kappa code
     public void ClickedKappa()
     {
-        if (events.isDone == false) //quest not done
+
+        if (exclaimationMark.activeInHierarchy == true) //first interaction
         {
-            if (exclaimationMark.activeInHierarchy == true) //first interaction
+            //play Quest start dialouge
+            //this will teach the player how to play the game and also show the player which fish to catch
+
+            exclaimationMark.SetActive(false);
+            questionMark.SetActive(true);
+            Debug.Log("HI IM KAPPA");
+        }
+        else if (questionMark.activeInHierarchy == true)//2nd interaction onwards
+        {
+            if (1 == 0) //inventory check fail
             {
-                //play Quest start dialouge
-                //this will teach the player how to play the game and also show the player which fish to catch
-
-                exclaimationMark.SetActive(false);
-                questionMark.SetActive(true);
+                //play dialougue of incompleted quest
             }
-            else if (questionMark.activeInHierarchy == true) //2nd interaction onwards
-            { 
-                if (CheckingInventoryForQuestItems()) //inventory check fail
-                {
-                    //play dialougue of incompleted quest
-                }
-                else //yes
-                {
-                    
-                    //plays dialougue of quest is completed and see if player want to submit
+            else //yes
+            {
+                CompletedQuest();
+                Debug.Log("Quest Done!");
+                //plays dialougue of quest is completed and see if player want to submit
 
-                    //if () //player still want to play
-                    //{
+                //if () //player still want to play
+                //{
 
-                    //}
-                    //else //player want to submit quest
-                    //{
-                        CompletedQuest();
-                    //}
-                }
+                //}
+                //else //player want to submit quest
+                //{
+                //}
             }
         }
-        else //quest done, player gets to listen to hint for manta
-        {
-            //play hint dialougue
-        }
-        
+
     }
 
-    public bool CheckingInventoryForQuestItems()
-    {
-        //look at inventory and find all that has item name link to quest.
-        int clearCon = 0;
 
-        string[] ClearCon = events.eventClearCondiditon.Split(",");
-        foreach (string c in ClearCon)
-        {
-            int numOfQuestFish = 0;
-            if (player.Inventory.Contains(dataManager.FishDataByID(c))) //list contains the element of the fish to find
-            {
-                numOfQuestFish++;
-                Debug.Log(numOfQuestFish);
-            }
-            if (numOfQuestFish >= 1)
-            {
-                player.Inventory.Remove(dataManager.FishDataByID(c));
-                clearCon++;
-                Debug.Log(clearCon);
-            }
-        }
-      
-        if (ClearCon.Length == clearCon - 1)
-        {
-            return true;
-        }
-        return false;
-    }
+
     public void CompletedQuest()
     {
-        events.isDone = true;
+        kappaEvents.isDone = true;
     }
 
 }
