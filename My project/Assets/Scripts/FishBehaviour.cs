@@ -8,7 +8,9 @@ public class FishBehaviour : MonoBehaviour
     Vector3 travelDist;
 
     float travelAmt;
-    public static float travelVelocity;
+
+    [SerializeField]
+    public float travelVelocity;
     public string currFishId;
     public DataManager _dm;
 
@@ -17,7 +19,7 @@ public class FishBehaviour : MonoBehaviour
 
     SpriteRenderer fishSR;
 
-    private FishStatus _fish;
+    public FishStatus _fish;
 
     void Start()
     {
@@ -32,11 +34,10 @@ public class FishBehaviour : MonoBehaviour
 
         this.transform.position = startPoint;
 
-        _fish = _dm.FishDataByID("F01");
-        //_fish.UpdateFishStats();
+        _fish = _dm.FishDataByID(currFishId);
         travelVelocity = _fish.fishSpeed;
 
-        Debug.Log(currFishId);
+        //Debug.Log(_fish.fishSpeed);
     }
 
     // Update is called once per frame

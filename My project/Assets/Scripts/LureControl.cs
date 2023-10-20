@@ -20,6 +20,7 @@ public class LureControl : MonoBehaviour
         if (fishCaught)
         {
             GameStateManager.currGameState = States.GameStates.Catching;
+
             fishCaught = false;
         }
     }
@@ -30,6 +31,7 @@ public class LureControl : MonoBehaviour
         {
             // this is only called once 
             fishCaught = true;
+            Fishing.caughtFish =  collision.gameObject.GetComponent<FishBehaviour>()._fish;
             StartCoroutine(FishDestroyer(collision));
 
         }

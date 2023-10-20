@@ -12,7 +12,7 @@ public class DataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FishSpawner S01 = new FishSpawner("S01", "F01", 2, "3,-6", "S02");
+        FishSpawner S01 = new FishSpawner("S01", "F01@F02", 2, "3,-6@9,-4", "S02");
 
         fList.Add(F01); fList.Add(F02); fList.Add(F03); fList.Add(F04); fList.Add(F05); fList.Add(F06); fList.Add(F07); fList.Add(F08); fList.Add(F09); fList.Add(F10);
 
@@ -55,7 +55,7 @@ public class DataManager : MonoBehaviour
     public List<FishStatus> fList = new List<FishStatus>();
  
     FishStatus F01 = new FishStatus("F01", "Common Koi", "lineLength@0.1f" , "" , 1.0f,"A", 0.8f,2f, 0.7f,4f,0.5f,2f);
-    FishStatus F02 = new FishStatus("F02", "Silver Scales", "hookRange@0.1f", "", 1.0f, "B", 0.8f,2f, 0.7f,4f, 0.5f,2f);
+    FishStatus F02 = new FishStatus("F02", "Silver Scales", "hookRange@0.1f", "", 1.5f, "B", 0.8f,2f, 0.7f,4f, 0.5f,2f);
     FishStatus F03 = new FishStatus("F03", "Moonbeam Betta", "lineLength@0.1f", "", 1.0f, "B", 0.8f, 2f, 0.7f, 4f, 0.5f, 2f);
     FishStatus F04 = new FishStatus("F04", "Tidal Tetra", "hookRange@0.2f", "", 1.5f, "A", 0.9f,3f, 0.3f,4f, 0.5f, 2f);
     FishStatus F05 = new FishStatus("F05", "Pufferfish", "lineLength@0.2f", "", 1.5f, "B", 0.9f,3f, 0.3f,4f, 0.6f,1f);

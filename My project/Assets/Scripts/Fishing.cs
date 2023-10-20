@@ -47,6 +47,7 @@ public class Fishing : MonoBehaviour
     float fishState3_Timer;
 
     FishStates currFishState;
+    public static FishStatus caughtFish;
 
     private void Start()
     {
@@ -56,7 +57,9 @@ public class Fishing : MonoBehaviour
         fishState3_Timer = 3f;
 
         pointTimer = fishState1_Timer;
-        fishDestination = 0.8f;
+        fishDestination = caughtFish.fishStatePos_1;
+
+        Debug.Log(caughtFish.fishID);
     }
 
     // Update is called once per frame
@@ -117,28 +120,22 @@ public class Fishing : MonoBehaviour
             {
                 case FishStates.state1:
                     currFishState = FishStates.state2;
-                    pointTimer = fishState1_Timer;
-
-                    // replace these with dynamic data
-                    fishDestination = 0.8f;
+                    pointTimer = caughtFish.fishStateTime_1;
+                    fishDestination = caughtFish.fishStatePos_1;
 
                     Debug.Log("State Changed");
                     break;
                 case FishStates.state2:
                     currFishState = FishStates.state3;
-                    pointTimer = fishState2_Timer;
-
-                    // replace these with dynamic data
-                    fishDestination = 0.7f;
+                    pointTimer = caughtFish.fishStateTime_2;
+                    fishDestination = caughtFish.fishStatePos_2;
 
                     Debug.Log("State Changed");
                     break;
                 case FishStates.state3:
                     currFishState = FishStates.state1;
-                    pointTimer = fishState3_Timer;
-
-                    // replace these with dynamic data
-                    fishDestination = 0.5f;
+                    pointTimer = caughtFish.fishStateTime_3;
+                    fishDestination = caughtFish.fishStatePos_3;
 
                     Debug.Log("State Changed");
                     break;

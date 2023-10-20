@@ -14,7 +14,6 @@ public class PointsManager : MonoBehaviour
 
     public static Vector3 fishermanHands;
 
-
     public static Vector3 rodStartPt;
     public static Vector3 rodEndPt;
     public static Vector3 rodIntPt;
