@@ -17,6 +17,8 @@ public class KappaEvent : MonoBehaviour
     public Canvas canvas;
     public DataManager dataManager;
     public Player player;
+
+    public DialogueTrigger trigger;
     //gameobject to show player what to interact with in case stoopid
     public GameObject questionMark; //slightly greyed out (Yellow)
     public GameObject exclaimationMark; //Sky Blue
@@ -67,6 +69,7 @@ public class KappaEvent : MonoBehaviour
         {
             exclaimationMark.SetActive(false);
             //open dialougue box
+            trigger.StartDialogue();
             canvas.gameObject.SetActive(true);
             //pause all other interaction
             canInteract = false;
