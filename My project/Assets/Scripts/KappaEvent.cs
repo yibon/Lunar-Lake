@@ -160,7 +160,9 @@ public class KappaEvent : MonoBehaviour
     IEnumerator WaitingAfterFirstInteraction()
     {
         Debug.Log("Waiting");
+        Time.timeScale = 0f;
         yield return new WaitUntil(() => DialogueManager.instance.isActive == false);
+        Time.timeScale = 1f;
 
         Debug.Log("WAited");
         questionMark.SetActive(true);
@@ -170,7 +172,9 @@ public class KappaEvent : MonoBehaviour
     IEnumerator WaitingAfterSecondInteractionandCheckFail()
     {
         Debug.Log("Waiting");
+        Time.timeScale = 0f;
         yield return new WaitUntil(() => DialogueManager.instance.isActive == false);
+        Time.timeScale = 1f;
 
         Debug.Log("WAited");
         questionMark.SetActive(true);
@@ -180,7 +184,9 @@ public class KappaEvent : MonoBehaviour
     IEnumerator WaitingAfterSecondInteractionandCheckPass()
     {
         Debug.Log("Waiting");
+        Time.timeScale = 0f;
         yield return new WaitUntil(() => DialogueManager.instance.isActive == false);
+        Time.timeScale = 1f;
 
         Debug.Log("WAited");
         questionMark.SetActive(false);
