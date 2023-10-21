@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //how to use:
@@ -9,12 +10,33 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    public Canvas canvas;
     public List<Message> messages = new List<Message>();
     public List<Speaker> speakers = new List<Speaker>();
 
-    public void StartDialogue()
+    #region SINGLETON SCRIPT AHAHAHHAHAHAHAHAH
+    public static DialogueTrigger instance { get; private set; }
+
+    private void Awake()
     {
-        DialogueManager.instance.OpenDialogue(messages,speakers);
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+
+    }
+    #endregion
+
+    public void StartDialogue(int messageIndex)
+    {
+        canvas.gameObject.SetActive(true);
+        int messageIndexToDisplay = messageIndex;
+        DialogueManager.instance.OpenDialogue(messages, speakers, messageIndexToDisplay);
+        
     }
 }
 
@@ -24,7 +46,7 @@ public class Message
 {
     public string messageID;
     public string nextMessageID;
-    public string speaker;
+    public int speakerID;
     public string message;
 }
 

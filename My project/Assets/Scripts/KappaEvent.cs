@@ -14,7 +14,6 @@ public class KappaEvent : MonoBehaviour
 {
     Events kappaEvents = new Events("E01", "Land of the Kappa", "F01,F02,F03", "Player learns of Manta's nature (Reccomended Depth and Hook range)", "", "P01", false);
 
-    public Canvas canvas;
     public DataManager dataManager;
     public Player player;
 
@@ -45,7 +44,7 @@ public class KappaEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && canInteract)
+        if (canInteract && Input.GetKeyDown(KeyCode.F) )
         {
             ClickedKappa();
         }
@@ -64,65 +63,52 @@ public class KappaEvent : MonoBehaviour
     {
         List<string> clearCon = kappaEvents.eventClearCondiditon.Split(",").ToList();
 
-
+        #region First Interaction
         if (exclaimationMark.activeInHierarchy == true) //first interaction
         {
             exclaimationMark.SetActive(false);
-            //open dialougue box
-            trigger.StartDialogue();
-            canvas.gameObject.SetActive(true);
-            //pause all other interaction
             canInteract = false;
-            //play corroutine to set the stuff
+            //open dialougue box
+            trigger.StartDialogue(0);
+            //pause all other interaction
+            StartCoroutine(WaitingAfterFirstInteraction());
 
-
-            
-            canvas.gameObject.SetActive(false);
-            //after dialougue ends and Canvas is set to inactive
-            questionMark.SetActive(true);
-            canInteract = true;
-
-            Debug.Log("HI IM KAPPA");
         }
-        else if (questionMark.activeInHierarchy == true)//2nd interaction onwards
-        {
+        #endregion
+
+        #region Second Interaction
+        else if (questionMark.activeInHierarchy == true) 
+        { 
+            //checkign inventopry 
             if (!CheckInvetory(clearCon)) //inventory check fail
             {
                 //open dialougue box for incompleted quest
                 questionMark.SetActive(false);
-                canvas.gameObject.SetActive(true);
-                //pause all other interaction
                 canInteract = false;
+                //open dialogue
+                trigger.StartDialogue(2);
+
                 //play corroutine to set the stuff
-
-
-
-                canvas.gameObject.SetActive(false);
+                StartCoroutine(WaitingAfterSecondInteractionandCheckFail());
                 //after dialougue ends and Canvas is set to inactive
-                questionMark.SetActive(true);
-                canInteract = true;
-                Debug.Log("Check Fail");
+                
             }
-            else //yes
+
+            //inventory pass
+            else
             {
                 //open dialougue box for completed Quest
                 questionMark.SetActive(false);
-                canvas.gameObject.SetActive(true);
-                //pause all other interaction
                 canInteract = false;
+                //open dialogue
+                trigger.StartDialogue(4);
+
                 //play corroutine to set the stuff
-
-
-
-                canvas.gameObject.SetActive(false);
+                StartCoroutine(WaitingAfterSecondInteractionandCheckPass());
                 //after dialougue ends and Canvas is set to inactive
-                questionMark.SetActive(true);
-                canInteract = true;
 
-                CompletedQuest();
-                Debug.Log("Quest Done!");
-                //plays dialougue of quest if completed and see if player want to submit
 
+                #region plays dialougue of quest if completed and see if player want to submit
                 //if () //player still want to play
                 //{
 
@@ -130,13 +116,17 @@ public class KappaEvent : MonoBehaviour
                 //else //player want to submit quest
                 //{
                 //}
+                #endregion
             }
         }
-        else // interaction after submiting quest
+        #endregion
+
+        #region Completed Event
+        else if (kappaEvents.isDone == true)
         {
             Debug.Log("I have nothing else for you! Shoo");
         }
-
+        #endregion
     }
 
     public bool CheckInvetory(List<string> questItem)
@@ -166,9 +156,40 @@ public class KappaEvent : MonoBehaviour
         questionMark.SetActive(false);
     }
 
-    IEnumerator KappaDialougue()
+  
+    IEnumerator WaitingAfterFirstInteraction()
     {
+        Debug.Log("Waiting");
+        yield return new WaitUntil(() => DialogueManager.instance.isActive == false);
 
-        yield return null;
+        Debug.Log("WAited");
+        questionMark.SetActive(true);
+        canInteract = true;
+        
     }
+    IEnumerator WaitingAfterSecondInteractionandCheckFail()
+    {
+        Debug.Log("Waiting");
+        yield return new WaitUntil(() => DialogueManager.instance.isActive == false);
+
+        Debug.Log("WAited");
+        questionMark.SetActive(true);
+        canInteract = true;
+        Debug.Log("Check Fail");
+    }
+    IEnumerator WaitingAfterSecondInteractionandCheckPass()
+    {
+        Debug.Log("Waiting");
+        yield return new WaitUntil(() => DialogueManager.instance.isActive == false);
+
+        Debug.Log("WAited");
+        questionMark.SetActive(false);
+        canInteract = true;
+
+        CompletedQuest();
+        Debug.Log("Quest Done!");
+        SceneManager.LoadScene(2);
+    }
+    
 }
+
