@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Events
 {
-
     public string eventID { get; set; }
     public string eventName { get; set; }
     public string eventClearCondiditon { get; set; }
