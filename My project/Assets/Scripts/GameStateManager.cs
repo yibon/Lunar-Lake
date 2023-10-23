@@ -47,12 +47,12 @@ public class GameStateManager : MonoBehaviour
 
     IEnumerator FishCaught()
     {
+        fishingMinigame.SetActive(false);
         caughtText.SetActive(true);
         Time.timeScale = 0f;
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         Time.timeScale = 1;
-        fishingMinigame.SetActive(false);
         targetDir.position = Vector3.MoveTowards(targetDir.position, PointsManager.initPt, 0.1f);
         
         if (targetDir.position == PointsManager.initPt)

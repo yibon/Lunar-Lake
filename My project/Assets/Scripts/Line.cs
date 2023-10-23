@@ -146,7 +146,7 @@ public class Line : MonoBehaviour
 
     public void ResetPos()
     {
-        Debug.Log("Ehet");
+        //Debug.Log("Ehet");
         interpolateAmt = 0.01f;
 
         segmentPoses[0] = targetDir.position;

@@ -56,14 +56,20 @@ public class LogBookDisplay : MonoBehaviour
         if (F02caught == 0)
         {
             _midSR.color = Color.black;
+            midName.text = "Fish Name: Unknown";
+            midPhase.text = "Phase Appearance: Unknown";
         }
 
         else
         {
             _midSR.color = Color.white;
+            midName.text = "Fish Name: MoonBeam Betta";
+            midPhase.text = "Phase Appearance: New, Half";
         }
+
+        midNum.text = "Number Caught: " + F02caught;
         #endregion F02        
-        
+
         #region F03
         if (F03caught == 0)
         {
