@@ -26,13 +26,12 @@ public class Spawner : MonoBehaviour
 
     private void SpawnFish()
     {
-        //Debug.Log(fishSpawnPts[0]);
         _spawner = _dm.SpawnerDataByID(currSpawn);
         StringSplitter();
 
         for (int i = 0; i < splitFishIds.Length; i++)
         {
-            Debug.Log(splitFishSpawnPts[i]);
+            //Debug.Log(splitFishSpawnPts[i]);
             GameObject fishObj = Instantiate(fishPF, GetSpawnPoint(splitFishSpawnPts[i]), Quaternion.identity) as GameObject;
             fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
         }
@@ -51,7 +50,6 @@ public class Spawner : MonoBehaviour
         switch(currSpawnPoint)
         {
             case "A":
-                Debug.Log("Whew");
                 return PointsManager.spawnPtA;
             case "B":
                 return PointsManager.spawnPtB;

@@ -146,9 +146,12 @@ public class Line : MonoBehaviour
 
     public void ResetPos()
     {
+        Debug.Log("Ehet");
         interpolateAmt = 0.01f;
-        targetDir.position = PointsManager.initPt;
+
         segmentPoses[0] = targetDir.position;
+        targetDir.position = PointsManager.initPt;
+
 
         for (int i = 1; i < length - 1; i++)
         {
@@ -161,7 +164,8 @@ public class Line : MonoBehaviour
         LureControl.waterEntered = false;
         lureSpeed = 0.65f;
         lineRend.SetPositions(segmentPoses);
-        //_am.
+
+        _am.Stop("Retracting");
     }
 
     private void CastingAnimation()

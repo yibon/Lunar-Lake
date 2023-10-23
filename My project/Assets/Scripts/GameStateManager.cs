@@ -52,11 +52,14 @@ public class GameStateManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
 
         Time.timeScale = 1;
-        caughtText.SetActive(false);
         fishingMinigame.SetActive(false);
-    
-        //noOfFish_Text.text = "Number of Fishes Caught: " + Fishing.fishesCaught;
-        currGameState = States.GameStates.Ready;
+        targetDir.position = Vector3.MoveTowards(targetDir.position, PointsManager.initPt, 0.1f);
+        
+        if (targetDir.position == PointsManager.initPt)
+        {
+            caughtText.SetActive(false);
+            currGameState = States.GameStates.Ready;
+        }
 
     }
 }

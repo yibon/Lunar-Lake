@@ -41,22 +41,16 @@ public class Fishing : MonoBehaviour
     bool isReeling;
     bool fishCaught;
 
-    // Replace these with dynamic data in the future
-    float fishState1_Timer;
-    float fishState2_Timer;
-    float fishState3_Timer;
-
     FishStates currFishState;
     public static FishStatus caughtFish;
+    [SerializeField] LogBookDisplay _bookDisp;
 
     private void Start()
     {
         fishSpeed = 2f;
-        fishState1_Timer = 2f;
-        fishState2_Timer = 4f;
-        fishState3_Timer = 3f;
+        //_bookDisp = FindObjectOfType<LogBookDisplay>();
 
-        pointTimer = fishState1_Timer;
+        pointTimer = caughtFish.fishStateTime_1;
         fishDestination = caughtFish.fishStatePos_1;
 
         Debug.Log(caughtFish.fishID);
@@ -188,6 +182,9 @@ public class Fishing : MonoBehaviour
         {
             fishesCaught++;
             GameStateManager.currGameState = States.GameStates.Caught;
+            _bookDisp.UpdateLogBook(caughtFish);
+
+            // Reset Stats Here
             hookProgress = 0;
         }
 

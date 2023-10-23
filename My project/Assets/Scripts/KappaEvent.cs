@@ -53,5 +53,23 @@ public class KappaEvent : MonoBehaviour
         //check to see if player has all the items
         // if dont have all the items, ask them to go back
         // if all items present, submit quest.        
+        int counter = 0;
+        foreach (string item in questItem)
+        {
+            if (player.Inventory.Contains(item))//player's inventory has this item
+            {
+                counter++;
+            }
+        }
+
+        if (counter == questItem.Count)
+        {
+            foreach (string item in questItem)
+            {
+                player.Inventory.Remove(item);
+            }
+            return true;
+        }
+        return false;
     }
 }
