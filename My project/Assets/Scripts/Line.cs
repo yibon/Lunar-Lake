@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.Versioning;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Line : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class Line : MonoBehaviour
     public static bool isReeling;
     public static bool isHalfway = false;
 
+    AudioManager _am;
+
     [SerializeField]
     Transform fishPt;
 
@@ -32,6 +35,8 @@ public class Line : MonoBehaviour
         lineRend.positionCount = length;
         segmentPoses = new Vector3[length];
         segmentV = new Vector3[length];
+
+        _am = FindObjectOfType<AudioManager>();
         ResetPos();
     }
 
@@ -42,12 +47,15 @@ public class Line : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && GameStateManager.currGameState == States.GameStates.Ready)
         {
+            if (EventSystem.current.IsPointerOverGameObject()) { return; }
+            
             GameStateManager.currGameState = States.GameStates.Casting;
         }
 
         if (Input.GetMouseButton(0) && GameStateManager.currGameState == States.GameStates.Reeling)
         {
             isReeling = true;
+                
         }
 
         else
@@ -130,10 +138,9 @@ public class Line : MonoBehaviour
 
             else
             {
+                _am.Play("Retracting");
                 targetDir.position = Vector3.MoveTowards(targetDir.position, endPt, Time.deltaTime);
             }
-
-
         }
     }
 
@@ -154,6 +161,7 @@ public class Line : MonoBehaviour
         LureControl.waterEntered = false;
         lureSpeed = 0.65f;
         lineRend.SetPositions(segmentPoses);
+        //_am.
     }
 
     private void CastingAnimation()
@@ -181,6 +189,7 @@ public class Line : MonoBehaviour
 
         else
         {
+            _am.Play("Rod Cast");
             pointAB = Vector3.Lerp(PointsManager.initPt, PointsManager.initInterPt, interpolateAmt);
             pointBC = Vector3.Lerp(PointsManager.initInterPt, PointsManager.halfwayPt, interpolateAmt);
 

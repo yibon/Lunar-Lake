@@ -32,8 +32,8 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i < splitFishIds.Length; i++)
         {
-            //Debug.Log(splitFishIds[i]);
-            GameObject fishObj = Instantiate(fishPF, fishSpawnPt, Quaternion.identity) as GameObject;
+            Debug.Log(splitFishSpawnPts[i]);
+            GameObject fishObj = Instantiate(fishPF, GetSpawnPoint(splitFishSpawnPts[i]), Quaternion.identity) as GameObject;
             fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
         }
     }
@@ -41,14 +41,28 @@ public class Spawner : MonoBehaviour
     private void StringSplitter()
     {
         splitFishSpawnPts = _spawner.fishPoint.Split("@");
+        splitFishIds = _spawner.fishId.Split("@");
+    }
 
-        for (int i = 0; i < splitFishSpawnPts.Length; i++)
+    private Vector3 GetSpawnPoint(string currSpawnPoint)
+    {
+        //Vector3 spawnPt = Vector3.zero;
+
+        switch(currSpawnPoint)
         {
-            string[] fishSpawnPts = splitFishSpawnPts[i].Split(",");
-            fishSpawnPt.x = float.Parse(fishSpawnPts[0]);
-            fishSpawnPt.y = float.Parse(fishSpawnPts[1]);
+            case "A":
+                Debug.Log("Whew");
+                return PointsManager.spawnPtA;
+            case "B":
+                return PointsManager.spawnPtB;
+            case "C":
+                return PointsManager.spawnPtC;
+            case "D":
+                return PointsManager.spawnPtD;
+            default:
+                return Vector3.zero;
         }
 
-        splitFishIds = _spawner.fishId.Split("@");
+         
     }
 }

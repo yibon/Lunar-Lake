@@ -12,7 +12,7 @@ public class DataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FishSpawner S01 = new FishSpawner("S01", "F01@F02", 2, "3,-6@9,-4", "S02");
+        FishSpawner S01 = new FishSpawner("S01", "F01@F02", 2, "A@C", "S02");
 
         fList.Add(F01); fList.Add(F02); fList.Add(F03); fList.Add(F04); fList.Add(F05); fList.Add(F06); fList.Add(F07); fList.Add(F08); fList.Add(F09); fList.Add(F10);
 

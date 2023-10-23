@@ -18,7 +18,21 @@ public class PointsManager : MonoBehaviour
     public static Vector3 rodEndPt;
     public static Vector3 rodIntPt;
 
+    public static Vector3 spawnPtA;
+    public static Vector3 spawnPtB;
+    public static Vector3 spawnPtC;
+    public static Vector3 spawnPtD;
+    public static Vector3 spawnPtE;
+
     // Update is called once per frame
+
+    private void Start()
+    {
+        spawnPtA = new Vector3(3f, -6f, 0f);
+        spawnPtB = new Vector3(-4f, -5f, 0f);
+        spawnPtC = new Vector3(0f, -9f, 0f);
+
+    }
     void Update()
     { 
         initPt = this.transform.position + new Vector3(2.5f, -0.6f, 0);

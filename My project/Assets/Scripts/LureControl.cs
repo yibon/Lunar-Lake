@@ -17,6 +17,7 @@ public class LureControl : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(waterEntered);
         if (fishCaught)
         {
             GameStateManager.currGameState = States.GameStates.Catching;
@@ -29,7 +30,6 @@ public class LureControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Fish"))
         {
-            // this is only called once 
             fishCaught = true;
             Fishing.caughtFish =  collision.gameObject.GetComponent<FishBehaviour>()._fish;
             StartCoroutine(FishDestroyer(collision));
