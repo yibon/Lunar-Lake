@@ -4,27 +4,51 @@ using UnityEngine;
 
 public class PointsManager : MonoBehaviour
 {
+
     public static Vector3 initPt;
     public static Vector3 halfwayPt;
     public static Vector3 initInterPt;
     public static Vector3 fishingInterPt;
-    public static Vector3 fishingPt;
+    public static Vector3 castedPt;
+    //public static Vector3 endPt;
 
     public static Vector3 fishermanHands;
 
+    public static Vector3 rodStartPt;
+    public static Vector3 rodEndPt;
+    public static Vector3 rodIntPt;
+
+    public static Vector3 spawnPtA;
+    public static Vector3 spawnPtB;
+    public static Vector3 spawnPtC;
+    public static Vector3 spawnPtD;
+    public static Vector3 spawnPtE;
+
     // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
+        spawnPtA = new Vector3(3f, -6f, 0f);
+        spawnPtB = new Vector3(-4f, -5f, 0f);
+        spawnPtC = new Vector3(0f, -9f, 0f);
+
+    }
+    void Update()
+    { 
         initPt = this.transform.position + new Vector3(2.5f, -0.6f, 0);
-        halfwayPt = this.transform.position + new Vector3(-5.3f, 1.8f, 0);
-        initInterPt = this.transform.position + new Vector3(-2.2f, 4.2f, 0);
+
+        halfwayPt = this.transform.position + new Vector3(-1.4f, 1.5f, 0);
+        castedPt = this.transform.position + new Vector3(8f, -1.8f, 0);
+
+        initInterPt = this.transform.position + new Vector3(-0.2f, 2.7f, 0);
         fishingInterPt = this.transform.position + new Vector3(8.8f, 8.4f, 0);
 
-        if (!Line.isReeling)
-        {
-            fishingPt = this.transform.position + new Vector3(8f, -10f, 0);
-        }
-
         fishermanHands = this.transform.position + new Vector3(0.85f, 0f, 0f);
+
+        rodStartPt = fishermanHands + new Vector3(1.5f, 0.75f, 0f);
+        rodEndPt = fishermanHands + new Vector3(-1.5f, 0.75f, 0f);
+        rodIntPt = fishermanHands + new Vector3(0f, 1.5f, 0f);
+
+        //Debug.Log(rodStartPt);
     }
 }

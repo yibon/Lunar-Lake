@@ -32,26 +32,25 @@ public class DataManager : MonoBehaviour
     Events E02 = new Events("E02", "Ghost in Control", "F05", "Player regains contorl", "Player cannot control boat", "P02", false);
     Events E03 = new Events("E03", "The Prosperity", "F10", "Win", "Lose", "P01", false);
 
+    FishSpawner S01 = new FishSpawner("S01", "F01@F02", 2, "A@C", "S02");
     #endregion
 
     public Events events;
     public FishStatus fishStatus;
     public RodStatus rodStatus;
 
+    public List<FishSpawner> sList = new List<FishSpawner>();
     // Start is called before the first frame update
     void Start()
     {
+
         fList.Add(F01); fList.Add(F02); fList.Add(F03); fList.Add(F04); fList.Add(F05); fList.Add(F06); fList.Add(F07); fList.Add(F08); fList.Add(F09); fList.Add(F10);
 
         rList.Add(R01); rList.Add(R02); rList.Add(R03);
 
         eList.Add(E01); eList.Add(E02); eList.Add(E03);
 
-        Debug.Log(fList);
-        Debug.Log(eList);
-        Debug.Log(rList);
-
-
+        sList.Add(S01);
     }
 
     // Update is called once per frame
@@ -77,5 +76,9 @@ public class DataManager : MonoBehaviour
        foreach(var e in eList) { if (e.eventID == eID) return e; } return null; 
     }
 
-   
+    public FishSpawner SpawnerDataByID(string sID)
+    {
+        foreach (var s in sList) { if (s.waveId == sID) return s; } return null;
+    }
+
 }

@@ -9,10 +9,9 @@ public class Rod : MonoBehaviour
     [SerializeField] Transform fisherman;
     [SerializeField] LineRenderer fishingLine;
 
-    public Transform targetDir;
+    public static Vector3 rodVector;
 
-    Vector3 rodVector;
-
+    public static float rodInterpolateAmt;
 
     private void Start()
     {
@@ -22,14 +21,41 @@ public class Rod : MonoBehaviour
 
     void Update()
     {
-        rodVector.x = Mathf.Clamp(fishingLine.GetPosition(0).x, fisherman.position.x + 1f, fisherman.position.x + 2f);
-        rodVector.y = Mathf.Clamp(fishingLine.GetPosition(0).y, fisherman.position.y + 1f, fisherman.position.y + 2f);
-
-        //Debug.Log(rodVector);
-
-        //rodVector = fishingLine.GetPosition(0);
-
         LR.SetPosition(0, PointsManager.fishermanHands);
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 pointAB;
+        Vector3 pointBC;
+
+        if (GameStateManager.currGameState == States.GameStates.Casting)
+        {
+
+            rodInterpolateAmt += Time.deltaTime;
+
+            if (!Line.isHalfway)
+            {
+                pointAB = Vector3.Lerp(PointsManager.rodStartPt, PointsManager.rodIntPt, rodInterpolateAmt);
+                pointBC = Vector3.Lerp(PointsManager.rodIntPt, PointsManager.rodEndPt, rodInterpolateAmt);
+            }
+
+            else
+            {
+                pointAB = Vector3.Lerp(PointsManager.rodEndPt, PointsManager.rodIntPt, rodInterpolateAmt);
+                pointBC = Vector3.Lerp(PointsManager.rodIntPt, PointsManager.rodStartPt, rodInterpolateAmt);
+
+            }    
+
+            rodVector = Vector3.Lerp(pointAB, pointBC, rodInterpolateAmt);
+        }
+
+        else
+        {
+            rodVector = PointsManager.rodStartPt;
+        }
+
+
         LR.SetPosition(1, rodVector);
     }
 }

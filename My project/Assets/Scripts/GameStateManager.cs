@@ -25,7 +25,7 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currGameState);
+         //Debug.Log("Current Game State: " + currGameState);
 
          switch (currGameState)
          {
@@ -55,7 +55,7 @@ public class GameStateManager : MonoBehaviour
         caughtText.SetActive(false);
         fishingMinigame.SetActive(false);
     
-        noOfFish_Text.text = "Number of Fishes Caught: " + Fishing.fishesCaught;
+        //noOfFish_Text.text = "Number of Fishes Caught: " + Fishing.fishesCaught;
         currGameState = States.GameStates.Ready;
 
     }

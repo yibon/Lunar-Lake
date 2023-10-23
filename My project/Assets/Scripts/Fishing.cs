@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using UnityEngine;
 
 public class Fishing : MonoBehaviour
@@ -12,6 +13,8 @@ public class Fishing : MonoBehaviour
 
     float fishTimer;
     [SerializeField] float timerMultiplicator = 3f;
+
+    float pointTimer;
 
     float fishSpeed;
     [SerializeField] float smoothMotion = 1f;
@@ -38,26 +41,39 @@ public class Fishing : MonoBehaviour
     bool isReeling;
     bool fishCaught;
 
+    // Replace these with dynamic data in the future
+    float fishState1_Timer;
+    float fishState2_Timer;
+    float fishState3_Timer;
+
+    FishStates currFishState;
+    public static FishStatus caughtFish;
+
     private void Start()
     {
         fishSpeed = 2f;
-        //Resize();
+        fishState1_Timer = 2f;
+        fishState2_Timer = 4f;
+        fishState3_Timer = 3f;
+
+        pointTimer = fishState1_Timer;
+        fishDestination = caughtFish.fishStatePos_1;
+
+        Debug.Log(caughtFish.fishID);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(isHooking);
-
+        //Debug.Log(pointTimer);
         if (!isFishing)
         {
-            fishTimer = Random.value * timerMultiplicator;
-            fishDestination = Random.value;
+            fishTimer = 5;
+            //fishDestination = Random.value;
         }
 
         fishPos = Mathf.SmoothDamp(fishPos, fishDestination, ref fishSpeed, smoothMotion);
         fish.position = Vector3.Lerp(bottomPivot.position, topPivot.position, fishPos);
-        //Debug.Log(isReeling);
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -80,6 +96,8 @@ public class Fishing : MonoBehaviour
     private void FixedUpdate()
     {
         fishTimer -= Time.deltaTime;
+
+        pointTimer -= Time.deltaTime;
         if (fishTimer < 0f)
         {
             isFishing = false;
@@ -94,6 +112,34 @@ public class Fishing : MonoBehaviour
         {
             hookProgress -= hookProgressDegradPower * Time.deltaTime;
             failTimer -= Time.deltaTime;
+        }
+        
+        if (pointTimer < 0f)
+        { 
+            switch (currFishState)
+            {
+                case FishStates.state1:
+                    currFishState = FishStates.state2;
+                    pointTimer = caughtFish.fishStateTime_1;
+                    fishDestination = caughtFish.fishStatePos_1;
+
+                    Debug.Log("State Changed");
+                    break;
+                case FishStates.state2:
+                    currFishState = FishStates.state3;
+                    pointTimer = caughtFish.fishStateTime_2;
+                    fishDestination = caughtFish.fishStatePos_2;
+
+                    Debug.Log("State Changed");
+                    break;
+                case FishStates.state3:
+                    currFishState = FishStates.state1;
+                    pointTimer = caughtFish.fishStateTime_3;
+                    fishDestination = caughtFish.fishStatePos_3;
+
+                    Debug.Log("State Changed");
+                    break;
+            }
         }
 
         Hooking(isHooking);
@@ -152,4 +198,11 @@ public class Fishing : MonoBehaviour
         Debug.Log("You Lost");
     }
 
+
+    enum FishStates
+    { 
+        state1,
+        state2,
+        state3
+    }
 }

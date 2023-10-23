@@ -35,7 +35,7 @@ public class PhasesController : MonoBehaviour
                     newMoonAssets.SetActive(false);
                     halfMoonAssets.SetActive(true);
                     fullMoonAssets.SetActive(false);
-                    FishBehaviour.travelVelocity = 0.5f;
+                    //FishBehaviour.travelVelocity = 0.5f;
 
 
                     currMoonPhase = MoonPhases.Phases.HalfMoon;
@@ -45,7 +45,7 @@ public class PhasesController : MonoBehaviour
                     newMoonAssets.SetActive(false);
                     halfMoonAssets.SetActive(false);
                     fullMoonAssets.SetActive(true);
-                    FishBehaviour.travelVelocity = 0.7f;
+                    //FishBehaviour.travelVelocity = 0.7f;
 
                     currMoonPhase = MoonPhases.Phases.FullMoon;
                     break;
@@ -54,7 +54,7 @@ public class PhasesController : MonoBehaviour
                     newMoonAssets.SetActive(true);
                     halfMoonAssets.SetActive(false);
                     fullMoonAssets.SetActive(false);
-                    FishBehaviour.travelVelocity = 0.3f;
+                    //FishBehaviour.travelVelocity = 0.3f;
 
                     currMoonPhase = MoonPhases.Phases.NewMoon;
                     break;
