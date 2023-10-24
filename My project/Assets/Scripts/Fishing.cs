@@ -58,8 +58,6 @@ public class Fishing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Sis " + caughtFish.fishID);
-        Debug.Log(hookSize);
         if (!isFishing)
         {
             fishTimer = 5;
@@ -182,9 +180,9 @@ public class Fishing : MonoBehaviour
         {
             fishesCaught++;
             GameStateManager.currGameState = States.GameStates.Caught;
+            Player.Instance.FishCaughtAndAddIntoInventory(caughtFish.fishID);
             _bookDisp.UpdateLogBook(caughtFish);
             FishBuffs.UpdateBuffs(caughtFish);
-            Player.Instance.FishCaughtAndAddIntoInventory(caughtFish.fishID);
 
             // Reset Stats Here
             hookProgress = 0;
@@ -204,8 +202,6 @@ public class Fishing : MonoBehaviour
         state2,
         state3
     }
-
-
 
     public void Resize()
     {

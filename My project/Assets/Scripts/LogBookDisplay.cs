@@ -11,77 +11,118 @@ public class LogBookDisplay : MonoBehaviour
     public Image _midSR;
     public Image _btmSR;
 
-    [Header("NAMES")]
-    public TMP_Text topName;
-    public TMP_Text midName;
-    public TMP_Text btmName;
-
-    [Header("PHASE")]
-    public TMP_Text topPhase;
-    public TMP_Text midPhase;
-    public TMP_Text btmPhase;
-
-
-    [Header("NUM CAUGHT")]
-    public TMP_Text topNum;
-    public TMP_Text midNum;
-    public TMP_Text btmNum;
+    public TMP_Text fishName;
+    public TMP_Text fishPhases;
+    public TMP_Text fishCaught;
 
     float F01caught;
     float F02caught;
     float F03caught;
 
+    FishStatus _fish;
+
     // Update is called once per frame
     void Update()
     {
-        #region F01
-        if (F01caught == 0)
-        {
-            _topSR.color = Color.black;
-            topName.text = "Fish Name: Unknown";
-            topPhase.text = "Phase Appearance: Unknown";
-        }
 
-        else
+        Debug.Log(F01caught);
+
+        if (F01caught > 0)
         {
             _topSR.color = Color.white;
-            topName.text = "Fish Name: Silver Scales";
-            topPhase.text = "Phase Appearance: New, Half";
-        }
-
-        topNum.text = "Number Caught: " + F01caught;
-        #endregion F01        
-        
-        #region F02
-        if (F02caught == 0)
-        {
-            _midSR.color = Color.black;
-            midName.text = "Fish Name: Unknown";
-            midPhase.text = "Phase Appearance: Unknown";
         }
 
         else
         {
-            _midSR.color = Color.white;
-            midName.text = "Fish Name: MoonBeam Betta";
-            midPhase.text = "Phase Appearance: New, Half";
+            _topSR.color = Color.black;
         }
 
-        midNum.text = "Number Caught: " + F02caught;
-        #endregion F02        
 
-        #region F03
-        if (F03caught == 0)
+        if (F02caught > 0)
+        {
+            _midSR.color = Color.white;
+        }
+
+        else
+        {
+            _midSR.color = Color.black;
+        }
+
+
+        if (F03caught > 0)
+        {
+            _btmSR.color = Color.white;
+        }
+
+
+        else
         {
             _btmSR.color = Color.black;
         }
 
-        else
+
+
+        switch (FramesHandler.currFrame)
         {
-            _btmSR.color = Color.white;
+            case "Top":
+                if (F01caught > 0)
+                {
+                    fishName.text = "Silver Scales";
+                    fishPhases.text = "New, Half";
+                    fishCaught.text = "Number of Fish Caught: " + F01caught;
+                }
+
+                else
+                {
+                    fishName.text = "Unknown";
+                    fishPhases.text = "Unknown";
+                    fishCaught.text = "Number of Fish Caught: " + F01caught;
+                }
+
+                break;
+
+            case "Mid":
+                if (F02caught > 0)
+                {
+                    fishName.text = "Moonbeam Betta";
+                    fishPhases.text = "New, Half";
+                    fishCaught.text = "Number of Fish Caught: " + F02caught;
+                }
+
+                else
+                {
+                    fishName.text = "Unknown";
+                    fishPhases.text = "Unknown";
+                    fishCaught.text = "Number of Fish Caught: " + F02caught;
+                }
+
+                break;
+
+            case "Bot":
+                if (F03caught > 0)
+                {
+                    fishName.text = "Common Koi";
+                    fishPhases.text = "New";
+                    fishCaught.text = "Number of Fish Caught: " + F03caught;
+                }
+
+                else
+                {
+                    fishName.text = "Unknown";
+                    fishPhases.text = "Unknown";
+                    fishCaught.text = "Number of Fish Caught: " + F03caught;
+                }
+
+                break;
+
+            case "None":
+                fishName.text = "Name of Fish";
+                fishPhases.text = "Moon Phase";
+                fishCaught.text = "Number of Fish Caught: ";
+
+                break;
+            }
         }
-        #endregion F03
-    }
 
     public void UpdateLogBook(FishStatus _fish)
     {
@@ -92,9 +133,11 @@ public class LogBookDisplay : MonoBehaviour
                 case "F01":
                     F01caught++;
                     break;
+
                 case "F02":
                     F02caught++;
                     break;
+
                 case "F03":
                     F03caught++;
                     break;
