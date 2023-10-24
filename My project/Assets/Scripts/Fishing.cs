@@ -212,7 +212,7 @@ public class Fishing : MonoBehaviour
         float ySize = b.size.y;
         Vector3 ls = hook.localScale;
         float distance = Vector3.Distance(topPivot.position, bottomPivot.position);
-        ls.y = (distance  * hookSize);
+        ls.y = distance / ySize  * (hookSize/ 2);
         hook.localScale = ls;
     }
 }
