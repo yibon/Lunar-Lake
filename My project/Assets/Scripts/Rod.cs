@@ -31,7 +31,7 @@ public class Rod : MonoBehaviour
 
         if (GameStateManager.currGameState == States.GameStates.Casting)
         {
-
+            //Debug.Log(rodInterpolateAmt);
             rodInterpolateAmt += Time.deltaTime;
 
             if (!Line.isHalfway)

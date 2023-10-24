@@ -168,6 +168,7 @@ public class Line : MonoBehaviour
         LureControl.waterEntered = false;
         lureSpeed = 0.65f;
         lineRend.SetPositions(segmentPoses);
+        Rod.rodInterpolateAmt = 0.01f;
 
         _am.Stop("Retracting");
     }

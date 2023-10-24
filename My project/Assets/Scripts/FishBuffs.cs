@@ -23,7 +23,6 @@ public class FishBuffs : MonoBehaviour
 
             case "hookRange":
                 Fishing.hookSize += buffAmount;
-                Debug.Log("lalaallaala" + Fishing.hookSize);
                 break;
 
             case "GameEnds":
