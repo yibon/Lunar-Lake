@@ -27,6 +27,8 @@ public class Line : MonoBehaviour
 
     AudioManager _am;
 
+    public static float lineDepth;
+
     [SerializeField]
     Transform fishPt;
 
@@ -37,6 +39,8 @@ public class Line : MonoBehaviour
         segmentV = new Vector3[length];
 
         _am = FindObjectOfType<AudioManager>();
+        lineDepth = -15f;
+
         ResetPos();
     }
 
@@ -124,7 +128,7 @@ public class Line : MonoBehaviour
         if (GameStateManager.currGameState == States.GameStates.Reeling)
         {
             // Setting the maximum depth 
-            Vector3 endPt = new Vector3(targetDir.position.x, -15f, 0);
+            Vector3 endPt = new Vector3(targetDir.position.x, lineDepth, 0);
 
             if (isReeling)
             {

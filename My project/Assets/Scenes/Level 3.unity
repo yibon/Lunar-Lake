@@ -279,7 +279,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2080831669
   m_SortingLayer: 10
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.5896226, g: 0.7672777, b: 1, a: 1}
   m_FlipX: 0
@@ -1047,7 +1047,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2080831669
   m_SortingLayer: 10
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.5235849, g: 1, b: 0.5695055, a: 1}
   m_FlipX: 0
@@ -1858,7 +1858,6 @@ MonoBehaviour:
   timerMultiplicator: 3
   smoothMotion: 1
   hook: {fileID: 442101123}
-  hookSize: 0.1
   hookPower: 0.3
   hookPullPower: 0.01
   hookGravityPower: 0.005
@@ -1866,6 +1865,7 @@ MonoBehaviour:
   hookSR: {fileID: 442101122}
   progressBarContainer: {fileID: 1503389291}
   _bookDisp: {fileID: 1082957744}
+  _buffs: {fileID: 0}
 --- !u!4 &775299679
 Transform:
   m_ObjectHideFlags: 0
@@ -8452,6 +8452,7 @@ MonoBehaviour:
   targetDir: {fileID: 978343002}
   fish: {fileID: 1229106041}
   noOfFish_Text: {fileID: 0}
+  _fishing: {fileID: 775299678}
   _line: {fileID: 1395235261}
 --- !u!4 &1910776041
 Transform:

@@ -37,7 +37,7 @@ public class FishBehaviour : MonoBehaviour
         _fish = _dm.FishDataByID(currFishId);
         travelVelocity = _fish.fishSpeed;
 
-        //Debug.Log(_fish.fishSpeed);
+        Debug.Log("Speed" + _fish.fishSpeed);
     }
 
     // Update is called once per frame

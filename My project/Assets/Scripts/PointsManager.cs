@@ -24,6 +24,8 @@ public class PointsManager : MonoBehaviour
     public static Vector3 spawnPtD;
     public static Vector3 spawnPtE;
 
+    public static float castedPtExtend;
+
     // Update is called once per frame
 
     private void Start()
@@ -31,6 +33,7 @@ public class PointsManager : MonoBehaviour
         spawnPtA = new Vector3(3f, -6f, 0f);
         spawnPtB = new Vector3(-4f, -5f, 0f);
         spawnPtC = new Vector3(0f, -9f, 0f);
+        castedPtExtend = 8f;
 
     }
     void Update()
@@ -38,7 +41,7 @@ public class PointsManager : MonoBehaviour
         initPt = this.transform.position + new Vector3(2.5f, -0.6f, 0);
 
         halfwayPt = this.transform.position + new Vector3(-1.4f, 1.5f, 0);
-        castedPt = this.transform.position + new Vector3(8f, -1.8f, 0);
+        castedPt = this.transform.position + new Vector3(castedPtExtend, -1.8f, 0);
 
         initInterPt = this.transform.position + new Vector3(-0.2f, 2.7f, 0);
         fishingInterPt = this.transform.position + new Vector3(8.8f, 8.4f, 0);
@@ -49,6 +52,6 @@ public class PointsManager : MonoBehaviour
         rodEndPt = fishermanHands + new Vector3(-1.5f, 0.75f, 0f);
         rodIntPt = fishermanHands + new Vector3(0f, 1.5f, 0f);
 
-        //Debug.Log(rodStartPt);
+        //Debug.Log(castedPt);
     }
 }

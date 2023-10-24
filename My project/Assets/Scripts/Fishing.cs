@@ -21,8 +21,8 @@ public class Fishing : MonoBehaviour
 
     [SerializeField] Transform hook;
     float hookPos;
-    [SerializeField] float hookSize = 0.1f;
-    [SerializeField] float hookPower  = 0.5f;
+    [SerializeField] public static float hookSize = 0.1f;
+    [SerializeField] float hookPower = 0.5f;
     float hookProgress;
     float hookPullVelocity;
     [SerializeField] float hookPullPower = 0.01f;
@@ -44,22 +44,22 @@ public class Fishing : MonoBehaviour
     FishStates currFishState;
     public static FishStatus caughtFish;
     [SerializeField] LogBookDisplay _bookDisp;
+    [SerializeField] FishBuffs _buffs;
 
     private void Start()
     {
+        Resize();
         fishSpeed = 2f;
-        //_bookDisp = FindObjectOfType<LogBookDisplay>();
-
         pointTimer = caughtFish.fishStateTime_1;
         fishDestination = caughtFish.fishStatePos_1;
 
-        Debug.Log(caughtFish.fishID);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(pointTimer);
+        Debug.Log("Sis " + caughtFish.fishID);
+        Debug.Log(hookSize);
         if (!isFishing)
         {
             fishTimer = 5;
@@ -183,6 +183,7 @@ public class Fishing : MonoBehaviour
             fishesCaught++;
             GameStateManager.currGameState = States.GameStates.Caught;
             _bookDisp.UpdateLogBook(caughtFish);
+            FishBuffs.UpdateBuffs(caughtFish);
 
             // Reset Stats Here
             hookProgress = 0;
@@ -201,5 +202,17 @@ public class Fishing : MonoBehaviour
         state1,
         state2,
         state3
+    }
+
+
+
+    public void Resize()
+    {
+        Bounds b = hookSR.bounds;
+        float ySize = b.size.y;
+        Vector3 ls = hook.localScale;
+        float distance = Vector3.Distance(topPivot.position, bottomPivot.position);
+        ls.y = (distance  * hookSize);
+        hook.localScale = ls;
     }
 }

@@ -15,6 +15,8 @@ public class GameStateManager : MonoBehaviour
 
     [SerializeField] TMP_Text noOfFish_Text;
 
+    [SerializeField] Fishing _fishing;
+
     public Line _line;
 
     private void Start()
@@ -59,6 +61,8 @@ public class GameStateManager : MonoBehaviour
         {
             caughtText.SetActive(false);
             currGameState = States.GameStates.Ready;
+
+            _fishing.Resize();
         }
 
     }
