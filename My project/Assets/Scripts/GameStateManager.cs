@@ -21,6 +21,7 @@ public class GameStateManager : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
         currGameState = States.GameStates.Ready;
     }
 

@@ -184,6 +184,7 @@ public class Fishing : MonoBehaviour
             GameStateManager.currGameState = States.GameStates.Caught;
             _bookDisp.UpdateLogBook(caughtFish);
             FishBuffs.UpdateBuffs(caughtFish);
+            Player.Instance.FishCaughtAndAddIntoInventory(caughtFish.fishID);
 
             // Reset Stats Here
             hookProgress = 0;

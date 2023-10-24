@@ -85,17 +85,22 @@ public class LogBookDisplay : MonoBehaviour
 
     public void UpdateLogBook(FishStatus _fish)
     {
-        switch(_fish.fishID)
+        if (Player.Instance.addedFishToInventory == true)
         {
-            case "F01":
-                F01caught++;
-                break;            
-            case "F02":
-                F02caught++;
-                break;            
-            case "F03":
-                F03caught++;
-                break;
+            switch (_fish.fishID)
+            {
+                case "F01":
+                    F01caught++;
+                    break;
+                case "F02":
+                    F02caught++;
+                    break;
+                case "F03":
+                    F03caught++;
+                    break;
+            }
+            Player.Instance.addedFishToInventory = false;
         }
+        
     }
 }

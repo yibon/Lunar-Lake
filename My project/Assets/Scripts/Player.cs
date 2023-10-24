@@ -8,16 +8,34 @@ public class Player : MonoBehaviour
     // invetory will carry over
     DataManager dataManager;
 
+    public static Player Instance { get; private set; }
+
+    public bool addedFishToInventory = false; // if fish added to inventory, set to true and update to log book. if fish remove no need to check
+
+    
     // Start is called before the first frame update
     void Awake()
-    {  
-        Inventory.Add("F02");
-        Inventory.Add("F01");
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         //if player catches fish, invetory.Add(fishID);
+    }
+
+    public void FishCaughtAndAddIntoInventory(string FishID)
+    {
+        Inventory.Add(FishID);
+        addedFishToInventory = true;
+        Debug.Log("I caught " + FishID);
     }
 }

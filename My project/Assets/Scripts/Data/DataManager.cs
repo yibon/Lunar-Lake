@@ -43,6 +43,7 @@ public class DataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
 
         fList.Add(F01); fList.Add(F02); fList.Add(F03); fList.Add(F04); fList.Add(F05); fList.Add(F06); fList.Add(F07); fList.Add(F08); fList.Add(F09); fList.Add(F10);
 
