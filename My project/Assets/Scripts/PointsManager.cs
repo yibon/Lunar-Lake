@@ -33,7 +33,7 @@ public class PointsManager : MonoBehaviour
         spawnPtA = new Vector3(3f, -6f, 0f);
         spawnPtB = new Vector3(-4f, -5f, 0f);
         spawnPtC = new Vector3(0f, -9f, 0f);
-        castedPtExtend = 8f;
+        castedPtExtend = 8.2f;
 
     }
     void Update()
