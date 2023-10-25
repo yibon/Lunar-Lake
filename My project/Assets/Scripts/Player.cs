@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public List<string> Inventory = new List<string>();
+    public DataManager dataManager;
     // invetory will carry over
-    DataManager dataManager;
+    public List<string> Inventory = new List<string>();
+    // if fish added to inventory, set to true and update to log book. if fish remove no need to check
+    public bool addedFishToInventory = false;
+    
 
     public static Player Instance { get; private set; }
-
-    public bool addedFishToInventory = false; // if fish added to inventory, set to true and update to log book. if fish remove no need to check
-
-    
     // Start is called before the first frame update
     void Awake()
     {
@@ -37,5 +37,13 @@ public class Player : MonoBehaviour
         Inventory.Add(FishID);
         addedFishToInventory = true;
         Debug.Log("I caught " + FishID);
+    }
+
+    public void ChoosingRod()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            //let player chose rod
+        }
     }
 }

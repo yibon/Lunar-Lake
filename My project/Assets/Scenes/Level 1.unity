@@ -4616,6 +4616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4082f6a40740542a0e5ce828fa134f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataManager: {fileID: 1368879374}
   Inventory: []
   addedFishToInventory: 0
 --- !u!61 &1039103614
@@ -5577,7 +5578,6 @@ MonoBehaviour:
   smoothSpeed: 0.01
   trailSpeed: 0
   flowPoint: {fileID: 1159617184}
-  fishPt: {fileID: 1884785130}
 --- !u!120 &1395235262
 LineRenderer:
   m_ObjectHideFlags: 0

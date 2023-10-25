@@ -87,6 +87,7 @@ public class LogBookDisplay : MonoBehaviour
     {
         if (Player.Instance.addedFishToInventory == true)
         {
+            Debug.Log("Caught Fish");
             switch (_fish.fishID)
             {
                 case "F01":

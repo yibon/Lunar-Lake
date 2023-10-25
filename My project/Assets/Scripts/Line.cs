@@ -29,8 +29,8 @@ public class Line : MonoBehaviour
 
     public static float lineDepth;
 
-    [SerializeField]
-    Transform fishPt;
+    //[SerializeField]
+    //Transform fishPt;
 
     private void Start()
     {
@@ -47,7 +47,7 @@ public class Line : MonoBehaviour
     private void Update()
     {
         flowPoint.position = targetDir.position;
-        fishPt.position = PointsManager.castedPt;
+        //fishPt.position = PointsManager.castedPt;
 
         if (Input.GetMouseButtonDown(0) && GameStateManager.currGameState == States.GameStates.Ready)
         {
