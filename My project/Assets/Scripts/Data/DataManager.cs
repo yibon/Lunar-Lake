@@ -24,7 +24,7 @@ public class DataManager : MonoBehaviour
 
     RodStatus R01 = new RodStatus("R01", "Basic", "The most basic rod you can have", "", 1f, 1f);
     RodStatus R02 = new RodStatus("R02", "Length Rod", "fishes gives more line length", "lineLength*1.3f", 1.5f, 1f);
-    RodStatus R03 = new RodStatus("R02", "Length Rod", "fishes gives more hook range", "hookRange*1.3f", 1f, 1.5f);
+    RodStatus R03 = new RodStatus("R03", "Hook Rod", "fishes gives more hook range", "hookRange*1.3f", 1f, 1.5f);
 
     public List<Events> eList = new List<Events>();
 
@@ -41,7 +41,7 @@ public class DataManager : MonoBehaviour
 
     public List<FishSpawner> sList = new List<FishSpawner>();
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
 
@@ -52,6 +52,7 @@ public class DataManager : MonoBehaviour
         eList.Add(E01); eList.Add(E02); eList.Add(E03);
 
         sList.Add(S01);
+        
     }
 
     // Update is called once per frame

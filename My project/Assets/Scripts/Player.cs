@@ -1,10 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
+    private string currentRod;
+    private RodStatus currentRodStatus;
+
+    public Canvas RodChoice;
+    public Button RodChoice01;
+    public Button RodChoice02;
+    
     public DataManager dataManager;
     // invetory will carry over
     public List<string> Inventory = new List<string>();
@@ -26,11 +36,36 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        currentRod = "R01";
+        currentRodStatus = dataManager.RodDataByID(currentRod);
+        Debug.Log(currentRod);
+        Debug.Log(dataManager.RodDataByID(currentRod).rodName);
+
+        SceneManager.activeSceneChanged += ChangedActiveScene;
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
         Debug.Log(addedFishToInventory);
         //if player catches fish, invetory.Add(fishID);
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Inventory.Add("F01");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Inventory.Add("F02");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Inventory.Add("F03");
+        }
+
     }
 
     public void FishCaughtAndAddIntoInventory(string FishID)
@@ -40,11 +75,41 @@ public class Player : MonoBehaviour
         Debug.Log("I caught " + FishID);
     }
 
-    public void ChoosingRod()
+    public void DisplayRodChoices()
     {
         if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
         {
-            //let player chose rod
+            //showing player the chocies
+            RodChoice.gameObject.SetActive(true);
         }
     }
+
+    public void ChooseR02()
+    {
+        currentRod = "R02";
+        currentRodStatus = dataManager.RodDataByID(currentRod);
+        Debug.Log(currentRod + " " + currentRodStatus.rodName);
+        RodChoice.gameObject.SetActive(false);
+    }
+    public void ChooseR03()
+    {
+        currentRod = "R03";
+        currentRodStatus = dataManager.RodDataByID(currentRod);
+        Debug.Log(currentRod + " " + currentRodStatus.rodName);
+        RodChoice.gameObject.SetActive(false);
+    }
+
+    private void ChangedActiveScene(Scene current, Scene next)
+    {
+        string currentName = current.name;
+
+        if (currentName == null)
+        {
+            // Scene1 has been removed
+            currentName = "Replaced";
+        }
+
+        DisplayRodChoices();
+    }
+
 }
