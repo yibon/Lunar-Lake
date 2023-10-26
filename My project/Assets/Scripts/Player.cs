@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(addedFishToInventory);
         //if player catches fish, invetory.Add(fishID);
     }
 
