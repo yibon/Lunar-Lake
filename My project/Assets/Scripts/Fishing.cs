@@ -34,7 +34,7 @@ public class Fishing : MonoBehaviour
 
     public static int fishesCaught;
 
-    float failTimer = 10f;
+    //float failTimer = 10f;
 
     bool isFishing;
     bool isHooking;
@@ -58,6 +58,7 @@ public class Fishing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(hookPullVelocity);
         if (!isFishing)
         {
             fishTimer = 5;
@@ -77,10 +78,10 @@ public class Fishing : MonoBehaviour
             isHooking = false;
         }
 
-        if (failTimer < 0f)
-        {
-            Lose();
-        }
+        //if (failTimer < 0f)
+        //{
+        //    Lose();
+        //}
 
         ProgressCheck();
     }
@@ -103,7 +104,7 @@ public class Fishing : MonoBehaviour
         else
         {
             hookProgress -= hookProgressDegradPower * Time.deltaTime;
-            failTimer -= Time.deltaTime;
+            //failTimer -= Time.deltaTime;
         }
         
         if (pointTimer < 0f)
@@ -142,7 +143,7 @@ public class Fishing : MonoBehaviour
         if (Hooked)
         {
             hookPullVelocity += hookPullPower * Time.deltaTime;
-            failTimer = 10f;
+            //failTimer = 10f;
         }
 
         else
@@ -185,14 +186,20 @@ public class Fishing : MonoBehaviour
             FishBuffs.UpdateBuffs(caughtFish);
 
             // Reset Stats Here
-            hookProgress = 0;
+        }
+
+        if (hookProgress == 0 )
+        {
+            Lose();
+            hookProgress = 0.45f;
         }
 
     }
 
     private void Lose()
     {
-        Debug.Log("You Lost");
+        Debug.Log("Lost!");
+        GameStateManager.currGameState = States.GameStates.FailedToCatch;
     }
 
 
@@ -211,5 +218,10 @@ public class Fishing : MonoBehaviour
         float distance = Vector3.Distance(topPivot.position, bottomPivot.position);
         ls.y = distance / ySize  * (hookSize/ 2);
         hook.localScale = ls;
+
+        hookProgress = 0.45f;
     }
+
+
+
 }

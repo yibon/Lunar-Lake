@@ -7,11 +7,12 @@ public class LureControl : MonoBehaviour
     [SerializeField] GameObject fishCaught_text;
     public static bool waterEntered;
     AudioManager _audioManager;
-
+    [SerializeField] GameStateManager _gsm;
 
     private void Start()
     {
         _audioManager = FindObjectOfType<AudioManager>();
+        _gsm = FindObjectOfType<GameStateManager>();
         waterEntered = false;
     }
 
@@ -31,10 +32,10 @@ public class LureControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Fish"))
         {
             fishCaught = true;
-            Fishing.caughtFish =  collision.gameObject.GetComponent<FishBehaviour>()._fish;
-            StartCoroutine(FishDestroyer(collision));
-
+            Fishing.caughtFish = collision.gameObject.GetComponent<FishBehaviour>()._fish;
+            _gsm.GetCollidedFishObj(collision);
         }
+
 
         if (collision.gameObject.CompareTag("WaterLine"))
         {
@@ -49,15 +50,5 @@ public class LureControl : MonoBehaviour
                 waterEntered = false;
             }
         }
-    }
-
-    IEnumerator FishDestroyer(Collider2D fishCollider)
-    {
-        while (!fishCaught_text.activeInHierarchy)
-        {
-            yield return null;
-        }    
-        Destroy(fishCollider.gameObject);
-
     }
 }

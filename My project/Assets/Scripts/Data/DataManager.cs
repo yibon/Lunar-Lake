@@ -9,7 +9,7 @@ public class DataManager : MonoBehaviour
     #region All Data
     public List<FishStatus> fList = new List<FishStatus>();
 
-    FishStatus F01 = new FishStatus("F01", "Common Koi", "lineLength@0.1", "", 1.0f, "B", 0.8f, 2f, 0.7f, 4f, 0.5f, 2f);
+    FishStatus F01 = new FishStatus("F01", "Common Koi", "lineLength@0.1", "", 1.0f, "B", 0.2f, 2f, 0.5f, 4f, 0.3f, 2f);
     FishStatus F02 = new FishStatus("F02", "Silver Scales", "hookRange@0.1", "", 1.0f, "A", 0.8f, 2f, 0.7f, 4f, 0.5f, 2f);
     FishStatus F03 = new FishStatus("F03", "Moonbeam Betta", "lineLength@0.1", "", 1.0f, "B", 0.8f, 2f, 0.7f, 4f, 0.5f, 2f);
     FishStatus F04 = new FishStatus("F04", "Tidal Tetra", "hookRange@0.2", "", 1.5f, "A", 0.9f, 3f, 0.3f, 4f, 0.5f, 2f);

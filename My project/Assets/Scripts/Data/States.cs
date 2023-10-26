@@ -19,6 +19,8 @@ public class States
         Catching,
 
         // Yay
-        Caught
+        Caught,
+
+        FailedToCatch
     }
 }
