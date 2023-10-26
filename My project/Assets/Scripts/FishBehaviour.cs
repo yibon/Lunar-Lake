@@ -71,15 +71,20 @@ public class FishBehaviour : MonoBehaviour
 
             if (movingLeft)
             {
-                fishSR.flipX = false;
+                //fishSR.flipX = false;
+                gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+
                 this.transform.position = Vector3.Lerp(startPoint, endPoint, travelAmt);
             }
 
             if (movingRight)
             {
-                fishSR.flipX = true;
+                //fishSR.flipX = true;
+                gameObject.transform.rotation = new Quaternion(0, 1, 0, 0);
                 this.transform.position = Vector3.Lerp(endPoint, startPoint, travelAmt);
             }
         }
+        
+        
     }
 }
