@@ -4453,6 +4453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishCaught_text: {fileID: 462491070}
+  _gsm: {fileID: 1910776040}
 --- !u!58 &1159617187
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5185,7 +5186,6 @@ MonoBehaviour:
   smoothSpeed: 0.01
   trailSpeed: 0
   flowPoint: {fileID: 1159617184}
-  fishPt: {fileID: 0}
 --- !u!120 &1395235262
 LineRenderer:
   m_ObjectHideFlags: 0
