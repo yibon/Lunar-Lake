@@ -124,7 +124,8 @@ public class KappaEvent : MonoBehaviour
         #region Completed Event
         else if (kappaEvents.isDone == true)
         {
-            Debug.Log("I have nothing else for you! Shoo");
+            trigger.StartDialogue(6);
+            StartCoroutine(WaitingAfterSecondInteractionandCheckPass());
         }
         #endregion
     }
@@ -193,9 +194,9 @@ public class KappaEvent : MonoBehaviour
         canInteract = true;
 
         CompletedQuest();
-        Debug.Log("Quest Done!");
-        SceneManager.LoadScene(2);
+        Debug.Log("Quest Done!"); 
+        //SceneManager.LoadScene(2);
     }
-    
+
 }
 

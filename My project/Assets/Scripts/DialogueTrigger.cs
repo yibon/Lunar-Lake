@@ -48,6 +48,7 @@ public class Message
     public string nextMessageID;
     public int speakerID;
     public string message;
+    public bool goToNextLevel;
 }
 
 [System.Serializable]
