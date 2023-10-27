@@ -19,13 +19,17 @@ public class GameStateManager : MonoBehaviour
 
     [SerializeField] Fishing _fishing;
 
+    AudioManager _am;
     public Line _line;
+
+    private bool reeling_PlayOnce;
 
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
         currGameState = States.GameStates.Ready;
 
+        _am = FindObjectOfType<AudioManager>();
         caughtText = textObj.GetComponent<TMP_Text>(); 
     }
 
@@ -59,13 +63,14 @@ public class GameStateManager : MonoBehaviour
 
     IEnumerator FishFailed()
     {
+        reeling_PlayOnce = false;
         fishingMinigame.SetActive(false);
         textObj.SetActive(true);
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(0.5f);
 
         Time.timeScale = 1;
-        targetDir.position = Vector3.MoveTowards(targetDir.position, PointsManager.initPt, 0.1f);
+        ResetPos();
 
         if (targetDir.position == PointsManager.initPt)
         {
@@ -77,13 +82,14 @@ public class GameStateManager : MonoBehaviour
 
     IEnumerator FishCaught()
     {
+        reeling_PlayOnce = false;
         fishingMinigame.SetActive(false);
         textObj.SetActive(true);
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(0.5f);
+        ResetPos();
 
         Time.timeScale = 1;
-        targetDir.position = Vector3.MoveTowards(targetDir.position, PointsManager.initPt, 0.1f);
         
         if (targetDir.position == PointsManager.initPt)
         {
@@ -110,4 +116,13 @@ public class GameStateManager : MonoBehaviour
         caughtFish = fishcollider.gameObject;
     }
 
+    public void ResetPos()
+    {
+        targetDir.position = Vector3.MoveTowards(targetDir.position, PointsManager.initPt, 0.1f);
+        if (!reeling_PlayOnce)
+        {
+            _am.Play("Retracting");
+            reeling_PlayOnce = true;
+        }
+    }
 }

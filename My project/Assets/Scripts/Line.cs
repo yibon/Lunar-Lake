@@ -29,7 +29,9 @@ public class Line : MonoBehaviour
 
     public static float lineDepth;
 
-    [SerializeField]
+    bool reeling_PlayOnce;
+
+    //[SerializeField]
     //Transform fishPt;
 
     private void Start()
@@ -58,12 +60,20 @@ public class Line : MonoBehaviour
 
         if (Input.GetMouseButton(0) && GameStateManager.currGameState == States.GameStates.Reeling)
         {
+            if (!reeling_PlayOnce)
+            {
+                _am.Play("Retracting");
+                reeling_PlayOnce = true;
+            }
+
             isReeling = true;
                 
         }
 
         else
         {
+            reeling_PlayOnce = false;
+            _am.Stop("Retracting");
             isReeling = false;
         }
 
@@ -142,7 +152,6 @@ public class Line : MonoBehaviour
 
             else
             {
-                _am.Play("Retracting");
                 targetDir.position = Vector3.MoveTowards(targetDir.position, endPt, Time.deltaTime);
             }
         }
@@ -170,7 +179,7 @@ public class Line : MonoBehaviour
         lineRend.SetPositions(segmentPoses);
         Rod.rodInterpolateAmt = 0.01f;
 
-        _am.Stop("Retracting");
+        //_am.Stop("Retracting");
     }
 
     private void CastingAnimation()

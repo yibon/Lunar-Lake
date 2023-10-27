@@ -42,11 +42,16 @@ public class LureControl : MonoBehaviour
             if (!waterEntered)
             {
                 _audioManager.Play("Bloop SFX");
+                _audioManager.Stop("Ambience");
+                _audioManager.Play("Underwater");
                 waterEntered = true;
             }
 
             else
             {
+                Debug.Log("nani");
+                _audioManager.Stop("Underwater");
+                _audioManager.Play("Ambience");
                 waterEntered = false;
             }
         }
