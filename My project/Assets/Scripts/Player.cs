@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    private string currentRod;
+    public string currentRod;
     private RodStatus currentRodStatus;
 
     public Canvas RodChoice;
@@ -88,6 +88,11 @@ public class Player : MonoBehaviour
     {
         currentRod = "R02";
         currentRodStatus = dataManager.RodDataByID(currentRod);
+        if (gameObject.GetComponentInChildren<LineRenderer>().name == "Rod")
+        {
+            gameObject.GetComponentInChildren<LineRenderer>().startColor = new Color(0.254902f, 0.4196078f, 0.02745098f);
+            gameObject.GetComponentInChildren<LineRenderer>().endColor = new Color(0.254902f, 0.4196078f, 0.02745098f);
+        }
         Debug.Log(currentRod + " " + currentRodStatus.rodName);
         RodChoice.gameObject.SetActive(false);
     }
@@ -95,6 +100,11 @@ public class Player : MonoBehaviour
     {
         currentRod = "R03";
         currentRodStatus = dataManager.RodDataByID(currentRod);
+        if (gameObject.GetComponentInChildren<LineRenderer>().name == "Rod")
+        {
+            gameObject.GetComponentInChildren<LineRenderer>().startColor = new Color(0.627451f, 0.3647059f, 0.1647059f);
+            gameObject.GetComponentInChildren<LineRenderer>().endColor = new Color(0.627451f, 0.3647059f, 0.1647059f);
+        }
         Debug.Log(currentRod + " " + currentRodStatus.rodName);
         RodChoice.gameObject.SetActive(false);
     }
