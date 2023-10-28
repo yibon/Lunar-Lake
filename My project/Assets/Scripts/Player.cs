@@ -93,6 +93,7 @@ public class Player : MonoBehaviour
             gameObject.GetComponentInChildren<LineRenderer>().startColor = new Color(0.254902f, 0.4196078f, 0.02745098f);
             gameObject.GetComponentInChildren<LineRenderer>().endColor = new Color(0.254902f, 0.4196078f, 0.02745098f);
         }
+        Time.timeScale = 1.0f;
         Debug.Log(currentRod + " " + currentRodStatus.rodName);
         RodChoice.gameObject.SetActive(false);
     }
@@ -105,6 +106,7 @@ public class Player : MonoBehaviour
             gameObject.GetComponentInChildren<LineRenderer>().startColor = new Color(0.627451f, 0.3647059f, 0.1647059f);
             gameObject.GetComponentInChildren<LineRenderer>().endColor = new Color(0.627451f, 0.3647059f, 0.1647059f);
         }
+        Time.timeScale = 1.0f;
         Debug.Log(currentRod + " " + currentRodStatus.rodName);
         RodChoice.gameObject.SetActive(false);
     }
