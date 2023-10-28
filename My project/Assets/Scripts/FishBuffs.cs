@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class FishBuffs : MonoBehaviour
 {
+    [SerializeField] GameObject hr;
+    [SerializeField] GameObject ll;
 
-    public static void UpdateBuffs(FishStatus _fish)
+    private void Start()
+    {
+        hr.SetActive(false);
+        ll.SetActive(false);
+    }
+
+    public void UpdateBuffs(FishStatus _fish)
     {
         string buffEffect;
         float buffAmount;
@@ -17,16 +25,17 @@ public class FishBuffs : MonoBehaviour
         switch (buffEffect)
         {
             case "lineLength":
+                ll.SetActive(true);
                 PointsManager.castedPtExtend += buffAmount;
                 Line.lineDepth += buffAmount;
                 break;            
 
             case "hookRange":
+                hr.SetActive(true);
                 Fishing.hookSize += buffAmount;
                 break;
 
             case "GameEnds":
-
                 break;
         }
     }

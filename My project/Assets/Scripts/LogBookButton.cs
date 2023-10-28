@@ -18,7 +18,6 @@ public class LogBookButton : MonoBehaviour, IPointerClickHandler, IPointerExitHa
     private void Start()
     {
         _am = FindObjectOfType<AudioManager>();
-
         _image = this.GetComponent<Image>();
     }
 
