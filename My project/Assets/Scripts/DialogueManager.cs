@@ -4,6 +4,7 @@ using System.Transactions;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -12,6 +13,9 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI speakerName;
     public TextMeshProUGUI messageText;
     public RectTransform bgImage;
+    public Button MoveOn;
+    public Button Stay;
+
     
 
     List<Message> currMessages;
@@ -65,16 +69,30 @@ public class DialogueManager : MonoBehaviour
     public void NextMessage()
     {
         activeMessage++;
-        if (activeMessage < currMessages.Count && currMessages[activeMessage-1].nextMessageID != "0")
+        if (activeMessage < currMessages.Count && currMessages[activeMessage - 1].nextMessageID != "0" && currMessages[activeMessage - 1].nextMessageID != "1" && currMessages[activeMessage - 1].goToNextLevel != true) //no choice present, moving to next dialougue
         {
             Debug.Log(activeMessage);
             DisplayMessage(activeMessage);
+        }
+        else if (currMessages[activeMessage-1].nextMessageID == "1") //a choice is present
+        {
+            MoveOn.gameObject.SetActive(true);
+            Stay.gameObject.SetActive(true);
+            isActive = false; //setting to false to disable clicking
+            activeMessage = activeMessage - 1;
+            DisplayMessage(activeMessage);
+        }
+        else if (currMessages[activeMessage - 1].goToNextLevel == true)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         }
         else //turning off canvas
         {
             isActive = false;
             DialogueTrigger.instance.canvas.gameObject.SetActive(isActive);
         }
+        
+        
     }
 
     // Start is called before the first frame update
@@ -90,5 +108,22 @@ public class DialogueManager : MonoBehaviour
         {
             NextMessage();
         }
+    }
+
+    public void StayinLevel()
+    {
+        MoveOn.gameObject.SetActive(false);
+        Stay.gameObject.SetActive(false);
+        isActive = true; //setting back to true to enable clicking
+        activeMessage = 7; //setting 1 before the supposed message so that it plays correct message
+        NextMessage();
+    }
+    public void GoNextLevel()
+    {
+        MoveOn.gameObject.SetActive(false);
+        Stay.gameObject.SetActive(false);
+        isActive = true; //setting back to true to enable clicking
+        activeMessage = 8; //setting 1 before the supposed message so that it plays correct message
+        NextMessage();
     }
 }
