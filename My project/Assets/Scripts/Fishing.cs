@@ -46,6 +46,7 @@ public class Fishing : MonoBehaviour
     public static FishStatus caughtFish;
     [SerializeField] LogBookDisplay _bookDisp;
     [SerializeField] FishBuffs _buffs;
+    [SerializeField] GameObject exclaimationMark;
 
     Camera cam;
 
@@ -67,7 +68,7 @@ public class Fishing : MonoBehaviour
     {
         //spawnLoc = Spawner.GetSpawnPoint(caughtFish.fishSpawnLoc);
         this.transform.position = _line.targetDir.position + new Vector3 (2f, 2.5f, 0);
-        Debug.Log(hookPullVelocity);
+        //Debug.Log(hookPullVelocity);
         if (!isFishing)
         {
             fishTimer = 5;
@@ -144,15 +145,33 @@ public class Fishing : MonoBehaviour
 
     private void Hooking (bool Hooked)
     {
+        //Debug.Log(hook.position.y - hookSize * 2 + " Btm: " + bottomPivot.position.y);
+        Debug.Log(hookPullVelocity);
+
         if (Hooked)
         {
-            hookPullVelocity += hookPullPower * Time.deltaTime;
-            //failTimer = 10f;
+            if (hook.position.y + hookSize * 1.5 <= topPivot.position.y)
+            {
+                hookPullVelocity += hookPullPower * Time.deltaTime;
+            }
+
+            else
+            {
+                hookPullVelocity = 0;
+            }
         }
 
         else
         {
-            hookPullVelocity -= hookGravityPower * Time.deltaTime;
+            if (hook.position.y - hookSize * 1.5 >= bottomPivot.position.y)
+            {
+                hookPullVelocity -= hookGravityPower * Time.deltaTime;
+            }
+
+            else
+            {
+                hookPullVelocity = 0;
+            }
         }
 
         hookPos += hookPullVelocity;
@@ -187,15 +206,17 @@ public class Fishing : MonoBehaviour
             GameStateManager.currGameState = States.GameStates.Caught;
             Player.Instance.FishCaughtAndAddIntoInventory(caughtFish.fishID);
             _bookDisp.UpdateLogBook(caughtFish);
-            FishBuffs.UpdateBuffs(caughtFish);
+            _buffs.UpdateBuffs(caughtFish);
 
             // Reset Stats Here
+            hookProgress = 0.45f;
+            hookPos = 0f;
+            exclaimationMark.SetActive(true);
         }
 
         if (hookProgress == 0 )
         {
             Lose();
-            hookProgress = 0.45f;
         }
 
     }
@@ -204,6 +225,8 @@ public class Fishing : MonoBehaviour
     {
         Debug.Log("Lost!");
         GameStateManager.currGameState = States.GameStates.FailedToCatch;
+        hookProgress = 0.45f;
+        hookPos = 0f;
     }
 
 
@@ -224,6 +247,7 @@ public class Fishing : MonoBehaviour
         hook.localScale = ls;
 
         hookProgress = 0.45f;
+        hookPos = 0f;
     }
 
 

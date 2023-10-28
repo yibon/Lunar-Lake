@@ -21,6 +21,7 @@ public class KappaEvent : MonoBehaviour
     //gameobject to show player what to interact with in case stoopid
     public GameObject questionMark; //slightly greyed out (Yellow)
     public GameObject exclaimationMark; //Sky Blue
+    public GameObject pressF; 
 
     bool canInteract = false;
 
@@ -55,6 +56,16 @@ public class KappaEvent : MonoBehaviour
         if (collision.gameObject.name == "Sprites_0")
         {
             canInteract = true;
+            pressF.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Sprites_0")
+        {
+            canInteract = false;
+            pressF.SetActive(false);
         }
     }
 
@@ -63,6 +74,7 @@ public class KappaEvent : MonoBehaviour
     {
         List<string> clearCon = kappaEvents.eventClearCondiditon.Split(",").ToList();
 
+        pressF.SetActive(false);
         #region First Interaction
         if (exclaimationMark.activeInHierarchy == true) //first interaction
         {
