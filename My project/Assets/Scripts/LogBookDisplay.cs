@@ -21,6 +21,14 @@ public class LogBookDisplay : MonoBehaviour
 
     FishStatus _fish;
 
+    private void Awake()
+    {
+        _topSR.color = Color.black;
+        _midSR.color = Color.black;
+        _btmSR.color = Color.black;
+        
+    }
+
     // Update is called once per frame
     void Update()
     {

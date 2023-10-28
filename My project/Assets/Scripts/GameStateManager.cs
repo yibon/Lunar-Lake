@@ -86,29 +86,19 @@ public class GameStateManager : MonoBehaviour
         fishingMinigame.SetActive(false);
         textObj.SetActive(true);
         Time.timeScale = 0f;
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(1f);
+        Destroy(caughtFish);
         ResetPos();
 
         Time.timeScale = 1;
         
         if (targetDir.position == PointsManager.initPt)
         {
-            StartCoroutine(FishDestroyer(caughtFish));
             textObj.SetActive(false);
             currGameState = States.GameStates.Ready;
             _fishing.Resize();
         }
 
-    }
-
-    IEnumerator FishDestroyer(GameObject _caughtFish)
-    {
-        while (!textObj.activeInHierarchy)
-        {
-            yield return null;
-        }
-
-        Destroy(_caughtFish);
     }
 
     public void GetCollidedFishObj(Collider2D fishcollider)

@@ -2971,6 +2971,7 @@ MonoBehaviour:
   progressBarContainer: {fileID: 1503389291}
   _bookDisp: {fileID: 1082957744}
   _buffs: {fileID: 0}
+  _line: {fileID: 1395235261}
 --- !u!4 &775299679
 Transform:
   m_ObjectHideFlags: 0

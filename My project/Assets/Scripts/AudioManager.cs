@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
-    bool isPlaying;
+    //bool isPlaying;
 
     void Awake()
     {
@@ -60,14 +60,13 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOnce(string name)
     {
-        isPlaying = false;
+        //isPlaying = false;
         Sounds s = Array.Find(sounds, sound => sound.name == name);
         if (s == null) { return; }
 
-        if (!isPlaying)
+        if (s.source.isPlaying)
         {
             s.source.Play();
-            isPlaying = true;
         }
     }
 }

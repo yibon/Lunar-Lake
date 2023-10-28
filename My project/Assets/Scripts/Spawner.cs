@@ -37,13 +37,13 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void StringSplitter()
+    public void StringSplitter()
     {
         splitFishSpawnPts = _spawner.fishPoint.Split("@");
         splitFishIds = _spawner.fishId.Split("@");
     }
 
-    private Vector3 GetSpawnPoint(string currSpawnPoint)
+    public static Vector3 GetSpawnPoint(string currSpawnPoint)
     {
         //Vector3 spawnPt = Vector3.zero;
 

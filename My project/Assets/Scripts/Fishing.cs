@@ -1,4 +1,5 @@
 using System.Net.Http.Headers;
+using TMPro;
 using UnityEngine;
 
 public class Fishing : MonoBehaviour
@@ -46,18 +47,26 @@ public class Fishing : MonoBehaviour
     [SerializeField] LogBookDisplay _bookDisp;
     [SerializeField] FishBuffs _buffs;
 
+    Camera cam;
+
+    Vector3 spawnLoc;
+
+    [SerializeField ]Line _line;
     private void Start()
     {
         Resize();
         fishSpeed = 2f;
         pointTimer = caughtFish.fishStateTime_1;
         fishDestination = caughtFish.fishStatePos_1;
-
+        
+        //_line = FindObjectOfType<Line>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //spawnLoc = Spawner.GetSpawnPoint(caughtFish.fishSpawnLoc);
+        this.transform.position = _line.targetDir.position + new Vector3 (2f, 2.5f, 0);
         Debug.Log(hookPullVelocity);
         if (!isFishing)
         {
@@ -77,11 +86,6 @@ public class Fishing : MonoBehaviour
         {
             isHooking = false;
         }
-
-        //if (failTimer < 0f)
-        //{
-        //    Lose();
-        //}
 
         ProgressCheck();
     }
