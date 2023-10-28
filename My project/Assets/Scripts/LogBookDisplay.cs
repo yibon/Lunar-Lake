@@ -20,18 +20,21 @@ public class LogBookDisplay : MonoBehaviour
     float F03caught;
 
     FishStatus _fish;
+    AudioManager _am;
 
     private void Awake()
     {
         _topSR.color = Color.black;
         _midSR.color = Color.black;
         _btmSR.color = Color.black;
-        
+
+        _am = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //_am.Stop("Book Open");
 
         Debug.Log(F01caught);
 

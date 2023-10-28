@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
         {
             Destroy(this);
         }
+
         else
         {
             Instance = this;

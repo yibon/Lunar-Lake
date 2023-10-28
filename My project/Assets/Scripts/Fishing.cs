@@ -46,6 +46,7 @@ public class Fishing : MonoBehaviour
     public static FishStatus caughtFish;
     [SerializeField] LogBookDisplay _bookDisp;
     [SerializeField] FishBuffs _buffs;
+    [SerializeField] GameObject exclaimationMark;
 
     Camera cam;
 
@@ -210,7 +211,7 @@ public class Fishing : MonoBehaviour
             // Reset Stats Here
             hookProgress = 0.45f;
             hookPos = 0f;
-
+            exclaimationMark.SetActive(true);
         }
 
         if (hookProgress == 0 )
