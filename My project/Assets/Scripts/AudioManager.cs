@@ -1,4 +1,4 @@
-using UnityEditor.Audio;
+using UnityEngine.Audio;
 using System;
 using UnityEngine;
 
