@@ -21,7 +21,10 @@ public class KappaEvent : MonoBehaviour
     //gameobject to show player what to interact with in case stoopid
     public GameObject questionMark; //slightly greyed out (Yellow)
     public GameObject exclaimationMark; //Sky Blue
-    public GameObject pressF; 
+    public GameObject pressF;
+
+    [HideInInspector]
+    public List<string> clearCon;
 
     bool canInteract = false;
 
@@ -29,6 +32,7 @@ public class KappaEvent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        clearCon = kappaEvents.eventClearCondiditon.Split(",").ToList();
 
         if (SceneManager.GetActiveScene().buildIndex == 1) //making sure it is Level 1
         {
@@ -45,10 +49,18 @@ public class KappaEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canInteract && Input.GetKeyDown(KeyCode.F) )
+        if (canInteract && Input.GetKeyDown(KeyCode.F))
         {
             ClickedKappa();
         }
+        if (questionMark.activeInHierarchy == false)
+        {
+            if (CheckInvetory(clearCon))
+            {
+                questionMark.SetActive(true);
+            }
+        }
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -72,8 +84,6 @@ public class KappaEvent : MonoBehaviour
     //interacting with Kappa code
     public void ClickedKappa()
     {
-        List<string> clearCon = kappaEvents.eventClearCondiditon.Split(",").ToList();
-
         pressF.SetActive(false);
         #region First Interaction
         if (exclaimationMark.activeInHierarchy == true) //first interaction
@@ -88,48 +98,42 @@ public class KappaEvent : MonoBehaviour
         }
         #endregion
 
-        #region Second Interaction
-        else if (questionMark.activeInHierarchy == true) 
-        { 
-            //checkign inventopry 
-            if (!CheckInvetory(clearCon)) //inventory check fail
-            {
-                //open dialougue box for incompleted quest
-                questionMark.SetActive(false);
-                canInteract = false;
-                //open dialogue
-                trigger.StartDialogue(2);
-
-                //play corroutine to set the stuff
-                StartCoroutine(WaitingAfterSecondInteractionandCheckFail());
-                //after dialougue ends and Canvas is set to inactive
-                
-            }
-
+        #region Second Interaction, Clear Quest
+        else if (questionMark.activeInHierarchy == true)
+        {
             //inventory pass
-            else
-            {
-                //open dialougue box for completed Quest
-                questionMark.SetActive(false);
-                canInteract = false;
-                //open dialogue
-                trigger.StartDialogue(4);
 
-                //play corroutine to set the stuff
-                StartCoroutine(WaitingAfterSecondInteractionandCheckPass());
-                //after dialougue ends and Canvas is set to inactive
+            //open dialougue box for completed Quest
+            //questionMark.SetActive(false);
+            canInteract = false;
+            //open dialogue
+            trigger.StartDialogue(4);
+
+            //play corroutine to set the stuff
+            StartCoroutine(WaitingAfterSecondInteractionandCheckPass());
+            //after dialougue ends and Canvas is set to inactive
 
 
-                #region plays dialougue of quest if completed and see if player want to submit
-                //if () //player still want to play
-                //{
+        }
+        #endregion
 
-                //}
-                //else //player want to submit quest
-                //{
-                //}
-                #endregion
-            }
+        #region Second Interaction, Never Clear Quest
+        else if (questionMark.activeInHierarchy != true)
+        {
+            //checkign inventopry 
+
+
+            //open dialougue box for incompleted quest
+            //questionMark.SetActive(false);
+            canInteract = false;
+            //open dialogue
+            trigger.StartDialogue(2);
+
+            //play corroutine to set the stuff
+            StartCoroutine(WaitingAfterSecondInteractionandCheckFail());
+            //after dialougue ends and Canvas is set to inactive
+
+
         }
         #endregion
 
@@ -139,6 +143,7 @@ public class KappaEvent : MonoBehaviour
             trigger.StartDialogue(6);
             StartCoroutine(WaitingAfterSecondInteractionandCheckPass());
         }
+
         #endregion
     }
 
@@ -169,7 +174,7 @@ public class KappaEvent : MonoBehaviour
         questionMark.SetActive(false);
     }
 
-  
+
     IEnumerator WaitingAfterFirstInteraction()
     {
         Debug.Log("Waiting");
@@ -178,9 +183,9 @@ public class KappaEvent : MonoBehaviour
         Time.timeScale = 1f;
 
         Debug.Log("WAited");
-        questionMark.SetActive(true);
+        //questionMark.SetActive(true);
         canInteract = true;
-        
+
     }
     IEnumerator WaitingAfterSecondInteractionandCheckFail()
     {
@@ -190,7 +195,7 @@ public class KappaEvent : MonoBehaviour
         Time.timeScale = 1f;
 
         Debug.Log("WAited");
-        questionMark.SetActive(true);
+        //questionMark.SetActive(true);
         canInteract = true;
         Debug.Log("Check Fail");
     }
@@ -206,7 +211,7 @@ public class KappaEvent : MonoBehaviour
         canInteract = true;
 
         CompletedQuest();
-        Debug.Log("Quest Done!"); 
+        Debug.Log("Quest Done!");
         //SceneManager.LoadScene(2);
     }
 
