@@ -9,11 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Merger_Level1.unity
-    guid: 2b871da22b5a8564c8fa4087b6dece0f
-  - enabled: 1
     path: Assets/Scenes/Level 1.unity
-    guid: a603008fd6944b1498a7f03f8d524d11
+    guid: 2b871da22b5a8564c8fa4087b6dece0f
   - enabled: 1
     path: Assets/Scenes/Level 2.unity
     guid: abe7c52801e17324a8886a1c6b6a50d3
