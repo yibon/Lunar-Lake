@@ -14,6 +14,7 @@ public class LogBookDisplay : MonoBehaviour
     public TMP_Text fishName;
     public TMP_Text fishPhases;
     public TMP_Text fishCaught;
+    public TMP_Text fishInvent;
 
     float F01caught;
     float F02caught;
@@ -81,6 +82,7 @@ public class LogBookDisplay : MonoBehaviour
                     fishName.text = "Silver Scales";
                     fishPhases.text = "New, Half";
                     fishCaught.text = "Number of Fish Caught: " + F01caught;
+                    fishInvent.text = "In Your Inventory: " + F01caught;
                 }
 
                 else
@@ -88,6 +90,7 @@ public class LogBookDisplay : MonoBehaviour
                     fishName.text = "Unknown";
                     fishPhases.text = "Unknown";
                     fishCaught.text = "Number of Fish Caught: " + F01caught;
+                    fishInvent.text = "In Your Inventory: " + F01caught;
                 }
 
                 break;
@@ -98,6 +101,7 @@ public class LogBookDisplay : MonoBehaviour
                     fishName.text = "Moonbeam Betta";
                     fishPhases.text = "New, Half";
                     fishCaught.text = "Number of Fish Caught: " + F02caught;
+                    fishInvent.text = "In Your Inventory: " + F02caught;
                 }
 
                 else
@@ -105,6 +109,7 @@ public class LogBookDisplay : MonoBehaviour
                     fishName.text = "Unknown";
                     fishPhases.text = "Unknown";
                     fishCaught.text = "Number of Fish Caught: " + F02caught;
+                    fishInvent.text = "In Your Inventory: " + F02caught;
                 }
 
                 break;
@@ -115,6 +120,7 @@ public class LogBookDisplay : MonoBehaviour
                     fishName.text = "Common Koi";
                     fishPhases.text = "New";
                     fishCaught.text = "Number of Fish Caught: " + F03caught;
+                    fishInvent.text = "In Your Inventory: " + F03caught;
                 }
 
                 else
@@ -122,6 +128,7 @@ public class LogBookDisplay : MonoBehaviour
                     fishName.text = "Unknown";
                     fishPhases.text = "Unknown";
                     fishCaught.text = "Number of Fish Caught: " + F03caught;
+                    fishInvent.text = "In Your Inventory: " + F03caught;
                 }
 
                 break;
