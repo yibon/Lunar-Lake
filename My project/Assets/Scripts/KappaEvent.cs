@@ -98,8 +98,16 @@ public class KappaEvent : MonoBehaviour
         }
         #endregion
 
+        #region Completed Event
+        else if (kappaEvents.isDone == true)
+        {
+            trigger.StartDialogue(6);
+            StartCoroutine(WaitingAfterSecondInteractionandCheckPass());
+        }
+        #endregion
+
         #region Second Interaction, Clear Quest
-        else if (questionMark.activeInHierarchy == true)
+        else if (questionMark.activeInHierarchy == true && kappaEvents.isDone == false)
         {
             //inventory pass
 
@@ -112,16 +120,13 @@ public class KappaEvent : MonoBehaviour
             //play corroutine to set the stuff
             StartCoroutine(WaitingAfterSecondInteractionandCheckPass());
             //after dialougue ends and Canvas is set to inactive
-
-
         }
         #endregion
 
         #region Second Interaction, Never Clear Quest
-        else if (questionMark.activeInHierarchy != true)
+        else if (questionMark.activeInHierarchy != true && kappaEvents.isDone == false)
         {
             //checkign inventopry 
-
 
             //open dialougue box for incompleted quest
             //questionMark.SetActive(false);
@@ -132,19 +137,10 @@ public class KappaEvent : MonoBehaviour
             //play corroutine to set the stuff
             StartCoroutine(WaitingAfterSecondInteractionandCheckFail());
             //after dialougue ends and Canvas is set to inactive
-
-
         }
         #endregion
 
-        #region Completed Event
-        else if (kappaEvents.isDone == true)
-        {
-            trigger.StartDialogue(6);
-            StartCoroutine(WaitingAfterSecondInteractionandCheckPass());
-        }
-
-        #endregion
+        
     }
 
     public bool CheckInvetory(List<string> questItem)
