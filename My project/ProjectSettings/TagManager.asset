@@ -43,17 +43,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Night Sky
-    uniqueID: 3486656065
-    locked: 0
-  - name: Moon Layer
-    uniqueID: 3410766645
-    locked: 0
   - name: Aurora
     uniqueID: 3081037921
     locked: 0
   - name: Night Sky
     uniqueID: 3901438549
+    locked: 0
+  - name: Moon Layer
+    uniqueID: 3410766645
     locked: 0
   - name: Further Rock
     uniqueID: 2535434247
