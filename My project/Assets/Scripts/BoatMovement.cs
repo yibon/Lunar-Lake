@@ -17,7 +17,7 @@ public class BoatMovement : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+    // Update is called once per frame  
     void Update()
     {
         if (GameStateManager.currGameState == States.GameStates.Ready)
