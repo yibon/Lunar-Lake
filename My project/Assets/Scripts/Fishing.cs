@@ -32,6 +32,7 @@ public class Fishing : MonoBehaviour
 
     [SerializeField] SpriteRenderer hookSR;
     [SerializeField] Transform progressBarContainer;
+    SpriteRenderer progressBarSR;
 
     public static int fishesCaught;
 
@@ -53,13 +54,18 @@ public class Fishing : MonoBehaviour
     Vector3 spawnLoc;
 
     [SerializeField ]Line _line;
+
     private void Start()
     {
         Resize();
         fishSpeed = 2f;
         pointTimer = caughtFish.fishStateTime_1;
         fishDestination = caughtFish.fishStatePos_1;
-        
+
+        this.transform.position = Camera.main.transform.position + new Vector3(2f, 0, 10f);
+
+        progressBarSR = progressBarContainer.gameObject.GetComponentInChildren<SpriteRenderer>();
+
         //_line = FindObjectOfType<Line>();
     }
 
@@ -67,7 +73,8 @@ public class Fishing : MonoBehaviour
     void Update()
     {
         //spawnLoc = Spawner.GetSpawnPoint(caughtFish.fishSpawnLoc);
-        this.transform.position = _line.targetDir.position + new Vector3 (2f, 2.5f, 0);
+        //this.transform.position = _line.targetDir.position + new Vector3 (2f, 2.5f, 0);
+        this.transform.position = Camera.main.transform.position + new Vector3(2f, 0, 10f);
         //Debug.Log(hookPullVelocity);
         if (!isFishing)
         {
@@ -199,6 +206,26 @@ public class Fishing : MonoBehaviour
         }
 
         hookProgress = Mathf.Clamp(hookProgress, 0f, 1f);
+
+        #region Colour Change
+
+        Debug.Log("Hooking: " + hookProgress);
+        if (hookProgress > 0.3f && hookProgress <= 0.7f)
+        {
+            progressBarSR.color = Color.yellow;
+        }
+
+        else if (hookProgress > 0.7f)
+        {
+            progressBarSR.color = Color.green;
+        }
+
+        else
+        {
+            progressBarSR.color = Color.red;
+        }
+
+        #endregion
 
         if (hookProgress >= 1f)
         {

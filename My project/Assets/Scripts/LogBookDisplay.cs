@@ -37,8 +37,6 @@ public class LogBookDisplay : MonoBehaviour
     {
         //_am.Stop("Book Open");
 
-        Debug.Log(F01caught);
-
         if (F01caught > 0)
         {
             _topSR.color = Color.white;
