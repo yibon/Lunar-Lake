@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
     private FishSpawner _spawner;
     public DataManager _dm;
-    
+
     private string currSpawn;
+    public Sprite[] spriteList;
 
     Vector3 fishSpawnPt;
 
@@ -16,6 +18,8 @@ public class Spawner : MonoBehaviour
     string[] splitFishIds;
     string[] splitFishSpawnPts;
     Vector3[] splitVectors;
+
+    GameObject fishObj;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +36,43 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < splitFishIds.Length; i++)
         {
             //Debug.Log(splitFishSpawnPts[i]);
-            GameObject fishObj = Instantiate(fishPF, GetSpawnPoint(splitFishSpawnPts[i]), Quaternion.identity) as GameObject;
+            
+            Debug.Log(splitFishIds[i]);
+
+            switch (splitFishIds[i])
+            {
+                case "F01":
+                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[0];
+                    break;
+                case "F02":
+                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[1];
+                    break;
+                case "F03":
+                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[2];
+                    break;
+                case "F04":
+                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[3];
+                    break;
+                case "F05":
+                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[4];
+                    break;
+                case "F06":
+                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[5];
+                    break;
+                case "F07":
+                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[6];
+                    break;
+                case "F08":
+                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[7];
+                    break;
+                case "F09":
+                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[8];
+                    break;
+                case "F10":
+                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[9];
+                    break;
+            }
+            fishObj = Instantiate(fishPF, GetSpawnPoint(splitFishSpawnPts[i]), Quaternion.identity) as GameObject;
             fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
         }
     }
@@ -47,7 +87,7 @@ public class Spawner : MonoBehaviour
     {
         //Vector3 spawnPt = Vector3.zero;
 
-        switch(currSpawnPoint)
+        switch (currSpawnPoint)
         {
             case "A":
                 return PointsManager.spawnPtA;
@@ -61,6 +101,6 @@ public class Spawner : MonoBehaviour
                 return Vector3.zero;
         }
 
-         
+
     }
 }
