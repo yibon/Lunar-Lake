@@ -53,7 +53,7 @@ public class DataManager : MonoBehaviour
 
         eList.Add(E01); eList.Add(E02); eList.Add(E03);
 
-        sList.Add(S01);
+        sList.Add(S01); sList.Add(S02);  sList.Add(S03);
         
     }
 

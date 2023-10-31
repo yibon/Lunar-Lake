@@ -28,8 +28,9 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         currSpawn = "S01";
-        SceneManager.activeSceneChanged += ChangedActiveScene;
         SpawnFish();
+        SceneManager.activeSceneChanged += ChangedActiveScene;
+        
     }
 
     private void SpawnFish()
@@ -76,7 +77,7 @@ public class Spawner : MonoBehaviour
                     fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[9];
                     break;
             }
-            CurrentV3 = GetSpawnPoint(splitFishSpawnPts[i]) + new Vector3(0, Random.Range(-2, 3));
+            CurrentV3 = GetSpawnPoint(splitFishSpawnPts[i]) + new Vector3(0, Random.Range(-3, 0.5f));
             if (CurrentV3 != PreviousV3)
             {
                 PreviousV3 = CurrentV3;
@@ -128,14 +129,19 @@ public class Spawner : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 1) //level 1
         {
             currSpawn = "S01";
+            Debug.Log(currSpawn);
         }
         else if (SceneManager.GetActiveScene().buildIndex == 2) // level 2
         {
             currSpawn = "S02";
+            Debug.Log(currSpawn);
+            SpawnFish();
         }
         else if (SceneManager.GetActiveScene().buildIndex == 3) // level 3
         {
             currSpawn = "S03";
+            Debug.Log(currSpawn);
+            SpawnFish();
         }
         else
         {
