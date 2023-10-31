@@ -9,6 +9,9 @@ public class Spawner : MonoBehaviour
     public DataManager _dm;
 
     private string currSpawn;
+
+    private Vector3 PreviousV3;
+    private Vector3 CurrentV3;
     public Sprite[] spriteList;
 
     Vector3 fishSpawnPt;
@@ -25,6 +28,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         currSpawn = "S01";
+        SceneManager.activeSceneChanged += ChangedActiveScene;
         SpawnFish();
     }
 
@@ -72,8 +76,15 @@ public class Spawner : MonoBehaviour
                     fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[9];
                     break;
             }
-            fishObj = Instantiate(fishPF, GetSpawnPoint(splitFishSpawnPts[i]), Quaternion.identity) as GameObject;
-            fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+            CurrentV3 = GetSpawnPoint(splitFishSpawnPts[i]) + new Vector3(0, Random.Range(-2, 3));
+            if (CurrentV3 != PreviousV3)
+            {
+                PreviousV3 = CurrentV3;
+                fishObj = Instantiate(fishPF, PreviousV3, Quaternion.identity) as GameObject;
+                fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+            }
+            
+
         }
     }
 
@@ -102,5 +113,33 @@ public class Spawner : MonoBehaviour
         }
 
 
+    }
+
+    private void ChangedActiveScene(Scene current, Scene next)
+    {
+        string currentName = current.name;
+
+        if (currentName == null)
+        {
+            // Scene1 has been removed
+            currentName = "Replaced";
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 1) //level 1
+        {
+            currSpawn = "S01";
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2) // level 2
+        {
+            currSpawn = "S02";
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 3) // level 3
+        {
+            currSpawn = "S03";
+        }
+        else
+        {
+            return;
+        }
     }
 }

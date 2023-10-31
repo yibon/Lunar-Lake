@@ -32,7 +32,9 @@ public class DataManager : MonoBehaviour
     Events E02 = new Events("E02", "Ghost in Control", "F05", "Player regains contorl", "Player cannot control boat", "P02", false);
     Events E03 = new Events("E03", "The Prosperity", "F10", "Win", "Lose", "P01", false);
 
-    FishSpawner S01 = new FishSpawner("S01", "F01@F02", 2, "A@C", "S02");
+    FishSpawner S01 = new FishSpawner("S01", "F01@F02@F03@F04", 4, "A@B@A@B", "S02");
+    FishSpawner S02 = new FishSpawner("S02", "F03@F04@F05@F06@F07", 5, "A@B@C@B@C", "S03");
+    FishSpawner S03 = new FishSpawner("S03", "F05@F06@F07@F08@F09@F10", 5, "C@B@C@D@C@D", "");
     #endregion
 
     public Events events;
