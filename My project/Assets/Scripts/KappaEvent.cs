@@ -51,7 +51,7 @@ public class KappaEvent : MonoBehaviour
         {
             ClickedKappa();
         }
-        if (questionMark.activeInHierarchy == false)
+        if (questionMark.activeInHierarchy == false && kappaEvents.isDone == false)
         {
             if (CheckInvetory(clearCon))
             {
