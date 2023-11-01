@@ -214,7 +214,6 @@ public class KappaEvent : MonoBehaviour
 
         CompletedQuest();
         Debug.Log("Quest Done!");
-        //SceneManager.LoadScene(2);
     }
 
 }
