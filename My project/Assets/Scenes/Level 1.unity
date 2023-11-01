@@ -7072,6 +7072,7 @@ MonoBehaviour:
   exclaimationMark: {fileID: 868573700}
   pressF: {fileID: 1055536007}
   clearCon: []
+  lbDisplay: {fileID: 1082957744}
 --- !u!212 &1033813364
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7299,6 +7300,8 @@ MonoBehaviour:
   dataManager: {fileID: 1368879374}
   Inventory: []
   addedFishToInventory: 0
+  removedFishFromInventory: 0
+  lbDisplay: {fileID: 1082957744}
 --- !u!61 &1039103614
 BoxCollider2D:
   m_ObjectHideFlags: 0

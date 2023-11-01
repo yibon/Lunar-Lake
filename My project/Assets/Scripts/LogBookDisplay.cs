@@ -20,7 +20,6 @@ public class LogBookDisplay : MonoBehaviour
     float F02caught;
     float F03caught;
 
-    FishStatus _fish;
     AudioManager _am;
 
     private void Awake()
@@ -142,12 +141,12 @@ public class LogBookDisplay : MonoBehaviour
             }
         }
 
-    public void UpdateLogBook(FishStatus _fish)
+    public void UpdateLogBook(string _fish)
     {
         if (Player.Instance.addedFishToInventory == true)
         {
             Debug.Log("Caught Fish");
-            switch (_fish.fishID)
+            switch (_fish)
             {
                 case "F01":
                     F01caught++;
@@ -162,6 +161,24 @@ public class LogBookDisplay : MonoBehaviour
                     break;
             }
             Player.Instance.addedFishToInventory = false;
+        }
+        if (Player.Instance.removedFishFromInventory == true)
+        {
+            switch (_fish)
+            {
+                case "F01":
+                    F01caught--;
+                    break;
+
+                case "F02":
+                    F02caught--;
+                    break;
+
+                case "F03":
+                    F03caught--;
+                    break;
+            }
+            Player.Instance.removedFishFromInventory = false;
         }
         
     }
