@@ -85,7 +85,7 @@ public class DialogueManager : MonoBehaviour
         else if (currMessages[activeMessage - 1].goToNextLevel == true)
         {
             isActive = false;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+            LevelLoader.instance.LoadNextLevel();
             DialogueTrigger.instance.canvas.gameObject.SetActive(isActive);
         }
         else //turning off canvas

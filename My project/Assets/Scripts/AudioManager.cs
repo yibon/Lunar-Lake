@@ -1,6 +1,7 @@
 using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -38,7 +39,8 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         Play("BGM");
-        Play("Ambience");
+
+        SceneManager.activeSceneChanged += ChangedActiveScene;
     }
 
     // Update is called once per frame
@@ -68,5 +70,19 @@ public class AudioManager : MonoBehaviour
         {
             s.source.Play();
         }
+    }
+
+    private void ChangedActiveScene(Scene current, Scene next)
+    {
+        string currentName = current.name;
+
+        if (currentName == null)
+        {
+            // Scene1 has been removed
+            currentName = "Replaced";
+        }
+
+        if (SceneManager.GetActiveScene().name == "Level 1" || SceneManager.GetActiveScene().name == "Level 2" || SceneManager.GetActiveScene().name == "Level 3")
+            Play("Ambience");
     }
 }

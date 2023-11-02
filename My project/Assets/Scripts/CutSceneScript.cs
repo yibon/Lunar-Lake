@@ -26,7 +26,7 @@ public class CutSceneScript : MonoBehaviour
             return;
         }
         if (player.length < duration) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+            LevelLoader.instance.LoadNextLevel();
             return;
         }
     }
