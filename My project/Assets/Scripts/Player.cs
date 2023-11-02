@@ -73,6 +73,12 @@ public class Player : MonoBehaviour
             lbDisplay.UpdateLogBook("F03");
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            addedFishToInventory = true;
+            Inventory.Add("F10");
+        }
+
     }
 
     public void FishCaughtAndAddIntoInventory(string FishID)

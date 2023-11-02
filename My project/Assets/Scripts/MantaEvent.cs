@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MantaEvent : MonoBehaviour
 {
-    Events kappaEvents = new Events("E01", "Land of the Kappa", "F01,F02,F03", "Player learns of Manta's nature (Reccomended Depth and Hook range)", "", "P01", false);
+    Events MantaEvents = new Events("E03", "The Prosperity", "F10", "Win", "Lose", "P01", false);
 
     public DataManager dataManager;
     public Player player;
@@ -22,6 +22,7 @@ public class MantaEvent : MonoBehaviour
 
     bool canInteract = false;
     bool firstinteraction = true;
+    bool questsubmitted = false;
     public LogBookDisplay lbDisplay;
     // Start is called before the first frame update
     void Start()
@@ -39,7 +40,25 @@ public class MantaEvent : MonoBehaviour
         {
             ClickedKappa();
         }
+
+        //checking if quest is cleared
+        if (questsubmitted == false && CheckInvetory("F10") && SceneManager.GetActiveScene().name == "Level 3") //if true
+        {
+            Debug.Log("Manta Caught");
+            MantaEvents.isDone = true;
+            questionMark.SetActive(true);
+            
+        }
     }
+    public bool CheckInvetory(string questItem)
+    {   
+        if (player.Inventory.Contains(questItem))//player's inventory has this item
+        {
+            return true;
+        }
+        return false;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Player")
@@ -68,10 +87,21 @@ public class MantaEvent : MonoBehaviour
             //pause all other interaction
             StartCoroutine(WaitingAfterFirstInteraction());
         }
-        if (!firstinteraction) //after first level
+        if (!firstinteraction && SceneManager.GetActiveScene().name == "Level 2") //after first talk
         {
             trigger.StartDialogue(3);
             StartCoroutine(WaitingAfterFirstInteraction());
+        }
+        if (!firstinteraction&&MantaEvents.isDone == false && SceneManager.GetActiveScene().name == "Level 3")
+        { 
+            trigger.StartDialogue(2);
+            StartCoroutine(WaitingAfterFirstInteraction());
+        }
+        if (MantaEvents.isDone == true && SceneManager.GetActiveScene().name == "Level 3")
+        {
+            questionMark.SetActive(false);
+            trigger.StartDialogue(3);
+            StartCoroutine(WaitingAfterSecondInteractionandCheckPass());
         }
     }
 
@@ -87,5 +117,16 @@ public class MantaEvent : MonoBehaviour
         canInteract = true;
         firstinteraction = false;
 
+    }
+    IEnumerator WaitingAfterSecondInteractionandCheckPass()
+    {
+        Debug.Log("Waiting");
+        Time.timeScale = 0f;
+        yield return new WaitUntil(() => DialogueManager.instance.isActive == false);
+        Time.timeScale = 1f;
+
+        Debug.Log("WAited");
+        canInteract = true;
+        questsubmitted = true;
     }
 }

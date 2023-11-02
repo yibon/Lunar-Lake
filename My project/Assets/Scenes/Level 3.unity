@@ -5738,6 +5738,17 @@ MonoBehaviour:
     speakerID: 0
     message: This is yout Chance! Go get him and you will be able to prosper!
     goToNextLevel: 0
+  - messageID: M03
+    nextMessageID: 0
+    speakerID: 0
+    message: What are you doing waiting? Go get the Manta!
+    goToNextLevel: 0
+  - messageID: M04
+    nextMessageID: 0
+    speakerID: 0
+    message: You Did it! You caught the Manta! Now you will be able to live long
+      and prosper!
+    goToNextLevel: 0
   speakers:
   - name: Kappa
     sprite: {fileID: -95731291, guid: 89227c0abf68d6f4bb37857607404271, type: 3}
