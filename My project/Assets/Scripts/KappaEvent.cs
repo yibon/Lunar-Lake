@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class KappaEvent : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class KappaEvent : MonoBehaviour
     public List<string> clearCon;
 
     bool canInteract = false;
+    public LogBookDisplay lbDisplay;
 
 
     // Start is called before the first frame update
@@ -32,7 +34,7 @@ public class KappaEvent : MonoBehaviour
     {
         clearCon = kappaEvents.eventClearCondiditon.Split(",").ToList();
 
-        if (SceneManager.GetActiveScene().buildIndex == 1) //making sure it is Level 1
+        if (SceneManager.GetActiveScene().name == "Level 1") //making sure it is Level 1
         {
             kappaEvents.isDone = false;
             exclaimationMark.SetActive(true); //quest has not been clicked
@@ -51,7 +53,7 @@ public class KappaEvent : MonoBehaviour
         {
             ClickedKappa();
         }
-        if (questionMark.activeInHierarchy == false && kappaEvents.isDone == false)
+        if (exclaimationMark.activeInHierarchy == false && questionMark.activeInHierarchy == false && kappaEvents.isDone == false)
         {
             if (CheckInvetory(clearCon))
             {
@@ -118,6 +120,7 @@ public class KappaEvent : MonoBehaviour
             //play corroutine to set the stuff
             StartCoroutine(WaitingAfterSecondInteractionandCheckPass());
             //after dialougue ends and Canvas is set to inactive
+            SubmitQuest(clearCon);
         }
         #endregion
 
@@ -138,7 +141,7 @@ public class KappaEvent : MonoBehaviour
         }
         #endregion
 
-        
+
     }
 
     public bool CheckInvetory(List<string> questItem)
@@ -153,13 +156,19 @@ public class KappaEvent : MonoBehaviour
         }
         if (counter == questItem.Count)
         {
-            foreach (string item in questItem)
-            {
-                player.Inventory.Remove(item);
-            }
             return true;
         }
         return false;
+    }
+
+    public void SubmitQuest(List<string> questItem)
+    {
+        foreach (string item in questItem)
+        {
+            Player.Instance.removedFishFromInventory = true;
+            player.Inventory.Remove(item);
+            lbDisplay.UpdateLogBook(item);
+        }
     }
 
     public void CompletedQuest()
@@ -206,7 +215,6 @@ public class KappaEvent : MonoBehaviour
 
         CompletedQuest();
         Debug.Log("Quest Done!");
-        //SceneManager.LoadScene(2);
     }
 
 }

@@ -19,7 +19,9 @@ public class Player : MonoBehaviour
     public List<string> Inventory = new List<string>();
     // if fish added to inventory, set to true and update to log book. if fish remove no need to check
     public bool addedFishToInventory = false;
-    
+    public bool removedFishFromInventory = false;
+
+    public LogBookDisplay lbDisplay;
 
     public static Player Instance { get; private set; }
     // Start is called before the first frame update
@@ -54,15 +56,21 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            addedFishToInventory = true;
             Inventory.Add("F01");
+            lbDisplay.UpdateLogBook("F01");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            addedFishToInventory = true;
             Inventory.Add("F02");
+            lbDisplay.UpdateLogBook("F02");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            addedFishToInventory = true;
             Inventory.Add("F03");
+            lbDisplay.UpdateLogBook("F03");
         }
 
     }
@@ -76,7 +84,7 @@ public class Player : MonoBehaviour
 
     public void DisplayRodChoices()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
+        if (SceneManager.GetActiveScene().name == "Level 2" || SceneManager.GetActiveScene().name == "Level 3")
         {
             //showing player the chocies
             RodChoice.gameObject.SetActive(true);
