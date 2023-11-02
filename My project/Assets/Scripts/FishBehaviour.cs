@@ -44,6 +44,13 @@ public class FishBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         FishMovement();
+
+    }
+
+    private void Update()
+    {
+        SetSprite();
+
     }
 
     private void FishMovement()
@@ -84,7 +91,53 @@ public class FishBehaviour : MonoBehaviour
                 this.transform.position = Vector3.Lerp(endPoint, startPoint, travelAmt);
             }
         }
-        
-        
     }
+
+    public void SetSprite()
+    {
+        switch (currFishId)
+        {
+            case "F01":
+                this.GetComponent<Animator>().SetFloat("SpriteArrayIndex", 0);
+                Debug.Log(currFishId);
+                break;
+            case "F02":
+                this.GetComponent<Animator>().SetFloat("SpriteArrayIndex", 1);
+                Debug.Log(currFishId);
+                break;
+            case "F03":
+                this.GetComponent<Animator>().SetFloat("SpriteArrayIndex", 2);
+                Debug.Log(currFishId);
+                break;
+            case "F04":
+                this.GetComponent<Animator>().SetFloat("SpriteArrayIndex", 3);
+                Debug.Log(currFishId);
+                break;
+            case "F05":
+                this.GetComponent<Animator>().SetFloat("SpriteArrayIndex", 4);
+                Debug.Log(currFishId);
+                break;
+            case "F06":
+                this.GetComponent<Animator>().SetFloat("SpriteArrayIndex", 5);
+                Debug.Log(currFishId);
+                break;
+            case "F07":
+                this.GetComponent<Animator>().SetFloat("SpriteArrayIndex", 6);
+                Debug.Log(currFishId);
+                break;
+            case "F08":
+                this.GetComponent<Animator>().SetFloat("SpriteArrayIndex", 7);
+                Debug.Log(currFishId);
+                break;
+            case "F09":
+                this.GetComponent<Animator>().SetFloat("SpriteArrayIndex", 8);
+                Debug.Log(currFishId);
+                break;
+            case "F10":
+                this.GetComponent<Animator>().SetFloat("SpriteArrayIndex", 9);
+                Debug.Log(currFishId);
+                break;
+        }
+    }
+
 }
