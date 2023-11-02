@@ -89,6 +89,7 @@ public class Player : MonoBehaviour
             //showing player the chocies
             RodChoice.gameObject.SetActive(true);
         }
+        DialogueManager.instance.activeMessage = 0;
     }
 
     public void ChooseR02()

@@ -20,7 +20,8 @@ public class DialogueManager : MonoBehaviour
 
     List<Message> currMessages;
     List<Speaker> currSpeaker;
-    int activeMessage = 0;
+    [HideInInspector]
+    public int activeMessage = 0;
 
     public bool isActive = false;
 
@@ -69,9 +70,9 @@ public class DialogueManager : MonoBehaviour
     public void NextMessage()
     {
         activeMessage++;
+        Debug.Log(activeMessage + "is the active mes");
         if (activeMessage < currMessages.Count && currMessages[activeMessage - 1].nextMessageID != "0" && currMessages[activeMessage - 1].nextMessageID != "1" && currMessages[activeMessage - 1].goToNextLevel != true) //no choice present, moving to next dialougue
         {
-            Debug.Log(activeMessage);
             DisplayMessage(activeMessage);
         }
         else if (currMessages[activeMessage-1].nextMessageID == "1") //a choice is present
@@ -117,15 +118,16 @@ public class DialogueManager : MonoBehaviour
         MoveOn.gameObject.SetActive(false);
         Stay.gameObject.SetActive(false);
         isActive = true; //setting back to true to enable clicking
-        activeMessage = 7; //setting 1 before the supposed message so that it plays correct message
+        activeMessage = activeMessage+1; //Must make sure in the dialougue, the choice to stay is 1 after the choice message
         NextMessage();
     }
     public void GoNextLevel()
     {
+        
         MoveOn.gameObject.SetActive(false);
         Stay.gameObject.SetActive(false);
         isActive = true; //setting back to true to enable clicking
-        activeMessage = 8; //setting 1 before the supposed message so that it plays correct message
+        activeMessage = activeMessage+2; //Must make sure in the dialougue, the choice to leave is 2 after the choice message
         NextMessage();
     }
 }
