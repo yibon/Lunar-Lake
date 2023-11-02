@@ -75,7 +75,8 @@ public class Fishing : MonoBehaviour
         //spawnLoc = Spawner.GetSpawnPoint(caughtFish.fishSpawnLoc);
         //this.transform.position = _line.targetDir.position + new Vector3 (2f, 2.5f, 0);
         this.transform.position = Camera.main.transform.position + new Vector3(2f, 0, 10f);
-        //Debug.Log(hookPullVelocity);
+        //Debug.Log("Hookerzxc" + hookSize);
+
         if (!isFishing)
         {
             fishTimer = 5;
@@ -246,7 +247,7 @@ public class Fishing : MonoBehaviour
 
         if (hookProgress == 0 )
         {
-           //Lose();
+           Lose();
         }
 
     }
