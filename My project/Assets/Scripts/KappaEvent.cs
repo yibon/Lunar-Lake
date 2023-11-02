@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class KappaEvent : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class KappaEvent : MonoBehaviour
     {
         clearCon = kappaEvents.eventClearCondiditon.Split(",").ToList();
 
-        if (SceneManager.GetActiveScene().buildIndex == 1) //making sure it is Level 1
+        if (SceneManager.GetActiveScene().name == "Level 1") //making sure it is Level 1
         {
             kappaEvents.isDone = false;
             exclaimationMark.SetActive(true); //quest has not been clicked

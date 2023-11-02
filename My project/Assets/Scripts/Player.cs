@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
 
     public void DisplayRodChoices()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
+        if (SceneManager.GetActiveScene().name == "Level 2" || SceneManager.GetActiveScene().name == "Level 3")
         {
             //showing player the chocies
             RodChoice.gameObject.SetActive(true);

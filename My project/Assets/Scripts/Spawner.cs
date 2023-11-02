@@ -126,18 +126,18 @@ public class Spawner : MonoBehaviour
             currentName = "Replaced";
         }
 
-        if (SceneManager.GetActiveScene().buildIndex == 1) //level 1
+        if (SceneManager.GetActiveScene().name == "Level 1") //level 1
         {
             currSpawn = "S01";
             Debug.Log(currSpawn);
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 2) // level 2
+        else if (SceneManager.GetActiveScene().name == "Level 2") // level 2
         {
             currSpawn = "S02";
             Debug.Log(currSpawn);
             SpawnFish();
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 3) // level 3
+        else if (SceneManager.GetActiveScene().name == "Level 3") // level 3
         {
             currSpawn = "S03";
             Debug.Log(currSpawn);
