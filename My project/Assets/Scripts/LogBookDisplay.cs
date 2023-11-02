@@ -34,7 +34,11 @@ public class LogBookDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //_am.Stop("Book Open");
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            this.gameObject.SetActive(false);
+        }
 
         if (F01caught > 0)
         {
@@ -160,6 +164,7 @@ public class LogBookDisplay : MonoBehaviour
             }
             Player.Instance.addedFishToInventory = false;
         }
+
         if (Player.Instance.removedFishFromInventory == true)
         {
             switch (_fish)

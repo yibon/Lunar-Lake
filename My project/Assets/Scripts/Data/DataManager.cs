@@ -10,9 +10,9 @@ public class DataManager : MonoBehaviour
     public List<FishStatus> fList = new List<FishStatus>();
 
     FishStatus F01 = new FishStatus("F01", "Common Koi", "lineLength@0.1", "", 1.0f, "B", 0.2f, 2f, 0.5f, 4f, 0.3f, 2f);
-    FishStatus F02 = new FishStatus("F02", "Silver Scales", "hookRange@0.1", "", 1.0f, "A", 0.8f, 2f, 0.7f, 4f, 0.5f, 2f);
+    FishStatus F02 = new FishStatus("F02", "Silver Scales", "hookRange@0.05", "", 1.0f, "A", 0.8f, 2f, 0.7f, 4f, 0.5f, 2f);
     FishStatus F03 = new FishStatus("F03", "Crystal Betta", "lineLength@0.1", "", 1.0f, "B", 0.8f, 2f, 0.7f, 4f, 0.5f, 2f);
-    FishStatus F04 = new FishStatus("F04", "Namazu", "hookRange@0.2", "", 1.5f, "A", 0.9f, 3f, 0.3f, 4f, 0.5f, 2f);
+    FishStatus F04 = new FishStatus("F04", "Namazu", "hookRange@0.1", "", 1.5f, "A", 0.9f, 3f, 0.3f, 4f, 0.5f, 2f);
     FishStatus F05 = new FishStatus("F05", "Pufferfish", "lineLength@0.2", "", 1.5f, "B", 0.9f, 3f, 0.3f, 4f, 0.6f, 1f);
     FishStatus F06 = new FishStatus("F06", "Crocodile Gar", "hookRange@0.5", "end level", 1.75f, "A", 0.1f, 3f, 0.7f, 2f, 0.5f, 3f);
     FishStatus F07 = new FishStatus("F07", "Angler Fish", "lineLength@0.5", "end level", 1.75f, "B", 0.1f, 3f, 0.7f, 2f, 0.5f, 3f);
