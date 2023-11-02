@@ -13,11 +13,12 @@ public class LogBookButton : MonoBehaviour, IPointerClickHandler, IPointerExitHa
 
     AudioManager _am;
     Image _image;
-    bool playOnce;
+    public bool playOnce;
 
     private void Start()
     {
         _am = FindObjectOfType<AudioManager>();
+        playOnce = false;
         _image = this.GetComponent<Image>();
     }
 
@@ -33,12 +34,12 @@ public class LogBookButton : MonoBehaviour, IPointerClickHandler, IPointerExitHa
         exclaimation.SetActive(false);
 
         // vv doesnt work
-        //if (!playOnce)
-        //{
-        //    Debug.Log("BookOpen");
-        //    //_am.Play("Book Open");
-        //    playOnce = true;
-        //}
+        if (!playOnce)
+        {
+            Debug.Log("LLLLLLLLLLLLLLLLll");
+            _am.Play("Book Open");
+            playOnce = true;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -54,7 +55,13 @@ public class LogBookButton : MonoBehaviour, IPointerClickHandler, IPointerExitHa
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        Debug.Log("FFFFFFFFFFFFFFFFF");
         //playOnce = false;
         _am.Stop("Book Open");
+    }
+
+    public void SetPlayOnce()
+    {
+       this.playOnce = false;
     }
 }
