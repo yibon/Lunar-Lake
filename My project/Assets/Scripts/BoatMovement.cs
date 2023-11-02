@@ -25,6 +25,11 @@ public class BoatMovement : MonoBehaviour
             horizontalIP = Input.GetAxisRaw("Horizontal");
             direction = new Vector2(horizontalIP, 0);
         }
+
+        else
+        {
+            direction = Vector2.zero;
+        }
     }
 
     private void FixedUpdate()
