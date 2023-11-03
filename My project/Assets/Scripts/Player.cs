@@ -73,6 +73,12 @@ public class Player : MonoBehaviour
             lbDisplay.UpdateLogBook("F03");
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            addedFishToInventory = true;
+            Inventory.Add("F10");
+        }
+
     }
 
     public void FishCaughtAndAddIntoInventory(string FishID)
@@ -89,6 +95,7 @@ public class Player : MonoBehaviour
             //showing player the chocies
             RodChoice.gameObject.SetActive(true);
         }
+        DialogueManager.instance.activeMessage = 0;
     }
 
     public void ChooseR02()

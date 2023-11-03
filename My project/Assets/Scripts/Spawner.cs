@@ -12,11 +12,10 @@ public class Spawner : MonoBehaviour
 
     private Vector3 PreviousV3;
     private Vector3 CurrentV3;
-    public Sprite[] spriteList;
 
     Vector3 fishSpawnPt;
 
-    public GameObject fishPF;
+    public GameObject[] fishPF;
 
     string[] splitFishIds;
     string[] splitFishSpawnPts;
@@ -43,48 +42,65 @@ public class Spawner : MonoBehaviour
             //Debug.Log(splitFishSpawnPts[i]);
             
             Debug.Log(splitFishIds[i]);
-
-            switch (splitFishIds[i])
-            {
-                case "F01":
-                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[0];
-                    break;
-                case "F02":
-                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[1];
-                    break;
-                case "F03":
-                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[2];
-                    break;
-                case "F04":
-                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[3];
-                    break;
-                case "F05":
-                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[4];
-                    break;
-                case "F06":
-                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[5];
-                    break;
-                case "F07":
-                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[6];
-                    break;
-                case "F08":
-                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[7];
-                    break;
-                case "F09":
-                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[8];
-                    break;
-                case "F10":
-                    fishPF.GetComponent<SpriteRenderer>().sprite = spriteList[9];
-                    break;
-            }
             CurrentV3 = GetSpawnPoint(splitFishSpawnPts[i]) + new Vector3(0, Random.Range(-3, 0.5f));
             if (CurrentV3 != PreviousV3)
             {
-                PreviousV3 = CurrentV3;
-                fishObj = Instantiate(fishPF, PreviousV3, Quaternion.identity) as GameObject;
-                fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+                switch (splitFishIds[i])
+                {
+                    case "F01":
+                        PreviousV3 = new Vector2(0,-4);
+                        fishObj = Instantiate(fishPF[0], PreviousV3, Quaternion.identity) as GameObject;
+                        fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+
+                        break;
+                    case "F02":
+                        PreviousV3 = CurrentV3;
+                        fishObj = Instantiate(fishPF[1], PreviousV3, Quaternion.identity) as GameObject;
+                        fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+                        break;
+                    case "F03":
+                        PreviousV3 = CurrentV3;
+                        fishObj = Instantiate(fishPF[2], PreviousV3, Quaternion.identity) as GameObject;
+                        fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+                        break;
+                    case "F04":
+                        PreviousV3 = CurrentV3;
+                        fishObj = Instantiate(fishPF[3], PreviousV3, Quaternion.identity) as GameObject;
+                        fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+                        break;
+                    case "F05":
+                        PreviousV3 = CurrentV3;
+                        fishObj = Instantiate(fishPF[4], PreviousV3, Quaternion.identity) as GameObject;
+                        fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+                        break;
+                    case "F06":
+                        PreviousV3 = CurrentV3;
+                        fishObj = Instantiate(fishPF[5], PreviousV3, Quaternion.identity) as GameObject;
+                        fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+                        break;
+                    case "F07":
+                        PreviousV3 = CurrentV3;
+                        fishObj = Instantiate(fishPF[6], PreviousV3, Quaternion.identity) as GameObject;
+                        fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+                        break;
+                    case "F08":
+                        PreviousV3 = CurrentV3;
+                        fishObj = Instantiate(fishPF[7], PreviousV3, Quaternion.identity) as GameObject;
+                        fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+                        break;
+                    case "F09":
+                        PreviousV3 = CurrentV3;
+                        fishObj = Instantiate(fishPF[8], PreviousV3, Quaternion.identity) as GameObject;
+                        fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+                        break;
+                    case "F10":
+                        PreviousV3 = CurrentV3;
+                        fishObj = Instantiate(fishPF[9], PreviousV3, Quaternion.identity) as GameObject;
+                        fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
+                        break;
+                }
+
             }
-            
 
         }
     }

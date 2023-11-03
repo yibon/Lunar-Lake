@@ -44,6 +44,7 @@ public class FishBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         FishMovement();
+
     }
 
     private void FishMovement()
@@ -84,7 +85,5 @@ public class FishBehaviour : MonoBehaviour
                 this.transform.position = Vector3.Lerp(endPoint, startPoint, travelAmt);
             }
         }
-        
-        
     }
 }

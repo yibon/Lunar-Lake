@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 148822991429081780}
   - component: {fileID: 148822991429081787}
   - component: {fileID: 148822991429081782}
+  - component: {fileID: 148822990510371278}
   m_Layer: 0
-  m_Name: Fish
+  m_Name: F08
   m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 1004376687
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2066436149, guid: fc16e2fd3f6fc344ebfb63fb602b8063, type: 3}
+  m_Sprite: {fileID: -1917028878, guid: fc16e2fd3f6fc344ebfb63fb602b8063, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -117,8 +118,8 @@ BoxCollider2D:
   m_Offset: {x: 0.09467274, y: 0.0067836046}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.021845179, y: 0.48602796}
-    oldSize: {x: 1.6937469, y: 0.57}
+    pivot: {x: 0.09952034, y: 0.3725751}
+    oldSize: {x: 1.2936493, y: 0.7266667}
     newSize: {x: 1.9071324, y: 0.82666665}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -127,3 +128,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.27257717, y: 0.22738671}
   m_EdgeRadius: 0
+--- !u!95 &148822990510371278
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148822991429081786}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 185ad3c954876894f9c7b102a177d02e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

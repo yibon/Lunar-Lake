@@ -65,7 +65,7 @@ public class KappaEvent : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Sprites_0")
+        if (collision.gameObject.name == "Player")
         {
             canInteract = true;
             pressF.SetActive(true);
@@ -74,7 +74,7 @@ public class KappaEvent : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Sprites_0")
+        if (collision.gameObject.name == "Player")
         {
             canInteract = false;
             pressF.SetActive(false);
