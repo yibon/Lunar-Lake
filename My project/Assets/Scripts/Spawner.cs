@@ -23,7 +23,6 @@ public class Spawner : MonoBehaviour
     Vector3[] splitVectors;
 
     GameObject fishObj;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -100,7 +99,6 @@ public class Spawner : MonoBehaviour
                         fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
                         break;
                 }
-
             }
 
         }

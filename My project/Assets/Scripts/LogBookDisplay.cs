@@ -16,6 +16,9 @@ public class LogBookDisplay : MonoBehaviour
     public TMP_Text fishCaught;
     public TMP_Text fishInvent;
 
+    public Image HRBuff;
+    public Image LLBuff;
+
     float F01caught;
     float F02caught;
     float F03caught;
@@ -84,6 +87,8 @@ public class LogBookDisplay : MonoBehaviour
                     fishPhases.text = "New, Half";
                     fishCaught.text = "Number of Fish Caught: " + F01caught;
                     fishInvent.text = "In Your Inventory: " + F01caught;
+                    LLBuff.gameObject.SetActive(true);
+                    HRBuff.gameObject.SetActive(false);
                 }
 
                 else
@@ -92,6 +97,8 @@ public class LogBookDisplay : MonoBehaviour
                     fishPhases.text = "Unknown";
                     fishCaught.text = "Number of Fish Caught: " + F01caught;
                     fishInvent.text = "In Your Inventory: " + F01caught;
+                    LLBuff.gameObject.SetActive(false);
+                    HRBuff.gameObject.SetActive(false);
                 }
 
                 break;
@@ -103,6 +110,8 @@ public class LogBookDisplay : MonoBehaviour
                     fishPhases.text = "New, Half";
                     fishCaught.text = "Number of Fish Caught: " + F02caught;
                     fishInvent.text = "In Your Inventory: " + F02caught;
+                    LLBuff.gameObject.SetActive(false);
+                    HRBuff.gameObject.SetActive(true);
                 }
 
                 else
@@ -111,6 +120,8 @@ public class LogBookDisplay : MonoBehaviour
                     fishPhases.text = "Unknown";
                     fishCaught.text = "Number of Fish Caught: " + F02caught;
                     fishInvent.text = "In Your Inventory: " + F02caught;
+                    LLBuff.gameObject.SetActive(false);
+                    HRBuff.gameObject.SetActive(false);
                 }
 
                 break;
@@ -122,6 +133,8 @@ public class LogBookDisplay : MonoBehaviour
                     fishPhases.text = "New";
                     fishCaught.text = "Number of Fish Caught: " + F03caught;
                     fishInvent.text = "In Your Inventory: " + F03caught;
+                    LLBuff.gameObject.SetActive(true);
+                    HRBuff.gameObject.SetActive(false);
                 }
 
                 else
@@ -130,6 +143,8 @@ public class LogBookDisplay : MonoBehaviour
                     fishPhases.text = "Unknown";
                     fishCaught.text = "Number of Fish Caught: " + F03caught;
                     fishInvent.text = "In Your Inventory: " + F03caught;
+                    LLBuff.gameObject.SetActive(false);
+                    HRBuff.gameObject.SetActive(false);
                 }
 
                 break;
@@ -138,6 +153,8 @@ public class LogBookDisplay : MonoBehaviour
                 fishName.text = "Name of Fish";
                 fishPhases.text = "Moon Phase";
                 fishCaught.text = "Number of Fish Caught: ";
+                LLBuff.gameObject.SetActive(false);
+                HRBuff.gameObject.SetActive(false);
 
                 break;
             }
