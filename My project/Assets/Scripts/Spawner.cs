@@ -16,6 +16,7 @@ public class Spawner : MonoBehaviour
     Vector3 fishSpawnPt;
 
     public GameObject[] fishPF;
+    GameObject Location;
 
     string[] splitFishIds;
     string[] splitFishSpawnPts;
@@ -48,13 +49,13 @@ public class Spawner : MonoBehaviour
                 switch (splitFishIds[i])
                 {
                     case "F01":
-                        PreviousV3 = new Vector2(0,-4);
+                        PreviousV3 = new Vector2(1.3f,-4);
                         fishObj = Instantiate(fishPF[0], PreviousV3, Quaternion.identity) as GameObject;
                         fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
 
                         break;
                     case "F02":
-                        PreviousV3 = CurrentV3;
+                        PreviousV3 = new Vector2(2f, -6);
                         fishObj = Instantiate(fishPF[1], PreviousV3, Quaternion.identity) as GameObject;
                         fishObj.GetComponent<FishBehaviour>().currFishId = splitFishIds[i];
                         break;
