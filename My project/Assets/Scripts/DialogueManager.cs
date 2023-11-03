@@ -15,8 +15,7 @@ public class DialogueManager : MonoBehaviour
     public RectTransform bgImage;
     public Button MoveOn;
     public Button Stay;
-
-    
+    public GameObject pressF;
 
     List<Message> currMessages;
     List<Speaker> currSpeaker;
@@ -71,11 +70,13 @@ public class DialogueManager : MonoBehaviour
         activeMessage++;
         if (activeMessage < currMessages.Count && currMessages[activeMessage - 1].nextMessageID != "0" && currMessages[activeMessage - 1].nextMessageID != "1" && currMessages[activeMessage - 1].goToNextLevel != true) //no choice present, moving to next dialougue
         {
+            pressF.SetActive(true);
             Debug.Log(activeMessage);
             DisplayMessage(activeMessage);
         }
         else if (currMessages[activeMessage-1].nextMessageID == "1") //a choice is present
         {
+            pressF.SetActive(false);
             MoveOn.gameObject.SetActive(true);
             Stay.gameObject.SetActive(true);
             isActive = false; //setting to false to disable clicking

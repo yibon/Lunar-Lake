@@ -75,7 +75,8 @@ public class Fishing : MonoBehaviour
         //spawnLoc = Spawner.GetSpawnPoint(caughtFish.fishSpawnLoc);
         //this.transform.position = _line.targetDir.position + new Vector3 (2f, 2.5f, 0);
         this.transform.position = Camera.main.transform.position + new Vector3(2f, 0, 10f);
-        //Debug.Log(hookPullVelocity);
+        //Debug.Log("Hookerzxc" + hookSize);
+
         if (!isFishing)
         {
             fishTimer = 5;
@@ -101,8 +102,8 @@ public class Fishing : MonoBehaviour
     private void FixedUpdate()
     {
         fishTimer -= Time.deltaTime;
-
         pointTimer -= Time.deltaTime;
+
         if (fishTimer < 0f)
         {
             isFishing = false;
@@ -118,7 +119,9 @@ public class Fishing : MonoBehaviour
             hookProgress -= hookProgressDegradPower * Time.deltaTime;
             //failTimer -= Time.deltaTime;
         }
-        
+
+        //Debug.Log("TIMERTIMER " + pointTimer);
+
         if (pointTimer < 0f)
         { 
             switch (currFishState)
@@ -236,6 +239,7 @@ public class Fishing : MonoBehaviour
             _buffs.UpdateBuffs(caughtFish);
 
             // Reset Stats Here
+            //pointTimer = 0;
             hookProgress = 0.45f;
             hookPos = 0f;
             exclaimationMark.SetActive(true);
@@ -243,7 +247,7 @@ public class Fishing : MonoBehaviour
 
         if (hookProgress == 0 )
         {
-            Lose();
+           Lose();
         }
 
     }
