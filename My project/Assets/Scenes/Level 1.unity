@@ -1357,7 +1357,7 @@ MonoBehaviour:
   bgImage: {fileID: 574082484}
   MoveOn: {fileID: 924145599}
   Stay: {fileID: 2070082601}
-  pressF: {fileID: 0}
+  pressF: {fileID: 325207455}
   activeMessage: 0
   isActive: 0
 --- !u!114 &160357680
