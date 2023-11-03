@@ -34,7 +34,7 @@ public class FishBuffs : MonoBehaviour
     {
         string[] temp = _fish.fishEffect.Split("@");
         buffEffect = temp[0];
-        buffAmount += float.Parse(temp[1]);
+        buffAmount = float.Parse(temp[1]);
 
         switch (buffEffect)
         {

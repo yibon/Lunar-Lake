@@ -120,7 +120,7 @@ public class Fishing : MonoBehaviour
             //failTimer -= Time.deltaTime;
         }
 
-        //Debug.Log("TIMERTIMER " + pointTimer);
+        Debug.Log("fafafafa: " + hookSize);
 
         if (pointTimer < 0f)
         { 
@@ -211,8 +211,6 @@ public class Fishing : MonoBehaviour
         hookProgress = Mathf.Clamp(hookProgress, 0f, 1f);
 
         #region Colour Change
-
-        Debug.Log("Hooking: " + hookProgress);
         if (hookProgress > 0.3f && hookProgress <= 0.7f)
         {
             progressBarSR.color = Color.yellow;
