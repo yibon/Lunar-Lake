@@ -293,6 +293,7 @@ MonoBehaviour:
   bgImage: {fileID: 1379515903}
   MoveOn: {fileID: 960762831}
   Stay: {fileID: 1342662832}
+  pressF: {fileID: 0}
   activeMessage: 0
   isActive: 0
 --- !u!114 &211906126
@@ -4180,6 +4181,11 @@ MonoBehaviour:
     nextMessageID: 1
     speakerID: 0
     message: Are you ready to leave?
+    goToNextLevel: 0
+  - messageID: 0
+    nextMessageID: 0
+    speakerID: 0
+    message: 0
     goToNextLevel: 0
   - messageID: M05
     nextMessageID: 0
