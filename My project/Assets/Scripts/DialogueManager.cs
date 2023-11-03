@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     public RectTransform bgImage;
     public Button MoveOn;
     public Button Stay;
+    public GameObject pressF;
 
     
 
@@ -79,6 +80,7 @@ public class DialogueManager : MonoBehaviour
         {
             MoveOn.gameObject.SetActive(true);
             Stay.gameObject.SetActive(true);
+            pressF.SetActive(false);
             isActive = false; //setting to false to disable clicking
             activeMessage = activeMessage - 1;
             DisplayMessage(activeMessage);

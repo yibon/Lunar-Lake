@@ -83,8 +83,8 @@ public class LogBookDisplay : MonoBehaviour
             case "Top":
                 if (F01caught > 0)
                 {
-                    fishName.text = "Silver Scales";
-                    fishPhases.text = "New, Half";
+                    fishName.text = "Common Koi";
+                    fishPhases.text = "New";
                     fishCaught.text = "Number of Fish Caught: " + F01caught;
                     fishInvent.text = "In Your Inventory: " + F01caught;
                     LLBuff.gameObject.SetActive(true);
@@ -106,8 +106,8 @@ public class LogBookDisplay : MonoBehaviour
             case "Mid":
                 if (F02caught > 0)
                 {
-                    fishName.text = "Moonbeam Betta";
-                    fishPhases.text = "New, Half";
+                    fishName.text = "Silver Scales";
+                    fishPhases.text = "New";
                     fishCaught.text = "Number of Fish Caught: " + F02caught;
                     fishInvent.text = "In Your Inventory: " + F02caught;
                     LLBuff.gameObject.SetActive(false);
@@ -129,8 +129,8 @@ public class LogBookDisplay : MonoBehaviour
             case "Bot":
                 if (F03caught > 0)
                 {
-                    fishName.text = "Common Koi";
-                    fishPhases.text = "New";
+                    fishName.text = "Crystal Betta";
+                    fishPhases.text = "New, Half";
                     fishCaught.text = "Number of Fish Caught: " + F03caught;
                     fishInvent.text = "In Your Inventory: " + F03caught;
                     LLBuff.gameObject.SetActive(true);

@@ -120,7 +120,6 @@ public class Fishing : MonoBehaviour
             //failTimer -= Time.deltaTime;
         }
 
-        Debug.Log("fafafafa: " + hookSize);
 
         if (pointTimer < 0f)
         { 
@@ -155,8 +154,6 @@ public class Fishing : MonoBehaviour
 
     private void Hooking (bool Hooked)
     {
-        //Debug.Log(hook.position.y - hookSize * 2 + " Btm: " + bottomPivot.position.y);
-        Debug.Log(hookPullVelocity);
 
         if (Hooked)
         {
