@@ -6091,7 +6091,6 @@ MonoBehaviour:
   topPivot: {fileID: 1701960048}
   bottomPivot: {fileID: 1667226585}
   fish: {fileID: 98697310}
-  timerMultiplicator: 3
   smoothMotion: 1
   hook: {fileID: 442101123}
   hookPower: 0.3
@@ -15232,7 +15231,7 @@ MonoBehaviour:
   textObj: {fileID: 462491070}
   targetDir: {fileID: 978343002}
   fish: {fileID: 0}
-  _fishing: {fileID: 775299678}
+  _minigame: {fileID: 775299678}
   _line: {fileID: 1395235261}
 --- !u!4 &1910776041
 Transform:

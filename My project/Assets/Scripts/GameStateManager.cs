@@ -17,7 +17,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] Transform targetDir;
     [SerializeField] Transform fish;
 
-    [SerializeField] Fishing _fishing;
+    [SerializeField] Minigame _minigame;
 
     AudioManager _am;
     public Line _line;
@@ -96,7 +96,7 @@ public class GameStateManager : MonoBehaviour
         {
             textObj.SetActive(false);
             currGameState = States.GameStates.Ready;
-            _fishing.Resize();
+            _minigame.Resize();
         }
 
     }

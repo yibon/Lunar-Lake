@@ -47,7 +47,7 @@ public class FishBuffs : MonoBehaviour
 
             case "hookRange":
                 hr.SetActive(true);
-                Fishing.hookSize += buffAmount;
+                Minigame.hookSize += buffAmount;
                 totBuff_hr += buffAmount;
                 break;
 

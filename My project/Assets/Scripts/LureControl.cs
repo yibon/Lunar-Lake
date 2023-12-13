@@ -32,7 +32,7 @@ public class LureControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Fish"))
         {
             fishCaught = true;
-            Fishing.caughtFish = collision.gameObject.GetComponent<FishBehaviour>()._fish;
+            Minigame.caughtFish = collision.gameObject.GetComponent<FishBehaviour>()._fish;
             _gsm.GetCollidedFishObj(collision);
         }
 

@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
         }
 
         buffAmount = float.Parse(currentRodStatus.rodEffect);
-        Fishing.hookSize += buffAmount;
+        Minigame.hookSize += buffAmount;
         Time.timeScale = 1.0f;
         Debug.Log(currentRod + " " + currentRodStatus.rodName);
         RodChoice.gameObject.SetActive(false);

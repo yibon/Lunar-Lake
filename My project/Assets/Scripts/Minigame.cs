@@ -2,7 +2,7 @@ using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
 
-public class Fishing : MonoBehaviour
+public class Minigame : MonoBehaviour
 {
     [SerializeField] Transform topPivot;
     [SerializeField] Transform bottomPivot;
@@ -11,9 +11,6 @@ public class Fishing : MonoBehaviour
 
     float fishPos;
     float fishDestination;
-
-    float fishTimer;
-    [SerializeField] float timerMultiplicator = 3f;
 
     float pointTimer;
 
@@ -36,12 +33,8 @@ public class Fishing : MonoBehaviour
 
     public static int fishesCaught;
 
-    //float failTimer = 10f;
-
-    bool isFishing;
     bool isHooking;
     bool isReeling;
-    bool fishCaught;
 
     FishStates currFishState;
     public static FishStatus caughtFish;
@@ -49,11 +42,7 @@ public class Fishing : MonoBehaviour
     [SerializeField] FishBuffs _buffs;
     [SerializeField] GameObject exclaimationMark;
 
-    Camera cam;
-
-    Vector3 spawnLoc;
-
-    [SerializeField ]Line _line;
+    [SerializeField] Line _line;
 
     private void Start()
     {
@@ -77,12 +66,6 @@ public class Fishing : MonoBehaviour
         this.transform.position = Camera.main.transform.position + new Vector3(2f, 0, 10f);
         //Debug.Log("Hookerzxc" + hookSize);
 
-        if (!isFishing)
-        {
-            fishTimer = 5;
-            //fishDestination = Random.value;
-        }
-
         fishPos = Mathf.SmoothDamp(fishPos, fishDestination, ref fishSpeed, smoothMotion);
         fish.position = Vector3.Lerp(bottomPivot.position, topPivot.position, fishPos);
 
@@ -101,13 +84,7 @@ public class Fishing : MonoBehaviour
 
     private void FixedUpdate()
     {
-        fishTimer -= Time.deltaTime;
         pointTimer -= Time.deltaTime;
-
-        if (fishTimer < 0f)
-        {
-            isFishing = false;
-        }
 
         if (isReeling)
         {
@@ -117,12 +94,12 @@ public class Fishing : MonoBehaviour
         else
         {
             hookProgress -= hookProgressDegradPower * Time.deltaTime;
-            //failTimer -= Time.deltaTime;
         }
 
 
+        // State Changing
         if (pointTimer < 0f)
-        { 
+        {
             switch (currFishState)
             {
                 case FishStates.state1:
@@ -152,7 +129,7 @@ public class Fishing : MonoBehaviour
         Hooking(isHooking);
     }
 
-    private void Hooking (bool Hooked)
+    private void Hooking(bool Hooked)
     {
 
         if (Hooked)
@@ -182,7 +159,7 @@ public class Fishing : MonoBehaviour
         }
 
         hookPos += hookPullVelocity;
-        hookPos = Mathf.Clamp(hookPos, hookSize/2f , 1f - hookSize / 2f);
+        hookPos = Mathf.Clamp(hookPos, hookSize / 2f, 1f - hookSize / 2f);
         hook.position = Vector3.Lerp(bottomPivot.position, topPivot.position, hookPos);
     }
 
@@ -233,16 +210,14 @@ public class Fishing : MonoBehaviour
             _bookDisp.UpdateLogBook(caughtFish.fishID);
             _buffs.UpdateBuffs(caughtFish);
 
-            // Reset Stats Here
-            //pointTimer = 0;
             hookProgress = 0.45f;
             hookPos = 0f;
             exclaimationMark.SetActive(true);
         }
 
-        if (hookProgress == 0 )
+        if (hookProgress == 0)
         {
-           Lose();
+            Lose();
         }
 
     }
@@ -257,7 +232,7 @@ public class Fishing : MonoBehaviour
 
 
     enum FishStates
-    { 
+    {
         state1,
         state2,
         state3
@@ -269,13 +244,10 @@ public class Fishing : MonoBehaviour
         float ySize = b.size.y;
         Vector3 ls = hook.localScale;
         float distance = Vector3.Distance(topPivot.position, bottomPivot.position);
-        ls.y = distance / ySize  * (hookSize/ 2);
+        ls.y = distance / ySize * (hookSize / 2);
         hook.localScale = ls;
 
         hookProgress = 0.45f;
         hookPos = 0f;
     }
-
-
-
 }
