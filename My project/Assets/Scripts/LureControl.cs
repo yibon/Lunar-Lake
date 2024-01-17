@@ -18,7 +18,7 @@ public class LureControl : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(waterEntered);
+        //Debug.Log(waterEntered);
         if (fishCaught)
         {
             GameStateManager.currGameState = States.GameStates.Catching;

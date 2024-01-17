@@ -18,7 +18,7 @@ public class BubbleSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(SceneManager.GetActiveScene().name);
+        //Debug.Log(SceneManager.GetActiveScene().name);
 
 
         if (SceneManager.GetActiveScene().name == "Level 1")

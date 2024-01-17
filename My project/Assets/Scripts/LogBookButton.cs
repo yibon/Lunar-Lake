@@ -24,7 +24,7 @@ public class LogBookButton : MonoBehaviour, IPointerClickHandler, IPointerExitHa
 
     private void Update()
     {
-        Debug.Log("BookOpen: " + playOnce);
+        //Debug.Log("BookOpen: " + playOnce);
     }
 
 

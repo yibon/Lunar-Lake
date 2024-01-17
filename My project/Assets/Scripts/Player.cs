@@ -44,8 +44,8 @@ public class Player : MonoBehaviour
     {
         currentRod = "R01";
         currentRodStatus = dataManager.RodDataByID(currentRod);
-        Debug.Log(currentRod);
-        Debug.Log(dataManager.RodDataByID(currentRod).rodName);
+        //Debug.Log(currentRod);
+        //Debug.Log(dataManager.RodDataByID(currentRod).rodName);
 
         SceneManager.activeSceneChanged += ChangedActiveScene;
         

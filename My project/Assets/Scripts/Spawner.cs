@@ -41,7 +41,7 @@ public class Spawner : MonoBehaviour
         {
             //Debug.Log(splitFishSpawnPts[i]);
             
-            Debug.Log(splitFishIds[i]);
+            //Debug.Log(splitFishIds[i]);
             CurrentV3 = GetSpawnPoint(splitFishSpawnPts[i]) + new Vector3(0, Random.Range(-3, 0.5f));
             if (CurrentV3 != PreviousV3)
             {
