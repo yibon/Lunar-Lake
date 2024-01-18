@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEditor.PlayerSettings;
 
 public class Spawner : MonoBehaviour
 {
@@ -39,9 +40,6 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i < splitFishIds.Length; i++)
         {
-            //Debug.Log(splitFishSpawnPts[i]);
-            
-            //Debug.Log(splitFishIds[i]);
             CurrentV3 = GetSpawnPoint(splitFishSpawnPts[i]) + new Vector3(0, Random.Range(-3, 0.5f));
             if (CurrentV3 != PreviousV3)
             {
@@ -163,4 +161,31 @@ public class Spawner : MonoBehaviour
             return;
         }
     }
+
+
+ //   if timer % 60 = 0 // every one minute
+    //check how many fishes the player has caught
+	    //if it is from 1-5
+	        //	for loop to 10
+                 //  instantiate t1 fish
+
+	//if its from 5-10
+	//	for loop to 10
+
+ //           randomate value 1 to 100
+	//			if (1 to 75)
+	//				instantiate t1
+	//			if (76 to 100)
+	//				instantiate t2
+
+	//if its from 11-15
+	//	for loop to 10	
+
+ //           random range 1 to 100
+	//			if (1 to 35)
+	//				instantiate t1
+	//			if (36 to 80)
+	//				instantiate t2
+	//			if (81 to 100)
+	//				instantiate t3
 }

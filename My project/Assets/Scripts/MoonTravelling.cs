@@ -16,7 +16,7 @@ public class MoonTravelling : MonoBehaviour
 
     Rigidbody2D rb;
 
-    float timer = 0;
+    public static float timer = 0;
     private void Awake()
     {
        startPosition = transform.position;
@@ -62,6 +62,11 @@ public class MoonTravelling : MonoBehaviour
             Debug.Log("GAME ENDS");
         }
 
+        int timerInt = Mathf.FloorToInt(timer);
+        if (timerInt % 60 == 0)
+        {
+            Debug.Log("AAAAAAAAAAAAA");
+        }
 
      }
 }
