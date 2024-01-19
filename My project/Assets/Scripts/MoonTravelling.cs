@@ -13,7 +13,7 @@ public class MoonTravelling : MonoBehaviour
     private float maxTime = 540; // 9 minutes in seconds
     private float timeIntervals;
 
-    private float spawnIntervals = 5; // 10 seconds spawn time
+    public static float spawnIntervals = 10; // 10 seconds spawn time
     
     Rigidbody2D rb;
 

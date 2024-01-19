@@ -1,101 +1,136 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.XR;
-using static UnityEditor.PlayerSettings;
 
 public class Spawner : MonoBehaviour
 {
-    private FishSpawner _spawner;
     public DataManager _dm;
 
-    private string currSpawn;
-
-    private Vector3 PreviousV3;
-    private Vector3 CurrentV3;
-
-    Vector3 fishSpawnPt;
-
     public GameObject[] fishPF;
-    GameObject Location;
-
-    string[] splitFishIds;
-    string[] splitFishSpawnPts;
-    Vector3[] splitVectors;
 
     GameObject fishObj;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     private void Update()
     {
         if (MoonTravelling.isSpawning)
         {
-            //MoonTravelling.isSpawning = false;
-            Debug.Log("HAAAAH");
-            for (int i = 0; i < 10; i ++)
-            {
-                int spawnRate = Random.Range(1, 100);
-                Debug.Log("123 doubt!" + spawnRate);
+            Debug.Log("Spawning");
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    int spawnRate = Random.Range(1, 100);
+            //    Debug.Log("123 doubt!" + spawnRate);
 
-                if (Minigame.fishesCaught >= 0 && Minigame.fishesCaught <= 5)
-                {
-                    if (spawnRate >= 1 && spawnRate <= 75)
-                    {
-                        // Creating the Prefab
-                        fishObj = Instantiate(fishPF[0], new Vector3(1, -7, 0), Quaternion.identity) as GameObject;
-                        // Attach the fishID to the prefab
-                        fishObj.GetComponent<FishBehaviour>().currFishId = "F01";
-                        // Destroy the object after 5 seconds (clearing out the level esstientially)
-                        Destroy(fishObj, 5f);
-                    }
+            //    if (Minigame.fishesCaught >= 0 && Minigame.fishesCaught <= 5)
+            //    {
+            //        if (spawnRate >= 1 && spawnRate <= 75)
+            //        {
+            //            SpawnFish("F01");
+            //        }
 
-                    else if (spawnRate > 76)
-                    {
-                        fishObj = Instantiate(fishPF[1], PreviousV3, Quaternion.identity) as GameObject;
-                        fishObj.GetComponent<FishBehaviour>().currFishId = "F02";
-                        Destroy(fishObj, 5f);
-                    }
-                }
-            }
+            //        else if (spawnRate > 76)
+            //        {
+            //            SpawnFish("F02");
+            //        }
+            //    }
+            //}
+
+            // Testing
+            SpawnFish("F01");
+            SpawnFish("F01");
+            SpawnFish("F02");
+            SpawnFish("F02");
+            SpawnFish("F03");
+            SpawnFish("F03");
+            SpawnFish("F04");
+            SpawnFish("F04"); 
+            SpawnFish("F05");
+            SpawnFish("F05");
+            SpawnFish("F06");
+            SpawnFish("F06");
+            SpawnFish("F07");
+            SpawnFish("F07");
+            SpawnFish("F08");
+            SpawnFish("F08");
+            SpawnFish("F09");
+            SpawnFish("F09");
+
+
         }
     }
 
-    
-    //check how many fishes the player has caught
-    //if it is from 1-5
-    //	for loop to 10
-    //  instantiate t1 fish
-
-    //if its from 5-10
-    //	for loop to 10
-
-    //           randomate value 1 to 100
-    //			if (1 to 75)
-    //				instantiate t1
-    //			if (76 to 100)
-    //				instantiate t2
-
-    //if its from 11-15
-    //	for loop to 10	
-
-    //           random range 1 to 100
-    //			if (1 to 35)
-    //				instantiate t1
-    //			if (36 to 80)
-    //				instantiate t2
-    //			if (81 to 100)
-    //				instantiate t3
-
     private void SpawnFish(string fishID)
     {
-        fishObj = Instantiate(fishPF[0], PreviousV3, Quaternion.identity) as GameObject;
+        fishObj = Instantiate(PrefabGetter(fishID), GetSpawnLocationByID(fishID), Quaternion.identity) as GameObject;
         fishObj.GetComponent<FishBehaviour>().currFishId = fishID;
+
+        // Despawn Fish
+        Destroy(fishObj, MoonTravelling.spawnIntervals);
     }
+
+   
+    private GameObject PrefabGetter(string fishID)
+    {
+        switch (fishID)
+        {
+            case "F01":
+                return fishPF[0];
+            case "F02":
+                return fishPF[1];
+            case "F03":
+                return fishPF[2];
+            case "F04":
+                return fishPF[3];
+            case "F05":
+                return fishPF[4];
+            case "F06":
+                return fishPF[5];
+            case "F07":
+                return fishPF[6];
+            case "F08":
+                return fishPF[7];            
+            case "F09":
+                return fishPF[8];    
+            default:
+                return null;
+        }
+    }
+
+    private Vector2 GetSpawnLocationByID(string fishID)
+    {
+        switch (fishID)
+        {
+            case "F01":
+            case "F02":
+            case "F03":
+                return GetSpawnLocationByRarity("Bronze");
+
+            case "F04":
+            case "F05":
+            case "F06":
+                return GetSpawnLocationByRarity("Silver");
+
+            case "F07":
+            case "F08":
+                return GetSpawnLocationByRarity("Gold");
+
+            case "F09":
+                return GetSpawnLocationByRarity("Platinum");
+
+            default:
+                return Vector2.zero;
+        }
+    }
+
+    private Vector2 GetSpawnLocationByRarity(string rarity)
+    {
+        float spawnLocationMinY = _dm.SpawnerDataByID(rarity).minYvalue;
+        float spawnLocationMaxY = _dm.SpawnerDataByID(rarity).maxYvalue;
+        Vector2 spawnLocation = Vector2.zero;
+        // Replace this with fishID min and max pos
+        spawnLocation.y = Random.Range(spawnLocationMinY, spawnLocationMaxY);
+        spawnLocation.x = Random.Range(-8, 18);
+
+        return spawnLocation;
+    }
+
 
     #region Old Stuff
     //private void SpawnFish()

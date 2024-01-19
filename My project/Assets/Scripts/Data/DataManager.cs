@@ -32,9 +32,11 @@ public class DataManager : MonoBehaviour
     Events E02 = new Events("E02", "Ghost in Control", "F05", "Player regains contorl", "Player cannot control boat", "P02", false);
     Events E03 = new Events("E03", "The Prosperity", "F10", "Win", "Lose", "P01", false);
 
-    FishSpawner S01 = new FishSpawner("S01", "F01@F02@F03@F04", 4, "A@B@A@B", "S02");
-    FishSpawner S02 = new FishSpawner("S02", "F03@F04@F05@F06@F07", 5, "A@B@B@B@C", "S03");
-    FishSpawner S03 = new FishSpawner("S03", "F05@F06@F07@F08@F09@F10", 5, "B@B@C@C@B@C", "");
+    // Tier Number, Min X, Max X, Min Y, Max Y 
+    FishSpawner T4 = new FishSpawner(4, 80, 96, -4, -12, "Bronze");
+    FishSpawner T3 = new FishSpawner(3, 65, 75, -9, -15, "Silver");
+    FishSpawner T2 = new FishSpawner(2, 35, 60, -13, -17, "Gold");
+    FishSpawner T1 = new FishSpawner(1, 80, 96, -16, -18, "Platinum");
     #endregion
 
     public Events events;
@@ -53,8 +55,8 @@ public class DataManager : MonoBehaviour
 
         eList.Add(E01); eList.Add(E02); eList.Add(E03);
 
-        sList.Add(S01); sList.Add(S02);  sList.Add(S03);
-        
+        sList.Add(T1); sList.Add(T2);  sList.Add(T3); sList.Add(T4);
+
     }
 
     // Update is called once per frame
@@ -82,7 +84,7 @@ public class DataManager : MonoBehaviour
 
     public FishSpawner SpawnerDataByID(string sID)
     {
-        foreach (var s in sList) { if (s.waveId == sID) return s; } return null;
+        foreach (var s in sList) { if (s.rarity == sID) return s; } return null;
     }
 
 }
