@@ -42,18 +42,23 @@ public class Spawner : MonoBehaviour
                 int spawnRate = Random.Range(1, 100);
                 Debug.Log("123 doubt!" + spawnRate);
 
-                if (Minigame.fishesCaught == 0 && Minigame.fishesCaught <= 5)
+                if (Minigame.fishesCaught >= 0 && Minigame.fishesCaught <= 5)
                 {
                     if (spawnRate >= 1 && spawnRate <= 75)
                     {
-                        fishObj = Instantiate(fishPF[0], PreviousV3, Quaternion.identity) as GameObject;
+                        // Creating the Prefab
+                        fishObj = Instantiate(fishPF[0], new Vector3(1, -7, 0), Quaternion.identity) as GameObject;
+                        // Attach the fishID to the prefab
                         fishObj.GetComponent<FishBehaviour>().currFishId = "F01";
+                        // Destroy the object after 5 seconds (clearing out the level esstientially)
+                        Destroy(fishObj, 5f);
                     }
 
                     else if (spawnRate > 76)
                     {
                         fishObj = Instantiate(fishPF[1], PreviousV3, Quaternion.identity) as GameObject;
                         fishObj.GetComponent<FishBehaviour>().currFishId = "F02";
+                        Destroy(fishObj, 5f);
                     }
                 }
             }
