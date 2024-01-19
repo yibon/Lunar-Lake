@@ -1,5 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MoonTravelling : MonoBehaviour
@@ -12,11 +13,15 @@ public class MoonTravelling : MonoBehaviour
     private float maxTime = 540; // 9 minutes in seconds
     private float timeIntervals;
 
-
-
+    private float spawnIntervals = 5; // 10 seconds spawn time
+    
     Rigidbody2D rb;
 
-    public static float timer = 0;
+    private float gameTimer = 0;
+    private float spawnTimer = 0;
+    public static bool isSpawning;
+
+
     private void Awake()
     {
        startPosition = transform.position;
@@ -30,43 +35,57 @@ public class MoonTravelling : MonoBehaviour
     {
         timeIntervals = maxTime / 3; 
         rb = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
     void Update()
     { 
-        Debug.Log(timer);
+        Debug.Log(gameTimer);
 
-        timer += Time.deltaTime;
-        if (timer < maxTime) 
+        gameTimer += Time.deltaTime;
+        spawnTimer += Time.deltaTime;
+
+        if (gameTimer < maxTime) 
         {
             rb.velocity = displacement / maxTime;
             //Vector2 velocity = displacement / maxTime;
             //transform.position += new Vector3(velocity.x, 0f);
         }
 
-        if (timer > timeIntervals && timer < timeIntervals * 2)
+        if (gameTimer > timeIntervals && gameTimer < timeIntervals * 2)
         {
             PhasesController.currMoonPhase = MoonPhases.Phases.HalfMoon;
             Debug.Log("Half Moon Phase");
         }
 
-        if (timer > timeIntervals * 2 && timer < maxTime)
+        if (gameTimer > timeIntervals * 2 && gameTimer < maxTime)
         {
             PhasesController.currMoonPhase = MoonPhases.Phases.FullMoon;
             Debug.Log("Full Moon Phase");
         }
 
-        if (timer > maxTime)
+        if (gameTimer > maxTime)
         {
             Debug.Log("GAME ENDS");
         }
-
-        int timerInt = Mathf.FloorToInt(timer);
-        if (timerInt % 60 == 0)
+        
+        if (spawnTimer > spawnIntervals)
         {
-            Debug.Log("AAAAAAAAAAAAA");
+            if (!isSpawning)
+            {
+                //Debug.Log("arlo" + spawnTimer);
+                spawnTimer = 0;
+                isSpawning = true;
+            }
+
+        }
+
+        else
+        {
+            isSpawning = false;
         }
 
      }
+
 }
