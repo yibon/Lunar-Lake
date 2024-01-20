@@ -13,7 +13,7 @@ public class MoonTravelling : MonoBehaviour
     private float maxTime = 540; // 9 minutes in seconds
     private float timeIntervals;
 
-    public static float spawnIntervals = 10; // 10 seconds spawn time
+    public static float spawnIntervals = 60; // 10 seconds spawn time
     
     Rigidbody2D rb;
 
@@ -41,10 +41,16 @@ public class MoonTravelling : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        Debug.Log(gameTimer);
+        Debug.Log(spawnTimer);
 
         gameTimer += Time.deltaTime;
-        spawnTimer += Time.deltaTime;
+
+        if (GameStateManager.currGameState != States.GameStates.Catching ||
+            GameStateManager.currGameState != States.GameStates.Caught ||
+            GameStateManager.currGameState != States.GameStates.FailedToCatch)
+        {
+            spawnTimer += Time.deltaTime;
+        }
 
         if (gameTimer < maxTime) 
         {

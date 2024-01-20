@@ -8,49 +8,150 @@ public class Spawner : MonoBehaviour
 
     GameObject fishObj;
 
+    private void Start()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            SpawnFish("F01");
+        }
+    }
+
     private void Update()
     {
         if (MoonTravelling.isSpawning)
         {
             Debug.Log("Spawning");
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    int spawnRate = Random.Range(1, 100);
-            //    Debug.Log("123 doubt!" + spawnRate);
+            for (int i = 0; i < 5; i++)
+            {
+                int spawnRate = Random.Range(1, 100);
+                Debug.Log("123 doubt!" + spawnRate);
 
-            //    if (Minigame.fishesCaught >= 0 && Minigame.fishesCaught <= 5)
-            //    {
-            //        if (spawnRate >= 1 && spawnRate <= 75)
-            //        {
-            //            SpawnFish("F01");
-            //        }
+                if (Minigame.fishesCaught >= 0 && Minigame.fishesCaught <= 5)
+                {
+                    SpawnFish("F01");
+                }
 
-            //        else if (spawnRate > 76)
-            //        {
-            //            SpawnFish("F02");
-            //        }
-            //    }
-            //}
+                if (Minigame.fishesCaught > 5 && Minigame.fishesCaught <= 10)
+                {
+                    if (spawnRate >= 1 && spawnRate <= 75)
+                    {
+                        SpawnFish("F01");
+                    }
+
+                    else if (spawnRate > 76)
+                    {
+                        SpawnFish("F02");
+                    }
+                }
+
+                if (Minigame.fishesCaught > 10 && Minigame.fishesCaught <= 15)
+                {
+                    if (spawnRate >= 1 && spawnRate <= 35)
+                    {
+                        SpawnFish("F01");
+                    }
+
+                    else if (spawnRate > 35 && spawnRate <= 80)
+                    {
+                        SpawnFish("F02");
+                    }
+
+                    else 
+                    {
+                        SpawnFish("F03");
+                    }
+                }
+
+                if (Minigame.fishesCaught > 15 && Minigame.fishesCaught <= 20)
+                {
+                    if (spawnRate >= 1 && spawnRate <= 14)
+                    {
+                        SpawnFish("F01");
+                    }
+
+                    else if (spawnRate > 14 && spawnRate <= 54)
+                    {
+                        SpawnFish("F02");
+                    }
+
+                    else if (spawnRate > 54 && spawnRate <= 99)
+                    {
+                        SpawnFish("F03");
+                    }
+
+                    else
+                    {
+                        SpawnFish("F04");
+                    }
+                }
+
+
+                if (Minigame.fishesCaught > 20 && Minigame.fishesCaught <= 25)
+                {
+                    if (spawnRate >= 1 && spawnRate <= 12)
+                    {
+                        SpawnFish("F01");
+                    }
+
+                    else if (spawnRate > 12 && spawnRate <= 52)
+                    {
+                        SpawnFish("F02");
+                    }
+
+                    else if (spawnRate > 52 && spawnRate <= 97)
+                    {
+                        SpawnFish("F03");
+                    }
+
+                    else
+                    {
+                        SpawnFish("F04");
+                    }
+                }
+
+                if (Minigame.fishesCaught > 25 && Minigame.fishesCaught <= 30)
+                {
+                    if (spawnRate >= 1 && spawnRate <= 5)
+                    {
+                        SpawnFish("F01");
+                    }
+
+                    else if (spawnRate > 5 && spawnRate <= 35)
+                    {
+                        SpawnFish("F02");
+                    }
+
+                    else if (spawnRate > 35 && spawnRate <= 95)
+                    {
+                        SpawnFish("F03");
+                    }
+
+                    else
+                    {
+                        SpawnFish("F04");
+                    }
+                }
+            }
 
             // Testing
-            SpawnFish("F01");
-            SpawnFish("F01");
-            SpawnFish("F02");
-            SpawnFish("F02");
-            SpawnFish("F03");
-            SpawnFish("F03");
-            SpawnFish("F04");
-            SpawnFish("F04"); 
-            SpawnFish("F05");
-            SpawnFish("F05");
-            SpawnFish("F06");
-            SpawnFish("F06");
-            SpawnFish("F07");
-            SpawnFish("F07");
-            SpawnFish("F08");
-            SpawnFish("F08");
-            SpawnFish("F09");
-            SpawnFish("F09");
+            //SpawnFish("F01");
+            //SpawnFish("F01");
+            //SpawnFish("F02");
+            //SpawnFish("F02");
+            //SpawnFish("F03");
+            //SpawnFish("F03");
+            //SpawnFish("F04");
+            //SpawnFish("F04"); 
+            //SpawnFish("F05");
+            //SpawnFish("F05");
+            //SpawnFish("F06");
+            //SpawnFish("F06");
+            //SpawnFish("F07");
+            //SpawnFish("F07");
+            //SpawnFish("F08");
+            //SpawnFish("F08");
+            //SpawnFish("F09");
+            //SpawnFish("F09");
 
 
         }
@@ -121,12 +222,12 @@ public class Spawner : MonoBehaviour
 
     private Vector2 GetSpawnLocationByRarity(string rarity)
     {
-        float spawnLocationMinY = _dm.SpawnerDataByID(rarity).minYvalue;
-        float spawnLocationMaxY = _dm.SpawnerDataByID(rarity).maxYvalue;
+        float spawnLocationMinY = _dm.SpawnerDataByRarity(rarity).minYvalue;
+        float spawnLocationMaxY = _dm.SpawnerDataByRarity(rarity).maxYvalue;
         Vector2 spawnLocation = Vector2.zero;
         // Replace this with fishID min and max pos
         spawnLocation.y = Random.Range(spawnLocationMinY, spawnLocationMaxY);
-        spawnLocation.x = Random.Range(-8, 18);
+        spawnLocation.x = Random.Range(-1, 1);
 
         return spawnLocation;
     }

@@ -9,16 +9,16 @@ public class DataManager : MonoBehaviour
     #region All Data
     public List<FishStatus> fList = new List<FishStatus>();
 
-    FishStatus F01 = new FishStatus("F01", "Common Koi", "lineLength@0.1", "", 1.0f, "B", 0.1f, 2f, 0.3f, 4f, 0.15f, 2f);
-    FishStatus F02 = new FishStatus("F02", "Silver Scales", "hookRange@0.01", "", 1.0f, "A", 0.2f, 2f, 0.4f, 4f, 0.3f, 2f);
-    FishStatus F03 = new FishStatus("F03", "Crystal Betta", "lineLength@0.1", "", 1.0f, "B", 0.3f, 2f, 0.6f, 4f, 0.35f, 2f);
-    FishStatus F04 = new FishStatus("F04", "Namazu", "hookRange@0.03", "", 1.5f, "A", 0.5f, 3f, 0.4f, 4f, 0.65f, 2f);
-    FishStatus F05 = new FishStatus("F05", "Pufferfish", "lineLength@0.2", "", 1.5f, "B", 0.6f, 3f, 0.8f, 4f, 0.9f, 1f);
-    FishStatus F06 = new FishStatus("F06", "Crocodile Gar", "hookRange@0.05", "end level", 1.75f, "A", 0.5f, 3f, 0.75f, 2f, 0.65f, 3f);
-    FishStatus F07 = new FishStatus("F07", "Angler Fish", "lineLength@0.5", "end level", 1.75f, "B", 0.6f, 3f, 0.75f, 2f, 0.9f, 3f);
-    FishStatus F08 = new FishStatus("F08", "Old Man", "lineLength@0.4", "", 2f, "A", 0.9f, 4f, 0.6f, 2f, 0.8f, 2f);
-    FishStatus F09 = new FishStatus("F09", "Medium Squid", "hookRange@0.1", "", 2f, "B", 0.75f, 4f, 0.5f, 2f, 0.9f, 2f);
-    FishStatus F10 = new FishStatus("F10", "Moonlight Manta", "GameEnds@0", "", 2.25f, "B", 0.9f, 2f, 0.6f, 3f, 0.3f, 3f);
+    FishStatus F01 = new FishStatus("F01", "Common Koi", "lineLength@0.1", "", 0.2f, "B", 0.1f, 2f, 0.3f, 4f, 0.15f, 2f);
+    FishStatus F02 = new FishStatus("F02", "Silver Scales", "hookRange@0.01", "", 0.3f, "A", 0.2f, 2f, 0.4f, 4f, 0.3f, 2f);
+    FishStatus F03 = new FishStatus("F03", "Crystal Betta", "lineLength@0.1", "", 0.3f, "B", 0.3f, 2f, 0.6f, 4f, 0.35f, 2f);
+    FishStatus F04 = new FishStatus("F04", "Namazu", "hookRange@0.03", "", 0.4f, "A", 0.5f, 3f, 0.4f, 4f, 0.65f, 2f);
+    FishStatus F05 = new FishStatus("F05", "Pufferfish", "lineLength@0.2", "", 0.4f, "B", 0.6f, 3f, 0.8f, 4f, 0.9f, 1f);
+    FishStatus F06 = new FishStatus("F06", "Crocodile Gar", "hookRange@0.05", "end level", 0.5f, "A", 0.5f, 3f, 0.75f, 2f, 0.65f, 3f);
+    FishStatus F07 = new FishStatus("F07", "Angler Fish", "lineLength@0.5", "end level", 0.7f, "B", 0.6f, 3f, 0.75f, 2f, 0.9f, 3f);
+    FishStatus F08 = new FishStatus("F08", "Old Man", "lineLength@0.4", "", 0.7f, "A", 0.9f, 4f, 0.6f, 2f, 0.8f, 2f);
+    FishStatus F09 = new FishStatus("F09", "Medium Squid", "hookRange@0.1", "", 1f, "B", 0.75f, 4f, 0.5f, 2f, 0.9f, 2f);
+    //FishStatus F10 = new FishStatus("F10", "Moonlight Manta", "GameEnds@0", "", 1f, "B", 0.9f, 2f, 0.6f, 3f, 0.3f, 3f);
 
     public List<RodStatus> rList = new List<RodStatus>();
 
@@ -32,11 +32,12 @@ public class DataManager : MonoBehaviour
     Events E02 = new Events("E02", "Ghost in Control", "F05", "Player regains contorl", "Player cannot control boat", "P02", false);
     Events E03 = new Events("E03", "The Prosperity", "F10", "Win", "Lose", "P01", false);
 
+    //              (-10)  (18)
     // Tier Number, Min X, Max X, Min Y, Max Y 
-    FishSpawner T4 = new FishSpawner(4, 80, 96, -4, -12, "Bronze");
-    FishSpawner T3 = new FishSpawner(3, 65, 75, -9, -15, "Silver");
-    FishSpawner T2 = new FishSpawner(2, 35, 60, -13, -17, "Gold");
-    FishSpawner T1 = new FishSpawner(1, 80, 96, -16, -18, "Platinum");
+    FishSpawner T4 = new FishSpawner(4, 11, 14, -4, -12, "Bronze");
+    FishSpawner T3 = new FishSpawner(3, 9, 10, -9, -15, "Silver");
+    FishSpawner T2 = new FishSpawner(2, 5, 6, -13, -17, "Gold");
+    FishSpawner T1 = new FishSpawner(1, 3, 4, -16, -18, "Platinum");
     #endregion
 
     public Events events;
@@ -49,7 +50,7 @@ public class DataManager : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
 
-        fList.Add(F01); fList.Add(F02); fList.Add(F03); fList.Add(F04); fList.Add(F05); fList.Add(F06); fList.Add(F07); fList.Add(F08); fList.Add(F09); fList.Add(F10);
+        fList.Add(F01); fList.Add(F02); fList.Add(F03); fList.Add(F04); fList.Add(F05); fList.Add(F06); fList.Add(F07); fList.Add(F08); fList.Add(F09);
 
         rList.Add(R01); rList.Add(R02); rList.Add(R03);
 
@@ -82,9 +83,8 @@ public class DataManager : MonoBehaviour
        foreach(var e in eList) { if (e.eventID == eID) return e; } return null; 
     }
 
-    public FishSpawner SpawnerDataByID(string sID)
+    public FishSpawner SpawnerDataByRarity(string sID)
     {
         foreach (var s in sList) { if (s.rarity == sID) return s; } return null;
     }
-
 }
