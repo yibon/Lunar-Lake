@@ -88,11 +88,13 @@ public class Minigame : MonoBehaviour
 
         if (isReeling)
         {
+            hookSR.color = new Color (0, 1, 0.29f);
             hookProgress += hookPower * Time.deltaTime;
         }
 
         else
         {
+            hookSR.color = new Color(0, 1, 0.94f);
             hookProgress -= hookProgressDegradPower * Time.deltaTime;
         }
 
