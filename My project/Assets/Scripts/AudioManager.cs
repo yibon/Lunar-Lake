@@ -60,17 +60,7 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
-    public void PlayOnce(string name)
-    {
-        //isPlaying = false;
-        Sounds s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null) { return; }
-
-        if (s.source.isPlaying)
-        {
-            s.source.Play();
-        }
-    }
+    
 
     private void ChangedActiveScene(Scene current, Scene next)
     {
@@ -83,6 +73,9 @@ public class AudioManager : MonoBehaviour
         }
 
         if (SceneManager.GetActiveScene().name == "Level 1" || SceneManager.GetActiveScene().name == "Level 2" || SceneManager.GetActiveScene().name == "Level 3")
+        {
+            Stop("BGM");
             Play("Ambience");
+        }
     }
 }
