@@ -17,8 +17,11 @@ public class FishStatus
     public float fishStateTime_2 { get; set; }
     public float fishStatePos_3 { get; set; }
     public float fishStateTime_3 { get; set; }
+    public string fishTier { get; set; }
 
-    public FishStatus(string fishID, string fishName, string fishEffect, string fishEffect_2, float fishSpeed, string fishSpawnLoc, float fishStatePos_1, float fishStateTime_1, float fishStatePos_2, float fishStateTime_2, float fishStatePos_3, float fishStateTime_3)
+    public FishStatus(string fishID, string fishName, string fishEffect, string fishEffect_2, float fishSpeed, 
+                      string fishSpawnLoc, float fishStatePos_1, float fishStateTime_1, float fishStatePos_2, 
+                      float fishStateTime_2, float fishStatePos_3, float fishStateTime_3, string fishTier)
     {
         this.fishID = fishID;
         this.fishName = fishName;
@@ -32,5 +35,6 @@ public class FishStatus
         this.fishStateTime_2 = fishStateTime_2;
         this.fishStatePos_3 = fishStatePos_3;
         this.fishStateTime_3 = fishStateTime_3;
+        this.fishTier = fishTier;
     }
 }

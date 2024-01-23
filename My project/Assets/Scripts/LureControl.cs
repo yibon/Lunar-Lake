@@ -29,7 +29,7 @@ public class LureControl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Fish"))
+        if (collision.gameObject.CompareTag("Fish") && GameStateManager.currGameState == States.GameStates.Reeling)
         {
             fishCaught = true;
             Minigame.caughtFish = collision.gameObject.GetComponent<FishBehaviour>()._fish;

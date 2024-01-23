@@ -1,3 +1,4 @@
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -12,7 +13,7 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            SpawnFish("F01");
+            SpawnFish("Bronze");
         }
     }
 
@@ -20,115 +21,121 @@ public class Spawner : MonoBehaviour
     {
         if (MoonTravelling.isSpawning)
         {
-            Debug.Log("Spawning");
+            Debug.Log("Bronze Minigamez: " + Minigame.fishesCaught);
             for (int i = 0; i < 5; i++)
             {
-                int spawnRate = Random.Range(1, 100);
+                int spawnRate = Random.Range(0, 100);
                 Debug.Log("123 doubt!" + spawnRate);
 
                 if (Minigame.fishesCaught >= 0 && Minigame.fishesCaught <= 5)
                 {
-                    SpawnFish("F01");
+                    Debug.Log("100% Bronze");
+                    SpawnFish("Bronze");
                 }
 
                 if (Minigame.fishesCaught > 5 && Minigame.fishesCaught <= 10)
                 {
-                    if (spawnRate >= 1 && spawnRate <= 75)
+                    Debug.Log("75 Bronze, 25 silver");
+                    if (spawnRate >= 0 && spawnRate <= 75)
                     {
-                        SpawnFish("F01");
+                        SpawnFish("Bronze");
                     }
 
                     else if (spawnRate > 76)
                     {
-                        SpawnFish("F02");
+                        SpawnFish("Silver");
                     }
                 }
 
                 if (Minigame.fishesCaught > 10 && Minigame.fishesCaught <= 15)
                 {
-                    if (spawnRate >= 1 && spawnRate <= 35)
+                    Debug.Log("35% Bronze, 55 silver, 20 gold");
+                    if (spawnRate >= 0 && spawnRate <= 35)
                     {
-                        SpawnFish("F01");
+                        SpawnFish("Bronze");
                     }
 
                     else if (spawnRate > 35 && spawnRate <= 80)
                     {
-                        SpawnFish("F02");
+                        SpawnFish("Silver");
                     }
 
                     else 
                     {
-                        SpawnFish("F03");
+                        SpawnFish("Gold");
                     }
                 }
 
                 if (Minigame.fishesCaught > 15 && Minigame.fishesCaught <= 20)
                 {
-                    if (spawnRate >= 1 && spawnRate <= 14)
+                    Debug.Log("14% Bronze, 40 silver, 40 gold, 1 platinum");
+                    if (spawnRate >= 0 && spawnRate <= 14)
                     {
-                        SpawnFish("F01");
+                        SpawnFish("Bronze");
                     }
 
                     else if (spawnRate > 14 && spawnRate <= 54)
                     {
-                        SpawnFish("F02");
+                        SpawnFish("Silver");
                     }
 
                     else if (spawnRate > 54 && spawnRate <= 99)
                     {
-                        SpawnFish("F03");
+                        SpawnFish("Gold");
                     }
 
                     else
                     {
-                        SpawnFish("F04");
+                        SpawnFish("Platinum");
                     }
                 }
 
 
                 if (Minigame.fishesCaught > 20 && Minigame.fishesCaught <= 25)
                 {
-                    if (spawnRate >= 1 && spawnRate <= 12)
+                    Debug.Log("12 bronze, 40 silver, 40 gold, 3 plat");
+                    if (spawnRate >= 0 && spawnRate <= 12)
                     {
-                        SpawnFish("F01");
+                        SpawnFish("Bronze");
                     }
 
                     else if (spawnRate > 12 && spawnRate <= 52)
                     {
-                        SpawnFish("F02");
+                        SpawnFish("Silver");
                     }
 
                     else if (spawnRate > 52 && spawnRate <= 97)
                     {
-                        SpawnFish("F03");
+                        SpawnFish("Gold");
                     }
 
                     else
                     {
-                        SpawnFish("F04");
+                        SpawnFish("Platinum");
                     }
                 }
 
                 if (Minigame.fishesCaught > 25 && Minigame.fishesCaught <= 30)
                 {
-                    if (spawnRate >= 1 && spawnRate <= 5)
+                    Debug.Log("5 bronze, 30 silver, 60 gold, 5 plat");
+                    if (spawnRate >= 0 && spawnRate <= 5)
                     {
-                        SpawnFish("F01");
+                        SpawnFish("Bronze");
                     }
 
                     else if (spawnRate > 5 && spawnRate <= 35)
                     {
-                        SpawnFish("F02");
+                        SpawnFish("Silver");
                     }
 
                     else if (spawnRate > 35 && spawnRate <= 95)
                     {
-                        SpawnFish("F03");
+                        SpawnFish("Gold");
                     }
 
                     else
                     {
-                        SpawnFish("F04");
+                        SpawnFish("Platinum");
                     }
                 }
             }
@@ -157,8 +164,76 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void SpawnFish(string fishID)
+    private void SpawnFish(string rarity)
     {
+        string fishID = string.Empty;
+
+        switch (rarity)
+        {
+            case "Bronze":
+                int bronzeChances = Random.Range(1, 4);
+                Debug.Log("fml" + bronzeChances);
+                switch (bronzeChances)
+                {
+                    case 1:
+                        fishID = "F01";
+                        break;
+                    case 2:
+                        fishID = "F02";
+                        break;
+                    case 3:
+                        fishID = "F03";
+                        break;
+                    default: 
+                        Debug.Log("Bronze not found!");
+                        break;
+                }
+                break;
+
+            case "Silver":
+                int silverChances = Random.Range(1, 4);
+                switch (silverChances)
+                {
+                    case 1:
+                        fishID = "F04";
+                        break;
+                    case 2:
+                        fishID = "F05";
+                        break;
+                    case 3:
+                        fishID = "F06";
+                        break;
+                    default:
+                        Debug.Log("Silver not found!");
+                        break;
+                }
+                break;
+
+            case "Gold":
+                int goldChances = Random.Range(1, 3);
+                switch (goldChances)
+                {
+                    case 1:
+                        fishID = "F07";
+                        break;
+                    case 2:
+                        fishID = "F08";
+                        break;
+                    default:
+                        Debug.Log("Gold not found!");
+                        break;
+                }
+                break;
+
+            case "Platinum":
+                fishID = "F09";
+                break;
+            default:
+                Debug.Log("Fish not found!");
+                break;
+        }
+
+        Debug.Log("Bronze feeeeshid" + fishID);
         fishObj = Instantiate(PrefabGetter(fishID), GetSpawnLocationByID(fishID), Quaternion.identity) as GameObject;
         fishObj.GetComponent<FishBehaviour>().currFishId = fishID;
 

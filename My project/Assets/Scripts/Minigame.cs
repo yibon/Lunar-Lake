@@ -69,6 +69,8 @@ public class Minigame : MonoBehaviour
         fishPos = Mathf.SmoothDamp(fishPos, fishDestination, ref fishSpeed, smoothMotion);
         fish.position = Vector3.Lerp(bottomPivot.position, topPivot.position, fishPos);
 
+        Debug.Log(hookSize);
+
         if (Input.GetKey(KeyCode.Space))
         {
             isHooking = true;
@@ -208,7 +210,7 @@ public class Minigame : MonoBehaviour
         {
             fishesCaught++;
             GameStateManager.currGameState = States.GameStates.Caught;
-            Player.Instance.FishCaughtAndAddIntoInventory(caughtFish.fishID);
+            //Player.Instance.FishCaughtAndAddIntoInventory(caughtFish.fishID);
             _bookDisp.UpdateLogBook(caughtFish.fishID);
             _buffs.UpdateBuffs(caughtFish);
 
