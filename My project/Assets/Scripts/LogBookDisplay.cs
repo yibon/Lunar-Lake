@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class LogBookDisplay : MonoBehaviour
-{
+{ 
     [Header("IMAGES")] 
     public Image _topSR;
     public Image _midSR;
@@ -30,12 +31,13 @@ public class LogBookDisplay : MonoBehaviour
     float F09caught;
 
     AudioManager _am;
+    public GameObject _popup;
 
     private void Awake()
     {
-        _topSR.color = Color.black;
-        _midSR.color = Color.black;
-        _btmSR.color = Color.black;
+        //_topSR.color = Color.black;
+        //_midSR.color = Color.black;
+        //_btmSR.color = Color.black;
 
         _am = FindObjectOfType<AudioManager>();
     }
@@ -43,7 +45,22 @@ public class LogBookDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButton(0))
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("EEEEEEEEEEEEE");
+                return; 
+            }
+        }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!_popup.activeInHierarchy)
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
     }
 
 
@@ -89,173 +106,172 @@ public class LogBookDisplay : MonoBehaviour
         }
     }
 
+    #region Old Code
+    //    if (Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        this.gameObject.SetActive(false);
+    //    }
 
-        #region Old Code
-        //    if (Input.GetKeyDown(KeyCode.Escape))
-        //    {
-        //        this.gameObject.SetActive(false);
-        //    }
+    //    if (F01caught > 0)
+    //    {
+    //        _topSR.color = Color.white;
+    //    }
 
-        //    if (F01caught > 0)
-        //    {
-        //        _topSR.color = Color.white;
-        //    }
-
-        //    else
-        //    {
-        //        _topSR.color = Color.black;
-        //    }
-
-
-        //    if (F02caught > 0)
-        //    {
-        //        _midSR.color = Color.white;
-        //    }
-
-        //    else
-        //    {
-        //        _midSR.color = Color.black;
-        //    }
+    //    else
+    //    {
+    //        _topSR.color = Color.black;
+    //    }
 
 
-        //    if (F03caught > 0)
-        //    {
-        //        _btmSR.color = Color.white;
-        //    }
+    //    if (F02caught > 0)
+    //    {
+    //        _midSR.color = Color.white;
+    //    }
+
+    //    else
+    //    {
+    //        _midSR.color = Color.black;
+    //    }
 
 
-        //    else
-        //    {
-        //        _btmSR.color = Color.black;
-        //    }
+    //    if (F03caught > 0)
+    //    {
+    //        _btmSR.color = Color.white;
+    //    }
+
+
+    //    else
+    //    {
+    //        _btmSR.color = Color.black;
+    //    }
 
 
 
-        //    switch (FramesHandler.currFrame)
-        //    {
-        //        case "Top":
-        //            if (F01caught > 0)
-        //            {
-        //                fishName.text = "Common Koi";
-        //                fishPhases.text = "New";
-        //                fishCaught.text = "Number of Fish Caught: " + F01caught;
-        //                fishInvent.text = "In Your Inventory: " + F01caught;
-        //                LLBuff.gameObject.SetActive(true);
-        //                HRBuff.gameObject.SetActive(false);
-        //            }
+    //    switch (FramesHandler.currFrame)
+    //    {
+    //        case "Top":
+    //            if (F01caught > 0)
+    //            {
+    //                fishName.text = "Common Koi";
+    //                fishPhases.text = "New";
+    //                fishCaught.text = "Number of Fish Caught: " + F01caught;
+    //                fishInvent.text = "In Your Inventory: " + F01caught;
+    //                LLBuff.gameObject.SetActive(true);
+    //                HRBuff.gameObject.SetActive(false);
+    //            }
 
-        //            else
-        //            {
-        //                fishName.text = "Unknown";
-        //                fishPhases.text = "Unknown";
-        //                fishCaught.text = "Number of Fish Caught: " + F01caught;
-        //                fishInvent.text = "In Your Inventory: " + F01caught;
-        //                LLBuff.gameObject.SetActive(false);
-        //                HRBuff.gameObject.SetActive(false);
-        //            }
+    //            else
+    //            {
+    //                fishName.text = "Unknown";
+    //                fishPhases.text = "Unknown";
+    //                fishCaught.text = "Number of Fish Caught: " + F01caught;
+    //                fishInvent.text = "In Your Inventory: " + F01caught;
+    //                LLBuff.gameObject.SetActive(false);
+    //                HRBuff.gameObject.SetActive(false);
+    //            }
 
-        //            break;
+    //            break;
 
-        //        case "Mid":
-        //            if (F02caught > 0)
-        //            {
-        //                fishName.text = "Silver Scales";
-        //                fishPhases.text = "New";
-        //                fishCaught.text = "Number of Fish Caught: " + F02caught;
-        //                fishInvent.text = "In Your Inventory: " + F02caught;
-        //                LLBuff.gameObject.SetActive(false);
-        //                HRBuff.gameObject.SetActive(true);
-        //            }
+    //        case "Mid":
+    //            if (F02caught > 0)
+    //            {
+    //                fishName.text = "Silver Scales";
+    //                fishPhases.text = "New";
+    //                fishCaught.text = "Number of Fish Caught: " + F02caught;
+    //                fishInvent.text = "In Your Inventory: " + F02caught;
+    //                LLBuff.gameObject.SetActive(false);
+    //                HRBuff.gameObject.SetActive(true);
+    //            }
 
-        //            else
-        //            {
-        //                fishName.text = "Unknown";
-        //                fishPhases.text = "Unknown";
-        //                fishCaught.text = "Number of Fish Caught: " + F02caught;
-        //                fishInvent.text = "In Your Inventory: " + F02caught;
-        //                LLBuff.gameObject.SetActive(false);
-        //                HRBuff.gameObject.SetActive(false);
-        //            }
+    //            else
+    //            {
+    //                fishName.text = "Unknown";
+    //                fishPhases.text = "Unknown";
+    //                fishCaught.text = "Number of Fish Caught: " + F02caught;
+    //                fishInvent.text = "In Your Inventory: " + F02caught;
+    //                LLBuff.gameObject.SetActive(false);
+    //                HRBuff.gameObject.SetActive(false);
+    //            }
 
-        //            break;
+    //            break;
 
-        //        case "Bot":
-        //            if (F03caught > 0)
-        //            {
-        //                fishName.text = "Crystal Betta";
-        //                fishPhases.text = "New, Half";
-        //                fishCaught.text = "Number of Fish Caught: " + F03caught;
-        //                fishInvent.text = "In Your Inventory: " + F03caught;
-        //                LLBuff.gameObject.SetActive(true);
-        //                HRBuff.gameObject.SetActive(false);
-        //            }
+    //        case "Bot":
+    //            if (F03caught > 0)
+    //            {
+    //                fishName.text = "Crystal Betta";
+    //                fishPhases.text = "New, Half";
+    //                fishCaught.text = "Number of Fish Caught: " + F03caught;
+    //                fishInvent.text = "In Your Inventory: " + F03caught;
+    //                LLBuff.gameObject.SetActive(true);
+    //                HRBuff.gameObject.SetActive(false);
+    //            }
 
-        //            else
-        //            {
-        //                fishName.text = "Unknown";
-        //                fishPhases.text = "Unknown";
-        //                fishCaught.text = "Number of Fish Caught: " + F03caught;
-        //                fishInvent.text = "In Your Inventory: " + F03caught;
-        //                LLBuff.gameObject.SetActive(false);
-        //                HRBuff.gameObject.SetActive(false);
-        //            }
+    //            else
+    //            {
+    //                fishName.text = "Unknown";
+    //                fishPhases.text = "Unknown";
+    //                fishCaught.text = "Number of Fish Caught: " + F03caught;
+    //                fishInvent.text = "In Your Inventory: " + F03caught;
+    //                LLBuff.gameObject.SetActive(false);
+    //                HRBuff.gameObject.SetActive(false);
+    //            }
 
-        //            break;
+    //            break;
 
-        //        case "None":
-        //            fishName.text = "Name of Fish";
-        //            fishPhases.text = "Moon Phase";
-        //            fishCaught.text = "Number of Fish Caught: ";
-        //            LLBuff.gameObject.SetActive(false);
-        //            HRBuff.gameObject.SetActive(false);
+    //        case "None":
+    //            fishName.text = "Name of Fish";
+    //            fishPhases.text = "Moon Phase";
+    //            fishCaught.text = "Number of Fish Caught: ";
+    //            LLBuff.gameObject.SetActive(false);
+    //            HRBuff.gameObject.SetActive(false);
 
-        //            break;
-        //        }
-        //    }
+    //            break;
+    //        }
+    //    }
 
-        //public void UpdateLogBook(string _fish)
-        //{
-        //    if (Player.Instance.addedFishToInventory == true)
-        //    {
-        //        Debug.Log("Caught Fish");
-        //        switch (_fish)
-        //        {
-        //            case "F01":
-        //                F01caught++;
-        //                break;
+    //public void UpdateLogBook(string _fish)
+    //{
+    //    if (Player.Instance.addedFishToInventory == true)
+    //    {
+    //        Debug.Log("Caught Fish");
+    //        switch (_fish)
+    //        {
+    //            case "F01":
+    //                F01caught++;
+    //                break;
 
-        //            case "F02":
-        //                F02caught++;
-        //                break;
+    //            case "F02":
+    //                F02caught++;
+    //                break;
 
-        //            case "F03":
-        //                F03caught++;
-        //                break;
-        //        }
-        //        Player.Instance.addedFishToInventory = false;
-        //    }
+    //            case "F03":
+    //                F03caught++;
+    //                break;
+    //        }
+    //        Player.Instance.addedFishToInventory = false;
+    //    }
 
-        //    if (Player.Instance.removedFishFromInventory == true)
-        //    {
-        //        switch (_fish)
-        //        {
-        //            case "F01":
-        //                F01caught--;
-        //                break;
+    //    if (Player.Instance.removedFishFromInventory == true)
+    //    {
+    //        switch (_fish)
+    //        {
+    //            case "F01":
+    //                F01caught--;
+    //                break;
 
-        //            case "F02":
-        //                F02caught--;
-        //                break;
+    //            case "F02":
+    //                F02caught--;
+    //                break;
 
-        //            case "F03":
-        //                F03caught--;
-        //                break;
-        //        }
-        //        Player.Instance.removedFishFromInventory = false;
-        //    }
+    //            case "F03":
+    //                F03caught--;
+    //                break;
+    //        }
+    //        Player.Instance.removedFishFromInventory = false;
+    //    }
 
-        //}
-        #endregion
-    }
+    //}
+    #endregion
+}
 
 

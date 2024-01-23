@@ -1,5 +1,6 @@
 using System.Net.Http.Headers;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Minigame : MonoBehaviour
@@ -163,6 +164,16 @@ public class Minigame : MonoBehaviour
         }
 
         hookPos += hookPullVelocity;
+        if (hookPos - hookSize / 2  < 0f && hookPullVelocity < 0f)
+        {
+            hookPullVelocity = 0;
+        }
+
+        if (hookPos + hookSize / 2 >= 1f && hookPullVelocity > 0f)
+        {
+            hookPullVelocity = 0;
+        }
+
         hookPos = Mathf.Clamp(hookPos, hookSize / 2f, 1f - hookSize / 2f);
         hook.position = Vector3.Lerp(bottomPivot.position, topPivot.position, hookPos);
     }
@@ -245,7 +256,7 @@ public class Minigame : MonoBehaviour
     public void Resize()
     {
         Bounds b = hookSR.bounds;
-        float ySize = b.size.y;
+        float ySize = 1.01f;
         Vector3 ls = hook.localScale;
         float distance = Vector3.Distance(topPivot.position, bottomPivot.position);
         ls.y = distance / ySize * (hookSize / 2);
@@ -254,4 +265,6 @@ public class Minigame : MonoBehaviour
         hookProgress = 0.45f;
         hookPos = 0f;
     }
+
+
 }

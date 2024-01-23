@@ -1,4 +1,5 @@
-using Unity.IO.LowLevel.Unsafe;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -8,34 +9,63 @@ public class Spawner : MonoBehaviour
     public GameObject[] fishPF;
 
     GameObject fishObj;
+    public List<GameObject> listOfFishesSpawned;
+
+    public static Spawner Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+
+        else
+        {
+            Instance = this;
+        }
+    }
 
     private void Start()
     {
+        listOfFishesSpawned = new List<GameObject>();
+
         for (int i = 0; i < 5; i++)
         {
             SpawnFish("Bronze");
         }
+
+        // -- testing ---
+        //SpawnFish("Bronze"); SpawnFish("Bronze"); SpawnFish("Bronze"); SpawnFish("Bronze"); SpawnFish("Bronze");
+        //SpawnFish("Silver"); SpawnFish("Silver"); SpawnFish("Silver"); SpawnFish("Silver"); SpawnFish("Silver");
+
+        //SpawnFish("Gold"); SpawnFish("Gold"); SpawnFish("Gold"); SpawnFish("Gold"); SpawnFish("Gold");
+        //SpawnFish("Platinum");
     }
 
     private void Update()
     {
         if (MoonTravelling.isSpawning)
         {
-            Debug.Log("Bronze Minigamez: " + Minigame.fishesCaught);
+            for (int i = 0; i < listOfFishesSpawned.Count; i++)
+            {
+                //Debug.Log("bless my soooul" + listOfFishesSpawned[i].name);
+                Destroy(listOfFishesSpawned[i]);
+                listOfFishesSpawned[i] = null;
+            }
+
             for (int i = 0; i < 5; i++)
             {
                 int spawnRate = Random.Range(0, 100);
-                Debug.Log("123 doubt!" + spawnRate);
 
                 if (Minigame.fishesCaught >= 0 && Minigame.fishesCaught <= 5)
                 {
-                    Debug.Log("100% Bronze");
+                    Debug.Log("BLAH");
                     SpawnFish("Bronze");
                 }
 
                 if (Minigame.fishesCaught > 5 && Minigame.fishesCaught <= 10)
                 {
-                    Debug.Log("75 Bronze, 25 silver");
                     if (spawnRate >= 0 && spawnRate <= 75)
                     {
                         SpawnFish("Bronze");
@@ -49,7 +79,6 @@ public class Spawner : MonoBehaviour
 
                 if (Minigame.fishesCaught > 10 && Minigame.fishesCaught <= 15)
                 {
-                    Debug.Log("35% Bronze, 55 silver, 20 gold");
                     if (spawnRate >= 0 && spawnRate <= 35)
                     {
                         SpawnFish("Bronze");
@@ -60,7 +89,7 @@ public class Spawner : MonoBehaviour
                         SpawnFish("Silver");
                     }
 
-                    else 
+                    else
                     {
                         SpawnFish("Gold");
                     }
@@ -68,7 +97,6 @@ public class Spawner : MonoBehaviour
 
                 if (Minigame.fishesCaught > 15 && Minigame.fishesCaught <= 20)
                 {
-                    Debug.Log("14% Bronze, 40 silver, 40 gold, 1 platinum");
                     if (spawnRate >= 0 && spawnRate <= 14)
                     {
                         SpawnFish("Bronze");
@@ -78,22 +106,36 @@ public class Spawner : MonoBehaviour
                     {
                         SpawnFish("Silver");
                     }
-
-                    else if (spawnRate > 54 && spawnRate <= 99)
+                    if (PhasesController.currMoonPhase == MoonPhases.Phases.FullMoon)
                     {
-                        SpawnFish("Gold");
+                        if (spawnRate > 35 && spawnRate <= 79)
+                        {
+                            SpawnFish("Gold");
+                        }
+
+                        else
+                        {
+                            SpawnFish("Platinum");
+                        }
                     }
 
                     else
                     {
-                        SpawnFish("Platinum");
+                        if (spawnRate > 35 && spawnRate <= 99)
+                        {
+                            SpawnFish("Gold");
+                        }
+
+                        else
+                        {
+                            SpawnFish("Platinum");
+                        }
                     }
                 }
 
 
                 if (Minigame.fishesCaught > 20 && Minigame.fishesCaught <= 25)
                 {
-                    Debug.Log("12 bronze, 40 silver, 40 gold, 3 plat");
                     if (spawnRate >= 0 && spawnRate <= 12)
                     {
                         SpawnFish("Bronze");
@@ -104,66 +146,75 @@ public class Spawner : MonoBehaviour
                         SpawnFish("Silver");
                     }
 
-                    else if (spawnRate > 52 && spawnRate <= 97)
+                    if (PhasesController.currMoonPhase == MoonPhases.Phases.FullMoon)
                     {
-                        SpawnFish("Gold");
+                        if (spawnRate > 35 && spawnRate <= 77)
+                        {
+                            SpawnFish("Gold");
+                        }
+
+                        else
+                        {
+                            SpawnFish("Platinum");
+                        }
                     }
 
                     else
                     {
-                        SpawnFish("Platinum");
-                    }
-                }
+                        if (spawnRate > 35 && spawnRate <= 97)
+                        {
+                            SpawnFish("Gold");
+                        }
 
-                if (Minigame.fishesCaught > 25 && Minigame.fishesCaught <= 30)
-                {
-                    Debug.Log("5 bronze, 30 silver, 60 gold, 5 plat");
-                    if (spawnRate >= 0 && spawnRate <= 5)
-                    {
-                        SpawnFish("Bronze");
-                    }
-
-                    else if (spawnRate > 5 && spawnRate <= 35)
-                    {
-                        SpawnFish("Silver");
+                        else
+                        {
+                            SpawnFish("Platinum");
+                        }
                     }
 
-                    else if (spawnRate > 35 && spawnRate <= 95)
+                    if (Minigame.fishesCaught > 25 && Minigame.fishesCaught <= 30)
                     {
-                        SpawnFish("Gold");
-                    }
+                        if (spawnRate >= 0 && spawnRate <= 5)
+                        {
+                            SpawnFish("Bronze");
+                        }
 
-                    else
-                    {
-                        SpawnFish("Platinum");
+                        else if (spawnRate > 5 && spawnRate <= 35)
+                        {
+                            SpawnFish("Silver");
+                        }
+
+                        if (PhasesController.currMoonPhase == MoonPhases.Phases.FullMoon)
+                        {
+                            if (spawnRate > 35 && spawnRate <= 75)
+                            {
+                                SpawnFish("Gold");
+                            }
+
+                            else
+                            {
+                                SpawnFish("Platinum");
+                            }
+                        }
+
+                        else
+                        {
+                            if (spawnRate > 35 && spawnRate <= 95)
+                            {
+                                SpawnFish("Gold");
+                            }
+
+                            else
+                            {
+                                SpawnFish("Platinum");
+                            }
+                        }
                     }
                 }
             }
-
-            // Testing
-            //SpawnFish("F01");
-            //SpawnFish("F01");
-            //SpawnFish("F02");
-            //SpawnFish("F02");
-            //SpawnFish("F03");
-            //SpawnFish("F03");
-            //SpawnFish("F04");
-            //SpawnFish("F04"); 
-            //SpawnFish("F05");
-            //SpawnFish("F05");
-            //SpawnFish("F06");
-            //SpawnFish("F06");
-            //SpawnFish("F07");
-            //SpawnFish("F07");
-            //SpawnFish("F08");
-            //SpawnFish("F08");
-            //SpawnFish("F09");
-            //SpawnFish("F09");
-
-
         }
     }
-
+                
     private void SpawnFish(string rarity)
     {
         string fishID = string.Empty;
@@ -172,7 +223,6 @@ public class Spawner : MonoBehaviour
         {
             case "Bronze":
                 int bronzeChances = Random.Range(1, 4);
-                Debug.Log("fml" + bronzeChances);
                 switch (bronzeChances)
                 {
                     case 1:
@@ -237,8 +287,7 @@ public class Spawner : MonoBehaviour
         fishObj = Instantiate(PrefabGetter(fishID), GetSpawnLocationByID(fishID), Quaternion.identity) as GameObject;
         fishObj.GetComponent<FishBehaviour>().currFishId = fishID;
 
-        // Despawn Fish
-        Destroy(fishObj, MoonTravelling.spawnIntervals);
+        listOfFishesSpawned.Add(fishObj);
     }
 
    

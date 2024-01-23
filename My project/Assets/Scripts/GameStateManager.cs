@@ -36,7 +36,7 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         Debug.Log("Current Game State: " + currGameState);
+         //Debug.Log("Current Game State: " + currGameState);
 
          switch (currGameState)
          {
@@ -91,14 +91,13 @@ public class GameStateManager : MonoBehaviour
         ResetPos();
 
         Time.timeScale = 1;
-        
+
         if (targetDir.position == PointsManager.initPt)
         {
             textObj.SetActive(false);
             currGameState = States.GameStates.Ready;
             _minigame.Resize();
         }
-
     }
 
     public void GetCollidedFishObj(Collider2D fishcollider)

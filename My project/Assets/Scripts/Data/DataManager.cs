@@ -9,16 +9,15 @@ public class DataManager : MonoBehaviour
     #region All Data
     public List<FishStatus> fList = new List<FishStatus>();
 
-    FishStatus F01 = new FishStatus("F01", "Common Koi", "lineLength@0.1", "", 0.2f, "B", 0.1f, 2f, 0.3f, 4f, 0.15f, 2f, "Bronze");
-    FishStatus F02 = new FishStatus("F02", "Silver Scales", "hookRange@0.01", "", 0.3f, "A", 0.2f, 2f, 0.4f, 4f, 0.3f, 2f, "Bronze");
-    FishStatus F03 = new FishStatus("F03", "Crystal Betta", "lineLength@0.1", "", 0.3f, "B", 0.3f, 2f, 0.6f, 4f, 0.35f, 2f, "Bronze");
-    FishStatus F04 = new FishStatus("F04", "Namazu", "hookRange@0.03", "", 0.4f, "A", 0.5f, 3f, 0.4f, 4f, 0.65f, 2f, "Silver");
-    FishStatus F05 = new FishStatus("F05", "Pufferfish", "lineLength@0.2", "", 0.4f, "B", 0.6f, 3f, 0.8f, 4f, 0.9f, 1f, "Silver");
-    FishStatus F06 = new FishStatus("F06", "Crocodile Gar", "hookRange@0.05", "end level", 0.5f, "A", 0.5f, 3f, 0.75f, 2f, 0.65f, 3f, "Silver");
-    FishStatus F07 = new FishStatus("F07", "Angler Fish", "lineLength@0.5", "end level", 0.7f, "B", 0.6f, 3f, 0.75f, 2f, 0.9f, 3f, "Gold");
-    FishStatus F08 = new FishStatus("F08", "Old Man", "lineLength@0.4", "", 0.7f, "A", 0.9f, 4f, 0.6f, 2f, 0.8f, 2f, "Gold");
-    FishStatus F09 = new FishStatus("F09", "Moonlight Manta", "GameEnds@0", "", 1f, "B", 0.75f, 4f, 0.5f, 2f, 0.9f, 2f, "Platinum");
-    //FishStatus F10 = new FishStatus("F10", "Moonlight Manta", "GameEnds@0", "", 1f, "B", 0.9f, 2f, 0.6f, 3f, 0.3f, 3f);
+    FishStatus F01 = new FishStatus("F01", "Common Koi", "lineLength@0.2", "", 0.1f, "B", 0.1f, 2f, 0.3f, 4f, 0.15f, 2f, "Bronze");
+    FishStatus F02 = new FishStatus("F02", "Silver Scales", "lineLength@0.3", "", 0.15f, "A", 0.2f, 2f, 0.4f, 4f, 0.3f, 2f, "Bronze");
+    FishStatus F03 = new FishStatus("F03", "Crystal Betta", "lineLength@0.2", "", 0.15f, "B", 0.3f, 2f, 0.6f, 4f, 0.35f, 2f, "Bronze");
+    FishStatus F04 = new FishStatus("F04", "Namazu", "hookRange@0.03", "", 0.2f, "A", 0.5f, 3f, 0.4f, 4f, 0.65f, 2f, "Silver");
+    FishStatus F05 = new FishStatus("F05", "Pufferfish", "hookRange@0.02", "", 0.2f, "B", 0.6f, 3f, 0.8f, 4f, 0.9f, 1f, "Silver");
+    FishStatus F06 = new FishStatus("F06", "Crocodile Gar", "hookRange@0.05", "end level", 0.25f, "A", 0.5f, 3f, 0.75f, 2f, 0.65f, 3f, "Silver");
+    FishStatus F07 = new FishStatus("F07", "Angler Fish", "lineLength@0.5", "end level", 0.3f, "B", 0.6f, 3f, 0.75f, 2f, 0.9f, 3f, "Gold");
+    FishStatus F08 = new FishStatus("F08", "Old Man", "lineLength@0.4", "", 0.7f, "A", 0.3f, 4f, 0.6f, 2f, 0.8f, 2f, "Gold");
+    FishStatus F09 = new FishStatus("F09", "Moonlight Manta", "GameEnds@0", "", 1f, "B", 0.45f, 4f, 0.5f, 2f, 0.9f, 2f, "Platinum");
 
     public List<RodStatus> rList = new List<RodStatus>();
 

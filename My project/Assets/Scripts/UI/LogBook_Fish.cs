@@ -31,6 +31,14 @@ public class LogBook_Fish : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (fishPopup.activeInHierarchy)
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+        }
+
         if (_img.color == Color.white)
         {
             LB_fishClicked = eventData.pointerClick.name;
@@ -40,10 +48,6 @@ public class LogBook_Fish : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             //LB_fishClicked = string.Empty;
         }
 
-        if (fishPopup.activeInHierarchy)
-        {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
-        }
     }
 }
  

@@ -41,7 +41,7 @@ public class FishBuffs : MonoBehaviour
             case "lineLength":
                 ll.SetActive(true);
                 PointsManager.castedPtExtend += buffAmount;
-                Line.lineDepth += buffAmount;
+                Line.lineDepth -= buffAmount;
                 totBuff_ll += buffAmount;
                 break;            
 

@@ -21,6 +21,7 @@ public class MoonTravelling : MonoBehaviour
     private float spawnTimer = 0;
     public static bool isSpawning;
 
+    Spawner _spawner;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class MoonTravelling : MonoBehaviour
     {
         timeIntervals = maxTime / 3; 
         rb = GetComponent<Rigidbody2D>();
-
+        _spawner = Spawner.Instance;
     }
 
     // Update is called once per frame
@@ -82,7 +83,7 @@ public class MoonTravelling : MonoBehaviour
             {
                 //Debug.Log("arlo" + spawnTimer);
                 spawnTimer = 0;
-                isSpawning = true;
+                isSpawning = true; 
             }
 
         }
@@ -92,6 +93,5 @@ public class MoonTravelling : MonoBehaviour
             isSpawning = false;
         }
 
-     }
-
+    }
 }

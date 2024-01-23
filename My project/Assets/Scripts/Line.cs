@@ -50,6 +50,8 @@ public class Line : MonoBehaviour
     {
         flowPoint.position = targetDir.position;
         //fishPt.position = PointsManager.castedPt;
+        Debug.Log("Line Length: Depth " + Line.lineDepth);
+
 
         if (Input.GetMouseButtonDown(0) && GameStateManager.currGameState == States.GameStates.Ready)
         {
@@ -140,6 +142,8 @@ public class Line : MonoBehaviour
             // Setting the maximum depth 
             Vector3 endPt = new Vector3(targetDir.position.x, lineDepth, 0);
 
+            Debug.Log("Line Length: enddpt " + Line.lineDepth);
+
             if (isReeling)
             {
                 targetDir.position = Vector3.MoveTowards(targetDir.position, PointsManager.initPt, 0.09f);
@@ -159,7 +163,6 @@ public class Line : MonoBehaviour
 
     public void ResetPos()
     {
-        //Debug.Log("Ehet");
         interpolateAmt = 0.01f;
 
         segmentPoses[0] = targetDir.position;
