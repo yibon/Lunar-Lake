@@ -320,6 +320,7 @@ public class Spawner : MonoBehaviour
 
     private Vector2 GetSpawnLocationByID(string fishID)
     {
+        // Sorting the fishes into their rarity cause the depths are seperated by rarity in the data
         switch (fishID)
         {
             case "F01":
@@ -346,10 +347,12 @@ public class Spawner : MonoBehaviour
 
     private Vector2 GetSpawnLocationByRarity(string rarity)
     {
+        // Getting the minimum range of the depth
         float spawnLocationMinY = _dm.SpawnerDataByRarity(rarity).minYvalue;
+        // Getting the maximum range of the depth
         float spawnLocationMaxY = _dm.SpawnerDataByRarity(rarity).maxYvalue;
         Vector2 spawnLocation = Vector2.zero;
-        // Replace this with fishID min and max pos
+        // 
         spawnLocation.y = Random.Range(spawnLocationMinY, spawnLocationMaxY);
         spawnLocation.x = Random.Range(-1, 1);
 

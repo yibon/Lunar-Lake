@@ -49,10 +49,8 @@ public class Minigame : MonoBehaviour
     {
         Resize();
         fishSpeed = 2f;
-        pointTimer = caughtFish.fishStateTime_1;
-        fishDestination = caughtFish.fishStatePos_1;
-
-        this.transform.position = Camera.main.transform.position + new Vector3(2f, 0, 10f);
+        // pointTimer = caughtFish.fishStateTime_1;
+        // fishDestination = caughtFish.fishStatePos_1;
 
         progressBarSR = progressBarContainer.gameObject.GetComponentInChildren<SpriteRenderer>();
 

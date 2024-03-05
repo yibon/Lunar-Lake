@@ -45,7 +45,7 @@ public class GameStateManager : MonoBehaviour
                 break;
 
             case States.GameStates.Catching:
-                targetDir.position = targetDir.position;
+                //targetDir.position = targetDir.position;
                 fishingMinigame.SetActive(true);
                 break;
                

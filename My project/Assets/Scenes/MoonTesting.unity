@@ -7900,7 +7900,7 @@ MonoBehaviour:
   hookPower: 0.3
   hookPullPower: 0.01
   hookGravityPower: 0.005
-  hookProgressDegradPower: 0.1
+  hookProgressDegradPower: 0.05
   hookSR: {fileID: 442101122}
   progressBarContainer: {fileID: 1503389291}
   _bookDisp: {fileID: 1082957744}

@@ -89,16 +89,16 @@ public class Line : MonoBehaviour
             segmentPoses[length - 1] = targetDir.position;
             segmentPoses[0] = Rod.rodVector;
 
-            for (int i = segmentPoses.Length - 2; i > 0; i--)
+            //for (int i = segmentPoses.Length - 2; i > 0; i--)
             //or (int i = 0; i < length - 1; i++)
-            {
+            //{
                 // Maintaining a constant length
-                Vector3 endingPos = segmentPoses[i + 1] + (segmentPoses[i] - segmentPoses[i + 1]).normalized * targetDist;
+                //Vector3 endingPos = segmentPoses[i + 1] + (segmentPoses[i] - segmentPoses[i + 1]).normalized * targetDist;
                 //segmentPoses[i]  = Vector3.SmoothDamp(segmentPoses[i], segmentPoses[i - 1] + targetDir.right * targetDist, ref segmentV[i], smoothSpeed);
 
                 // Simulating
-                segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], endingPos, ref segmentV[i], smoothSpeed);
-            }
+                //segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], endingPos, ref segmentV[i], smoothSpeed);
+            //}
 
             //segmentPoses[0] = targetDir.position;
 
@@ -136,7 +136,7 @@ public class Line : MonoBehaviour
             }
         }
 
-        // Reeling State
+        // Reeling State 
         if (GameStateManager.currGameState == States.GameStates.Reeling)
         {
             // Setting the maximum depth 
@@ -169,10 +169,10 @@ public class Line : MonoBehaviour
         targetDir.position = PointsManager.initPt;
 
 
-        for (int i = 1; i < length - 1; i++)
-        {
-            segmentPoses[i] = segmentPoses[i - 1] + targetDir.right  * targetDist;
-        }
+        //for (int i = 1; i < length - 1; i++)
+        //{
+        //    segmentPoses[i] = segmentPoses[i - 1] + targetDir.right  * targetDist;
+        //}
 
         segmentPoses[length -1] = Rod.rodVector;
         isHalfway = false;
